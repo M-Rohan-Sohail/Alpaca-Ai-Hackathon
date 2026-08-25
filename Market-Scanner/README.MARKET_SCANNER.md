@@ -42,7 +42,7 @@ The result is saved to disk to be picked up by the Agentic Layer.
                  ┌─────────────────────────────┐
                  │        AGENTIC LAYER
                  |                             │
-                 │        Market Scanner       │
+                 │                             │
                  │ ┌─────────┬─────────┬─────┐ │
                  │ ▼         ▼         ▼     │ │
                  │NEWS    MARKET    OPTIONS  │ │
