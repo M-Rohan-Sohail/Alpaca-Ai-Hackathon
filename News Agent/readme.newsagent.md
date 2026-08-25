@@ -40,28 +40,24 @@ The result is saved to disk where it can be picked up by the **Decision Agent**.
                          Selects Candidates
                                 │
                                 ▼
-                    ┌───────────────────────┐
-                    │     AGENTIC LAYER     │
-                    │                       │
-                    │  ┌─────────────────┐  │
-                    │  │   NEWS AGENT    │  │
-                    │  │ Sentiment View  │  │
-                    │  └────────┬────────┘  │
-                    │           │           │
-                    │  ┌────────┴────────┐  │
-                    │  │                 │  │
-                    │  ▼                 ▼  │
-                    │ MARKET AGENT   OPTIONS AGENT
-                    │  │                 │
-                    └──┼─────────────────┼──┘
-                       │                 │
-                       └────────┬────────┘
-                                ▼
-                       🧠 DECISION AGENT
-                                │
-                         ┌──────┴──────┐
-                         ▼             ▼
-                      TRADE           PASS
+                 ┌─────────────────────────────┐
+                 │        AGENTIC LAYER
+                 |                             │
+                 │        Market Scanner       │
+                 │ ┌─────────┬─────────┬─────┐ │
+                 │ ▼         ▼         ▼     │ │
+                 │NEWS    MARKET    OPTIONS  │ │
+                 │AGENT    AGENT     AGENT   │ │
+                 │ │         │         │     │ │
+                 │ └─────────┼─────────┘     │ │
+                 │           ▼               │ │
+                 │   🧠 DECISION AGENT       │ │
+                 │           │               │ │
+                 └───────────┼───────────────┘
+                             │
+                       ┌─────┴─────┐
+                       ▼           ▼
+                     TRADE        Reject
 ```
 
 ### What each component does
