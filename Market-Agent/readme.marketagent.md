@@ -40,30 +40,25 @@ The result is then passed to the **Decision Agent**, where it is combined with t
                          Selects Candidates
                                 │
                                 ▼
-                    ┌───────────────────────┐
-                    │     AGENTIC LAYER     │
-                    │                       │
-                    │  ┌─────────────────┐  │
-                    │  │  MARKET AGENT   │  │
-                    │  │  Technical View │  │
-                    │  └────────┬────────┘  │
-                    │           │           │
-                    │  ┌────────┴────────┐  │
-                    │  │                 │  │
-                    │  ▼                 ▼  │
-                    │ NEWS AGENT     OPTIONS AGENT
-                    │  │                 │
-                    └──┼─────────────────┼──┘
-                       │                 │
-                       └────────┬────────┘
-                                ▼
-                       🧠 DECISION AGENT
-                                │
-                         ┌──────┴──────┐
-                         ▼             ▼
-                      TRADE           PASS
+                 ┌─────────────────────────────┐
+                 │        AGENTIC LAYER
+                 |                             │
+                 │                             │
+                 │ ┌─────────┬─────────┬─────┐ │
+                 │ ▼         ▼         ▼     │ │
+                 │NEWS    MARKET    OPTIONS  │ │
+                 │AGENT    AGENT     AGENT   │ │
+                 │ │         │         │     │ │
+                 │ └─────────┼─────────┘     │ │
+                 │           ▼               │ │
+                 │   🧠 DECISION AGENT       │ │
+                 │           │               │ │
+                 └───────────┼───────────────┘
+                             │
+                       ┌─────┴─────┐
+                       ▼           ▼
+                     TRADE        Reject
 ```
-
 ### What each component does
 
 | Component | Responsibility |
