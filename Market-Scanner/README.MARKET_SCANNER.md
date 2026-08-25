@@ -34,34 +34,29 @@ The result is saved to disk to be picked up by the Agentic Layer.
 ## 🔄 Agentic Layer Flow
 
 ```text
-                      📊 RAW MARKET DATA
+                         🔎 MARKET SCANNER
+                                │
+                         Selects Candidates
                                 │
                                 ▼
-                    ┌───────────────────────┐
-                    │  🔎 MARKET SCANNER    │
-                    │   Ranks Candidates    │
-                    └───────────┬───────────┘
-                                │
-                          Top Candidates
-                                │
-                                ▼
-                    ┌───────────────────────┐
-                    │     AGENTIC LAYER     │
-                    │                       │
-                    │  ┌─────────────────┐  │
-                    │  │                 │  │
-                    │  ▼                 ▼  │
-                    │ NEWS AGENT     MARKET AGENT
-                    │  │                 │
-                    └──┼─────────────────┼──┘
-                       │                 │
-                       └────────┬────────┘
-                                ▼
-                       🧠 DECISION AGENT
-                                │
-                         ┌──────┴──────┐
-                         ▼             ▼
-                      TRADE           PASS
+                 ┌─────────────────────────────┐
+                 │        AGENTIC LAYER
+                 |                             │
+                 │        Market Scanner       │
+                 │ ┌─────────┬─────────┬─────┐ │
+                 │ ▼         ▼         ▼     │ │
+                 │NEWS    MARKET    OPTIONS  │ │
+                 │AGENT    AGENT     AGENT   │ │
+                 │ │         │         │     │ │
+                 │ └─────────┼─────────┘     │ │
+                 │           ▼               │ │
+                 │   🧠 DECISION AGENT       │ │
+                 │           │               │ │
+                 └───────────┼───────────────┘
+                             │
+                       ┌─────┴─────┐
+                       ▼           ▼
+                     TRADE        Reject
 ```
 
 ### What each component does
