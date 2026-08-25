@@ -41,8 +41,7 @@ The result is then passed to the **Decision Agent**, where it is combined with t
                                 │
                                 ▼
                  ┌─────────────────────────────┐
-                 │        AGENTIC LAYER
-                 |                             │
+                 │        AGENTIC LAYER        │
                  │                             │
                  │ ┌─────────┬─────────┬─────┐ │
                  │ ▼         ▼         ▼     │ │
@@ -57,8 +56,9 @@ The result is then passed to the **Decision Agent**, where it is combined with t
                              │
                        ┌─────┴─────┐
                        ▼           ▼
-                     TRADE        Reject
+                     TRADE        PASS
 ```
+
 ### What each component does
 
 | Component | Responsibility |

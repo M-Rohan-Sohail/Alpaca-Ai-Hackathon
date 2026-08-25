@@ -34,14 +34,19 @@ The result is saved to disk to be picked up by the Agentic Layer.
 ## 🔄 Agentic Layer Flow
 
 ```text
-                         🔎 MARKET SCANNER
+                      📊 RAW MARKET DATA
                                 │
-                         Selects Candidates
+                                ▼
+                    ┌───────────────────────┐
+                    │  🔎 MARKET SCANNER    │
+                    │   Ranks Candidates    │
+                    └───────────┬───────────┘
+                                │
+                          Top Candidates
                                 │
                                 ▼
                  ┌─────────────────────────────┐
-                 │        AGENTIC LAYER
-                 |                             │
+                 │        AGENTIC LAYER        │
                  │                             │
                  │ ┌─────────┬─────────┬─────┐ │
                  │ ▼         ▼         ▼     │ │
@@ -56,7 +61,7 @@ The result is saved to disk to be picked up by the Agentic Layer.
                              │
                        ┌─────┴─────┐
                        ▼           ▼
-                     TRADE        Reject
+                     TRADE        PASS
 ```
 
 ### What each component does

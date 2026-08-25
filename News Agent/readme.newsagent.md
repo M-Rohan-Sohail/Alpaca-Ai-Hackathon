@@ -41,8 +41,7 @@ The result is saved to disk where it can be picked up by the **Decision Agent**.
                                 │
                                 ▼
                  ┌─────────────────────────────┐
-                 │        AGENTIC LAYER
-                 |                             │
+                 │        AGENTIC LAYER        │
                  │                             │
                  │ ┌─────────┬─────────┬─────┐ │
                  │ ▼         ▼         ▼     │ │
@@ -57,7 +56,7 @@ The result is saved to disk where it can be picked up by the **Decision Agent**.
                              │
                        ┌─────┴─────┐
                        ▼           ▼
-                     TRADE        Reject
+                     TRADE        PASS
 ```
 
 ### What each component does
