@@ -1,10 +1,12 @@
 import json
+import os
+from datetime import datetime
 
 def clamp(value):
     """Clamps a value between 0 and 100."""
     return max(0.0, min(100.0, float(value)))
 
-def process_market_data(assets):
+def process_market_data(assets, save_output=True):
     """
     Processes a list of asset data dictionaries and returns the ranked candidates.
     """
@@ -100,6 +102,10 @@ def process_market_data(assets):
 
         scored_candidates.append({
             "symbol": symbol,
+            "price": price,
+            "trend": trend_data,
+            "volatility": asset.get("volatility", {}),
+            "volume": volume_data,
             "opportunity_score": opportunity_score,
             "scores": {
                 "momentum": round(momentum_score, 1),
@@ -128,13 +134,32 @@ def process_market_data(assets):
         }
         output1["candidates"].append(detailed_entry)
         
-        # Simple entry
+        # Simple entry (MarketAgent expected input)
         simple_entry = {
-            "rank": rank,
             "symbol": candidate["symbol"],
-            "opportunity_score": candidate["opportunity_score"]
+            "price": candidate["price"],
+            "trend": candidate["trend"],
+            "volatility": candidate["volatility"],
+            "volume": candidate["volume"]
         }
         output2["candidates"].append(simple_entry)
+
+    if save_output:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_dir = "Market Scanner Output"
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # Add marker to identify the latest run output
+        output1["run_timestamp"] = timestamp
+        output2["run_timestamp"] = timestamp
+        
+        filename = os.path.join(output_dir, f"market_scan_{timestamp}.json")
+        combined_output = {
+            "detailed_scores": output1,
+            "overall_ranking": output2
+        }
+        with open(filename, 'w') as f:
+            json.dump(combined_output, f, indent=2)
 
     return output1, output2
 

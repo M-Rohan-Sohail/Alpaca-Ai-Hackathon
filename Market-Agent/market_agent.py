@@ -1,22 +1,13 @@
-#!/usr/bin/env python
-"""
-Market Agent - Analyzes price patterns and indicators
-Part of Alpaca AI Hackathon 2026
-
-Author: [Your Name]
-Team: [Team Name]
-Component: Agentic Layer - Market Agent (5b)
-"""
-
 import os
 import json
 import logging
+import glob
 from typing import Dict, Any, Optional
 from datetime import datetime
 from dataclasses import dataclass, asdict
 
 # Third-party imports
-from openai import OpenAI
+from groq import Groq
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -39,7 +30,7 @@ class MarketAnalysis:
     reasoning: str
     key_factors: list
     timestamp: str
-    model_used: str = "gpt-4"
+    model_used: str = "gpt-oss-120b"
 
 
 class MarketAgent:
@@ -52,14 +43,14 @@ class MarketAgent:
     
     def __init__(self, 
                  api_key: Optional[str] = None,
-                 model: str = "gpt-4",
+                 model: str = "openai/gpt-oss-120b",
                  temperature: float = 0.3,
                  sandbox_mode: bool = True):
         """
         Initialize the Market Agent
         
         Args:
-            api_key: OpenAI API key (defaults to env var)
+            api_key: Groq API key (defaults to env var)
             model: LLM model to use
             temperature: LLM temperature (0.0-1.0)
             sandbox_mode: If True, use mock responses (for testing)
@@ -70,8 +61,8 @@ class MarketAgent:
         
         # Initialize LLM client
         if not sandbox_mode:
-            self.client = OpenAI(
-                api_key=api_key or os.getenv('OPENAI_API_KEY')
+            self.client = Groq(
+                api_key=api_key or os.getenv('GROQ_API_KEY')
             )
         else:
             self.client = None
@@ -285,49 +276,64 @@ def main():
     print("🚀 Market Agent - Alpaca AI Hackathon 2026")
     print("=" * 50)
     
-    # Sample test data
-    test_data = {
-        "symbol": "NVDA",
-        "price": 180.45,
-        "trend": {
-            "sma20": 178.20,
-            "sma50": 173.50,
-            "rsi14": 68.0
-        },
-        "volatility": {
-            "daily_std": 0.018,
-            "atr": 4.20
-        },
-        "volume": {
-            "today": 34000000,
-            "avg20": 25000000
-        }
-    }
+    # Find the latest scanner output
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    scanner_dir = os.path.join(base_dir, "..", "Market Scanner Output")
+    
+    json_files = glob.glob(os.path.join(scanner_dir, "*.json"))
+    if not json_files:
+        print(f"❌ No scanner output found in {scanner_dir}")
+        return
+        
+    latest_file = max(json_files, key=os.path.getctime)
+    print(f"📄 Found latest scanner output: {os.path.basename(latest_file)}")
+    
+    with open(latest_file, 'r') as f:
+        scanner_data = json.load(f)
+        
+    candidates = scanner_data.get("overall_ranking", {}).get("candidates", [])
+    if not candidates:
+        print("❌ No candidates found in the scanner output.")
+        return
     
     # Initialize agent
     print("📊 Initializing Market Agent...")
     agent = MarketAgent(
-        sandbox_mode=True  # Use mock responses for quick testing
+        sandbox_mode=False  # Use mock responses for quick testing
     )
     
-    # Run analysis
-    print("\n🔍 Running analysis on NVDA...")
-    result = agent.analyze(test_data)
+    all_results = []
     
-    # Display results
-    print("\n📈 Analysis Results:")
-    print(f"   Symbol: {result['symbol']}")
-    print(f"   Direction: {result['direction']}")
-    print(f"   Confidence: {result['confidence']:.2%}")
-    print(f"   Reasoning: {result['reasoning']}")
-    print(f"   Key Factors: {', '.join(result['key_factors'])}")
-    
+    print("\n🔍 Running analysis on candidates...")
+    for candidate in candidates:
+        symbol = candidate.get("symbol", "UNKNOWN")
+        print(f"\n--- Analyzing {symbol} ---")
+        result = agent.analyze(candidate)
+        all_results.append(result)
+        
+        # Display results
+        print(f"   Direction: {result['direction']}")
+        print(f"   Confidence: {result['confidence']:.2%}")
+        print(f"   Reasoning: {result['reasoning']}")
+        print(f"   Key Factors: {', '.join(result['key_factors'])}")
+        
     # Save to file
-    with open('market_analysis.json', 'w') as f:
-        json.dump(result, f, indent=2)
-    print(f"\n💾 Results saved to market_analysis.json")
+    output_dir = os.path.join(base_dir, "Market Agent Output")
+    os.makedirs(output_dir, exist_ok=True)
     
-    return result
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = os.path.join(output_dir, f"agent_analysis_{timestamp}.json")
+    
+    output_data = {
+        "run_timestamp": timestamp,
+        "analyses": all_results
+    }
+    
+    with open(filename, 'w') as f:
+        json.dump(output_data, f, indent=2)
+    print(f"\n💾 All results saved to {filename}")
+    
+    return all_results
 
 
 if __name__ == "__main__":
