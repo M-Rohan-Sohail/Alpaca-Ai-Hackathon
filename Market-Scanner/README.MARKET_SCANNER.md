@@ -1,4 +1,4 @@
-# 🔎 Market Scanner
+# 🔎 Market Scanner v1
 
 <p align="center">
   <strong>Autonomous asset evaluation and ranking for the Alpaca AI Hackathon 2026</strong>

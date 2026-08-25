@@ -1,4 +1,4 @@
-# 📰 News Agent
+# 📰 News Agent v1
 
 <p align="center">
   <strong>AI-powered news and sentiment analysis for the Alpaca AI Hackathon 2026</strong>

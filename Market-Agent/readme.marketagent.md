@@ -1,4 +1,4 @@
-# 🤖 Market Agent
+# 🤖 Market Agent v1
 
 <p align="center">
   <strong>AI-powered technical market analysis for the Alpaca AI Hackathon 2026</strong>
