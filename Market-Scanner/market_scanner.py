@@ -146,7 +146,8 @@ def process_market_data(assets, save_output=True):
 
     if save_output:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_dir = "Market Scanner Output"
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        output_dir = os.path.join(base_dir, "..", "Market Scanner Output")
         os.makedirs(output_dir, exist_ok=True)
         
         # Add marker to identify the latest run output

@@ -180,7 +180,8 @@ Based on this data, determine if {symbol} is BULLISH, BEARISH, or NEUTRAL.
     "confidence": 0.85,
     "reasoning": "Brief explanation of your decision using specific data points",
     "key_factors": ["factor1", "factor2", "factor3"]
-}}"""
+}}
+NOTE: 'confidence' MUST be a numeric float (e.g., 0.9), NEVER use words like 'nine' or fractions."""
         
         return prompt
     
@@ -318,7 +319,7 @@ def main():
         print(f"   Key Factors: {', '.join(result['key_factors'])}")
         
     # Save to file
-    output_dir = os.path.join(base_dir, "Market Agent Output")
+    output_dir = os.path.join(base_dir, "..", "Market Agent Output")
     os.makedirs(output_dir, exist_ok=True)
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
