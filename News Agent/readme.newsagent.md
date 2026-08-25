@@ -43,7 +43,7 @@ The result is saved to disk where it can be picked up by the **Decision Agent**.
                  ┌─────────────────────────────┐
                  │        AGENTIC LAYER
                  |                             │
-                 │        Market Scanner       │
+                 │                             │
                  │ ┌─────────┬─────────┬─────┐ │
                  │ ▼         ▼         ▼     │ │
                  │NEWS    MARKET    OPTIONS  │ │
