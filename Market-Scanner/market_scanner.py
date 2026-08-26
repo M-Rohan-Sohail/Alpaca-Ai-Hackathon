@@ -165,44 +165,44 @@ def process_market_data(assets, save_output=True):
     return output1, output2
 
 
-# Dummy Input Asset Pool
-dummy_input = [
-    {
-        "symbol": "NVDA",
-        "price": 180.45,
-        "returns": {"return_1d": 0.012, "return_5d": 0.043, "return_20d": 0.087},
-        "trend": {"sma20": 178.2, "sma50": 173.5, "rsi14": 68},
-        "volatility": {"daily_std": 0.018, "atr": 4.2},
-        "volume": {"today": 34000000, "avg20": 25000000},
-        "options": [{"strike": 180, "exp": "2026-09-15", "bid": 3.5, "ask": 3.6, "iv": 0.24, "delta": 0.55}],
-        "news": [{"headline": "Nvidia raises guidance on AI demand", "sentiment": "positive", "confidence": 0.92}]
-    },
-    {
-        "symbol": "AAPL",
-        "price": 175.50,
-        "returns": {"return_1d": -0.002, "return_5d": 0.015, "return_20d": 0.030},
-        "trend": {"sma20": 176.0, "sma50": 172.0, "rsi14": 55},
-        "volatility": {"daily_std": 0.012, "atr": 3.1},
-        "volume": {"today": 45000000, "avg20": 50000000},
-        "options": [],
-        "news": [{"headline": "Apple announces new features", "sentiment": "positive", "confidence": 0.70}]
-    },
-    {
-        "symbol": "MSFT",
-        "price": 330.10,
-        "returns": {"return_1d": 0.005, "return_5d": -0.010, "return_20d": 0.025},
-        "trend": {"sma20": 335.0, "sma50": 320.0, "rsi14": 45},
-        "volatility": {"daily_std": 0.015, "atr": 5.5},
-        "volume": {"today": 20000000, "avg20": 22000000},
-        "options": [],
-        "news": [
-            {"headline": "Microsoft faces new regulatory scrutiny", "sentiment": "negative", "confidence": 0.85},
-            {"headline": "Cloud revenue grows", "sentiment": "positive", "confidence": 0.90}
-        ]
-    }
-]
-
 if __name__ == "__main__":
+    # Dummy Input Asset Pool
+    dummy_input = [
+        {
+            "symbol": "NVDA",
+            "price": 180.45,
+            "returns": {"return_1d": 0.012, "return_5d": 0.043, "return_20d": 0.087},
+            "trend": {"sma20": 178.2, "sma50": 173.5, "rsi14": 68},
+            "volatility": {"daily_std": 0.018, "atr": 4.2},
+            "volume": {"today": 34000000, "avg20": 25000000},
+            "options": [{"strike": 180, "exp": "2026-09-15", "bid": 3.5, "ask": 3.6, "iv": 0.24, "delta": 0.55}],
+            "news": [{"headline": "Nvidia raises guidance on AI demand", "sentiment": "positive", "confidence": 0.92}]
+        },
+        {
+            "symbol": "AAPL",
+            "price": 175.50,
+            "returns": {"return_1d": -0.002, "return_5d": 0.015, "return_20d": 0.030},
+            "trend": {"sma20": 176.0, "sma50": 172.0, "rsi14": 55},
+            "volatility": {"daily_std": 0.012, "atr": 3.1},
+            "volume": {"today": 45000000, "avg20": 50000000},
+            "options": [],
+            "news": [{"headline": "Apple announces new features", "sentiment": "positive", "confidence": 0.70}]
+        },
+        {
+            "symbol": "MSFT",
+            "price": 330.10,
+            "returns": {"return_1d": 0.005, "return_5d": -0.010, "return_20d": 0.025},
+            "trend": {"sma20": 335.0, "sma50": 320.0, "rsi14": 45},
+            "volatility": {"daily_std": 0.015, "atr": 5.5},
+            "volume": {"today": 20000000, "avg20": 22000000},
+            "options": [],
+            "news": [
+                {"headline": "Microsoft faces new regulatory scrutiny", "sentiment": "negative", "confidence": 0.85},
+                {"headline": "Cloud revenue grows", "sentiment": "positive", "confidence": 0.90}
+            ]
+        }
+    ]
+
     out1, out2 = process_market_data(dummy_input)
 
     print("=== OUTPUT 1: Detailed Scores ===")
