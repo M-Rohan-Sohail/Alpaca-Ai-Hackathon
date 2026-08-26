@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import logging
 import glob
@@ -98,18 +99,25 @@ Example:
     "https://example.com/3": "event_2"
 }}
 """
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.0,
-                response_format={"type": "json_object"}
-            )
-            result = json.loads(response.choices[0].message.content)
-            return result
-        except Exception as e:
-            logger.error(f"Error in semantic deduplication for {symbol}: {e}")
-            return {a.get("link"): f"event_{i}" for i, a in enumerate(articles)}
+        max_retries = 3
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.0,
+                    max_tokens=4000,
+                    response_format={"type": "json_object"}
+                )
+                result = json.loads(response.choices[0].message.content)
+                return result
+            except Exception as e:
+                logger.error(f"Error in semantic deduplication for {symbol} (Attempt {attempt}/{max_retries}): {e}")
+                if attempt == max_retries:
+                    logger.critical("Max retries reached. Terminating process to prevent garbage data.")
+                    sys.exit(1)
+                logger.info("Sleeping for 20s before retrying...")
+                time.sleep(20)
 
     def analyze_events(self, articles: List[Dict], event_mapping: Dict[str, str], symbol: str) -> Dict[str, Any]:
         """LLM Call 2 - Final analysis generation."""
@@ -177,17 +185,24 @@ Articles:
                 "overall_sentiment": "positive", "catalysts": ["New product"], "risks": []
             }
 
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0.2,
-                response_format={"type": "json_object"}
-            )
-            return json.loads(response.choices[0].message.content)
-        except Exception as e:
-            logger.error(f"Error in analysis for {symbol}: {e}")
-            return {}
+        max_retries = 3
+        for attempt in range(1, max_retries + 1):
+            try:
+                response = self.client.chat.completions.create(
+                    model=self.model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.2,
+                    max_tokens=4000,
+                    response_format={"type": "json_object"}
+                )
+                return json.loads(response.choices[0].message.content)
+            except Exception as e:
+                logger.error(f"Error in analysis for {symbol} (Attempt {attempt}/{max_retries}): {e}")
+                if attempt == max_retries:
+                    logger.critical("Max retries reached. Terminating process to prevent garbage data.")
+                    sys.exit(1)
+                logger.info("Sleeping for 20s before retrying...")
+                time.sleep(20)
 
     def calculate_python_news_score(self, llm_analysis: Dict[str, Any], original_articles: List[Dict]) -> float:
         """Calculate final news score using hardcoded python rules per article and averaging them."""
