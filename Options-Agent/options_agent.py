@@ -397,17 +397,23 @@ def run_options_agent():
         
         filtered_chain = fetch_and_filter_options_chain(symbol, spot_price)
         if not filtered_chain:
-            print(f"No valid options found for {symbol}.")
+            msg = f"No valid options found for {symbol}."
+            print(msg)
+            results.append({"symbol": symbol, "error": msg})
             continue
             
         raw_strategy = generate_strategy(candidate, filtered_chain)
         if not raw_strategy or "type" not in raw_strategy:
-            print("LLM failed to generate a valid strategy.")
+            msg = "LLM failed to generate a valid strategy."
+            print(msg)
+            results.append({"symbol": symbol, "error": msg})
             continue
             
         metrics = validate_and_calculate_metrics(raw_strategy, filtered_chain)
         if "error" in metrics:
-            print(f"Strategy rejected: {metrics['error']}")
+            msg = f"Strategy rejected: {metrics['error']}"
+            print(msg)
+            results.append({"symbol": symbol, "error": msg})
             continue
             
         final_output = {

@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class NewsAgent:
-    def __init__(self, model="openai/gpt-oss-120b", sandbox_mode=False):
+    def __init__(self, model="qwen/qwen3.8-27b", sandbox_mode=False):
         self.model = model
         self.sandbox_mode = sandbox_mode
         self.serper_api_key = os.getenv("SERPER_API_KEY")
@@ -45,7 +45,7 @@ class NewsAgent:
         url = "https://google.serper.dev/news"
         payload = json.dumps({
             "q": f"{symbol} stock news",
-            "num": 15
+            "num": 10
         })
         headers = {
             'X-API-KEY': self.serper_api_key,
