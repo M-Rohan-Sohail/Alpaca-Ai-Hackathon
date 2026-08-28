@@ -1,0 +1,5 @@
+.env
+OLD-OUTPUTS-BACKUP/
+__pycache__/
+*.pyc
+Data-Ingestion/DI_RUN_1_20260828_182459/
