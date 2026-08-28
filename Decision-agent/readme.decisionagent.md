@@ -43,9 +43,14 @@ The agent acts as the ultimate gatekeeper. It ensures that the market, news, and
                  │ │         │         │     │ │
                  │ └─────────┼─────────┘     │ │
                  │           ▼               │ │
-                 │   🧠 DECISION AGENT       │ │
-                 │           │               │ │
-                 └───────────┼───────────────┘
+                  │   🧠 DECISION AGENT       │ │
+                  │           │               │ │
+                  │           ▼               │ │
+                  │ 🛡️ RISK ASSESSMENT ENGINE │ │
+                  │           │               │ │
+                  │           ▼               │ │
+                  │ 🚀 EXECUTION AGENT        │ │
+                  └───────────┼───────────────┘
                              │
                        ┌─────┴─────┐
                        ▼           ▼
@@ -110,6 +115,7 @@ The `decide()` function returns a structured JSON object containing an array of 
         "type": "Bull Call Spread",
         "legs": [
           {
+            "symbol": "AAPL260926C00171990",
             "action": "BUY",
             "option_type": "CALL",
             "strike": 171.99,
@@ -117,6 +123,7 @@ The `decide()` function returns a structured JSON object containing an array of 
             "price": 3.6
           },
           {
+            "symbol": "AAPL260926C00184275",
             "action": "SELL",
             "option_type": "CALL",
             "strike": 184.275,

@@ -9,10 +9,10 @@ from typing import Dict, Any, List
 import time
 
 from groq import Groq
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(find_dotenv())
 
 # Setup logging
 logging.basicConfig(

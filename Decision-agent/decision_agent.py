@@ -13,7 +13,7 @@ from datetime import datetime
 from dataclasses import dataclass
 
 from groq import Groq
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 # Optional Alpaca integration
 try:
@@ -61,36 +61,27 @@ class DecisionAgent:
         self.sandbox_mode = sandbox_mode
         self.risk_constraints = risk_constraints or RiskConstraints()
         
-        load_dotenv()
+        load_dotenv(find_dotenv())
         
         self.alpaca_api_key = os.getenv("ALPACA_API_KEY", "")
         self.alpaca_secret_key = os.getenv("ALPACA_SECRET_KEY", "")
         self.alpaca_paper = os.getenv("ALPACA_PAPER", "True").lower() == "true"
         
         if not ALPACA_AVAILABLE or not self.alpaca_api_key or not self.alpaca_secret_key:
-            logger.warning("Alpaca API keys not found or SDK not installed, using mock portfolio data.")
-            self.trading_client = None
-        else:
-            self.trading_client = TradingClient(self.alpaca_api_key, self.alpaca_secret_key, paper=self.alpaca_paper)
-            logger.info("✅ Alpaca client initialized")
+            raise ValueError("Alpaca API keys and SDK are required for the Decision Agent.")
+        
+        self.trading_client = TradingClient(self.alpaca_api_key, self.alpaca_secret_key, paper=self.alpaca_paper)
+        logger.info("✅ Alpaca client initialized")
             
-        if not sandbox_mode:
-            try:
-                api_key = api_key or os.getenv('GROQ_API_KEY')
-                if not api_key:
-                    logger.warning("⚠️ No GROQ_API_KEY found. Switching to SANDBOX mode.")
-                    self.sandbox_mode = True
-                    self.client = None
-                else:
-                    self.client = Groq(api_key=api_key)
-                    logger.info("✅ Groq client initialized")
-            except Exception as e:
-                logger.error(f"❌ Failed to initialize Groq: {e}")
-                self.sandbox_mode = True
-                self.client = None
-        else:
-            self.client = None
-            logger.info("🔧 Running in SANDBOX mode")
+        api_key = api_key or os.getenv('GROQ_API_KEY')
+        if not api_key:
+            raise ValueError("GROQ_API_KEY is required for the Decision Agent.")
+            
+        try:
+            self.client = Groq(api_key=api_key)
+            logger.info("✅ Groq client initialized")
+        except Exception as e:
+            raise ValueError(f"Failed to initialize Groq: {e}")
 
     def _get_latest_json(self, folder_path: str) -> Optional[Any]:
         if not os.path.exists(folder_path):
@@ -155,17 +146,9 @@ class DecisionAgent:
         return m_cand, n_cand, o_cand
 
     def _fetch_portfolio_data(self) -> Dict:
-        """Fetch real Portfolio Data using Alpaca SDK, or mock if unavailable."""
+        """Fetch real Portfolio Data using Alpaca SDK."""
         if not self.trading_client:
-            # Mock Data
-            return {
-                "account_equity": 100000.0,
-                "cash": 70000.0,
-                "buying_power": 65000.0,
-                "existing_positions": [],
-                "total_exposure": 0.0,
-                "total_risk": 0.0
-            }
+            raise RuntimeError("TradingClient is not initialized.")
         
         try:
             account = self.trading_client.get_account()
@@ -291,7 +274,7 @@ Make a qualitative decision. Output strictly in JSON format matching this struct
   "strategy": {{
     "type": "BullCallSpread", 
     "legs": [
-      {{ "action": "BUY", "option_type": "CALL", "strike": 180.0, "expiration": "2026-09-15", "price": 3.60 }}
+      {{ "symbol": "AAPL260915C00180000", "action": "BUY", "option_type": "CALL", "strike": 180.0, "expiration": "2026-09-15", "price": 3.60 }}
     ]
   }},
   "confidence": 0.90, 
@@ -299,15 +282,7 @@ Make a qualitative decision. Output strictly in JSON format matching this struct
 }}
 """
         if self.sandbox_mode:
-            # Mock LLM Response for testing
-            return {
-                "symbol": symbol,
-                "decision": "TRADE",
-                "direction": "BULLISH",
-                "strategy": o_cand.get("strategy", o_cand),
-                "confidence": 0.85,
-                "reasoning": "Mock Sandbox Decision: All conditions look aligned."
-            }
+            logger.warning("Sandbox mode is deprecated. Running in live mode.")
 
         try:
             response = self.client.chat.completions.create(

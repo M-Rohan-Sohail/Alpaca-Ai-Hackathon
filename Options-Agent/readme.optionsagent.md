@@ -160,11 +160,11 @@ Options chains are massive. To prevent LLM context-window overflow and ensure hi
 - **Spreads**: Rejects contracts where the Bid/Ask spread is greater than 10% of the mid-price.
 
 ## 4. Strategy Generation (LLM)
-Passes the aggregated market data and the filtered options chain to Groq (`openai/gpt-oss-120b` / `llama-3.1-70b-versatile`). The LLM is forced to output strict JSON defining the strategy type and specific legs.
+Passes the aggregated market data and the filtered options chain to Groq (`openai/gpt-oss-120b` / `llama-3.1-70b-versatile`). The LLM is strictly constrained to output one of 6 approved directional strategies: **Long Call, Long Put, Bull Call Spread, Bear Put Spread, Bear Call Spread, or Bull Put Spread**. (Calendar and Diagonal spreads are explicitly banned due to mathematical unpredictability).
 
 ## 5. Math & Validation Engine (Python)
 LLMs are bad at math and can hallucinate data. The Python engine intercepts the LLM output and:
-- **Verifies Existence**: Confirms the strikes and expirations selected by the LLM actually exist in the filtered chain.
+- **Verifies Existence & Extracts OCC**: Confirms the strikes and expirations selected by the LLM actually exist in the filtered chain, and seamlessly extracts the 21-character OCC Symbol (e.g. `AAPL260915C00180000`) to pass downstream.
 - **Enforces Real Prices**: Uses the actual `Ask` price for buy legs and `Bid` price for sell legs (crossing the spread).
 - **Calculates PNL**: Mathematically calculates Net Debit/Credit, Max Profit, Max Loss, Breakeven, and Risk/Reward.
 - **Rejects Bad Trades**: If the strategy is mathematically impossible or yields a guaranteed loss, it is rejected entirely.

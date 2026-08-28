@@ -8,10 +8,10 @@ from dataclasses import dataclass, asdict
 
 # Third-party imports
 from groq import Groq
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
-load_dotenv()
+load_dotenv(find_dotenv())
 
 # Setup logging
 logging.basicConfig(
@@ -45,7 +45,7 @@ class MarketAgent:
                  api_key: Optional[str] = None,
                  model: str = "openai/gpt-oss-120b",
                  temperature: float = 0.3,
-                 sandbox_mode: bool = True):
+                 sandbox_mode: bool = False):
         """
         Initialize the Market Agent
         
@@ -53,20 +53,18 @@ class MarketAgent:
             api_key: Groq API key (defaults to env var)
             model: LLM model to use
             temperature: LLM temperature (0.0-1.0)
-            sandbox_mode: If True, use mock responses (for testing)
+            sandbox_mode: Legacy flag (unused)
         """
         self.model = model
         self.temperature = temperature
         self.sandbox_mode = sandbox_mode
         
         # Initialize LLM client
-        if not sandbox_mode:
-            self.client = Groq(
-                api_key=api_key or os.getenv('GROQ_API_KEY')
-            )
-        else:
-            self.client = None
-            logger.info("Running in SANDBOX mode - using mock responses")
+        api_key = api_key or os.getenv('GROQ_API_KEY')
+        if not api_key:
+            raise ValueError("GROQ_API_KEY is required to run the Market Agent in live mode.")
+        
+        self.client = Groq(api_key=api_key)
         
         # System prompt for the agent
         self.system_prompt = """You are a professional market analyst specializing in technical analysis.
@@ -100,7 +98,7 @@ Provide reasoning for your decision with specific data points.
         logger.info(f"🔍 MarketAgent analyzing {symbol}")
         
         if self.sandbox_mode:
-            return self._get_mock_analysis(market_data)
+            logger.warning("Sandbox mode is deprecated. Running in live mode.")
         
         try:
             # Build the prompt
@@ -215,40 +213,7 @@ NOTE: 'confidence' MUST be a numeric float (e.g., 0.9), NEVER use words like 'ni
         
         return result
     
-    def _get_mock_analysis(self, data: Dict[str, Any]) -> Dict[str, Any]:
-        """
-        Generate mock analysis for sandbox/testing mode
-        """
-        symbol = data.get('symbol', 'UNKNOWN')
-        price = data.get('price', 100)
-        trend = data.get('trend', {})
-        sma20 = trend.get('sma20', price - 5)
-        sma50 = trend.get('sma50', price - 10)
-        rsi14 = trend.get('rsi14', 55)
-        
-        # Simple deterministic logic for mock
-        if price > sma20 > sma50 and rsi14 > 55:
-            direction = 'BULLISH'
-            confidence = 0.75 + (rsi14 - 55) / 100
-            factors = ['Price above SMAs', 'RSI trending up']
-        elif price < sma20 < sma50 and rsi14 < 45:
-            direction = 'BEARISH'
-            confidence = 0.75 + (45 - rsi14) / 100
-            factors = ['Price below SMAs', 'RSI trending down']
-        else:
-            direction = 'NEUTRAL'
-            confidence = 0.5
-            factors = ['Mixed signals', 'Sideways trend']
-        
-        return {
-            'symbol': symbol,
-            'direction': direction,
-            'confidence': min(1.0, confidence),
-            'reasoning': f'Mock analysis: {direction} based on indicators',
-            'key_factors': factors,
-            'timestamp': datetime.now().isoformat(),
-            'model_used': 'mock'
-        }
+
     
     def _get_error_analysis(self, symbol: str, error: str) -> Dict[str, Any]:
         """
