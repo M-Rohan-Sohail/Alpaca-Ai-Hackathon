@@ -17,7 +17,7 @@
 The **Data Processing** module acts as the analytical calculator before handing data off to the AI agents.
 
 Its job is to:
-> **Take the raw data fetched by Data Ingestion, compute technical indicators (RSI, SMA, ATR) and sentiment scores, and package it into a clean "State" JSON for the trading agents.**
+> **Take the raw data fetched by Data Ingestion, compute technical indicators (RSI, SMA, ATR) and evaluate news sentiment via a context-aware LLM (Groq/OpenRouter), and package it into a clean "State" JSON for the trading agents.**
 
 ---
 
@@ -28,7 +28,7 @@ Its job is to:
        ↓
  🔍 data_loader.py (Automatically finds latest raw data)
        ↓
- ⚙️ run_processing.py (Calculates TA & Sentiment)
+ ⚙️ run_processing.py (Calculates TA & Batched LLM Sentiment)
        ↓
  💾 Data-Processing-Output/DP_RUN_1_<timestamp>/
 ```
@@ -60,7 +60,14 @@ The processor calculates the final AI-ready state and outputs it as clean JSON. 
   "volatility": {
     "daily_std": 0.0197,
     "atr": 7.11
-  }
+  },
+  "news": [
+    {
+      "headline": "Company beats earnings expectations and raises full-year guidance",
+      "sentiment": "positive",
+      "confidence": 0.95
+    }
+  ]
 }
 ```
 

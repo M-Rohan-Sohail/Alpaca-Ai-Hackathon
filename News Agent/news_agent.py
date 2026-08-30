@@ -22,25 +22,18 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class NewsAgent:
-    def __init__(self, model="qwen/qwen3.8-27b", sandbox_mode=False):
+    def __init__(self, model="qwen/qwen3.8-27b"):
         self.model = model
-        self.sandbox_mode = sandbox_mode
         self.serper_api_key = os.getenv("SERPER_API_KEY")
+        self.groq_api_key = os.getenv("GROQ_API_KEY")
         
-        if not sandbox_mode:
-            self.client = Groq(api_key=os.getenv('GROQ_API_KEY'))
-        else:
-            self.client = None
+        if not self.serper_api_key or not self.groq_api_key:
+            raise ValueError("SERPER_API_KEY and GROQ_API_KEY environment variables are required.")
+            
+        self.client = Groq(api_key=self.groq_api_key)
 
     def fetch_news_from_serper(self, symbol: str) -> List[Dict[str, Any]]:
         """Fetch news articles from Serper API."""
-        if self.sandbox_mode:
-            logger.info(f"Sandbox mode: returning mock news for {symbol}")
-            return [
-                {"title": f"{symbol} announces new product", "link": "https://example.com/1", "source": "Reuters", "date": "1 hour ago", "snippet": "Company announces huge new product."},
-                {"title": f"{symbol} announces new product - details", "link": "https://example.com/2", "source": "Bloomberg", "date": "2 hours ago", "snippet": "More details on the new product."},
-                {"title": f"{symbol} faces regulatory headwind", "link": "https://example.com/3", "source": "Yahoo Finance", "date": "1 day ago", "snippet": "Regulators are looking into the company."}
-            ]
 
         url = "https://google.serper.dev/news"
         payload = json.dumps({
@@ -76,9 +69,6 @@ class NewsAgent:
         """Stage 2: LLM Call 1 - Group articles into events."""
         if not articles:
             return {}
-            
-        if self.sandbox_mode:
-            return {a.get("link"): f"event_{i%2}" for i, a in enumerate(articles)}
 
         articles_summary = []
         for i, a in enumerate(articles):
@@ -178,13 +168,6 @@ Articles:
 {json.dumps(articles_data, indent=2)}
 """
 
-        if self.sandbox_mode:
-            return {
-                "articles": [{"url": a["url"], "relevance_score": 85, "sentiment": "positive", "impact": "high", "event_id": a["event_id"]} for a in articles_data],
-                "events": [{"event_id": "event_0", "event_type": "product_launch", "sentiment": "positive", "impact": "high", "headline": "New product", "source": "Reuters", "url": "https://example.com", "published_at": "1 hour ago"}],
-                "overall_sentiment": "positive", "catalysts": ["New product"], "risks": []
-            }
-
         max_retries = 3
         for attempt in range(1, max_retries + 1):
             try:
@@ -251,14 +234,34 @@ Articles:
                 src_score = 50
 
             # Recency Score
-            if "hour" in date_str or "min" in date_str or "today" in date_str or "sec" in date_str:
-                rec_score = 100
-            elif "day" in date_str:
-                rec_score = 80
-            elif "week" in date_str:
-                rec_score = 50
-            else:
-                rec_score = 20
+            rec_score = 20
+            try:
+                if any(x in date_str for x in ["min", "sec", "today"]):
+                    rec_score = 100
+                elif "hour" in date_str:
+                    val = int(''.join(filter(str.isdigit, date_str)) or 1)
+                    if val < 6:
+                        rec_score = 100
+                    else:
+                        rec_score = 90
+                elif "day" in date_str:
+                    val = int(''.join(filter(str.isdigit, date_str)) or 1)
+                    if val <= 2:
+                        rec_score = 75
+                    elif val == 3:
+                        rec_score = 60
+                    elif val <= 7:
+                        rec_score = 40
+                    else:
+                        rec_score = 20
+                elif "week" in date_str:
+                    val = int(''.join(filter(str.isdigit, date_str)) or 1)
+                    if val == 1:
+                        rec_score = 40
+                    else:
+                        rec_score = 20
+            except Exception:
+                pass
 
             total = (s_score * W_SENTIMENT) + (i_score * W_IMPACT) + (r_score * W_RELEVANCE) + (rec_score * W_RECENCY) + (src_score * W_SOURCE)
             article_scores.append(total)
@@ -279,9 +282,8 @@ Articles:
         logger.info(f"Running semantic deduplication for {symbol}...")
         event_mapping = self.semantic_deduplication(unique_articles, symbol)
         
-        if not self.sandbox_mode:
-            logger.info("⏳ Cooldown (10s) before final analysis to avoid API rate limits...")
-            time.sleep(10)
+        logger.info("⏳ Cooldown (10s) before final analysis to avoid API rate limits...")
+        time.sleep(10)
         
         logger.info(f"Running final analysis for {symbol}...")
         llm_analysis = self.analyze_events(unique_articles, event_mapping, symbol)
@@ -349,7 +351,7 @@ def main():
         print("❌ No candidates found in the scanner output.")
         return
         
-    agent = NewsAgent(sandbox_mode=False) # Set to False when API keys are ready
+    agent = NewsAgent()
     
     all_analysis = []
     
@@ -361,7 +363,7 @@ def main():
         result = agent.process_asset(symbol)
         all_analysis.append(result)
         
-        if not agent.sandbox_mode and candidate != candidates[-1]:
+        if candidate != candidates[-1]:
             print("⏳ Cooldown (15s) before processing next asset...")
             time.sleep(15)
         

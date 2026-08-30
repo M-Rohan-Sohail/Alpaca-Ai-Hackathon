@@ -2,6 +2,12 @@ from pydantic import BaseModel, field_validator
 import json
 
 
+class ExitRulesConfig(BaseModel):
+    take_profit_pct: float
+    stop_loss_pct: float
+    max_dte: int
+    max_holding_days: int
+
 class UserConfig(BaseModel):
     assets: list[str]
     max_risk_per_trade_pct: float
@@ -10,6 +16,7 @@ class UserConfig(BaseModel):
     max_exposure_pct: float
     min_risk_reward: float
     max_holding_days: int
+    exit_rules: ExitRulesConfig
 
     @field_validator("max_risk_per_trade_pct")
     @classmethod

@@ -19,9 +19,9 @@ The **Risk Assessment Engine** is the ultimate safety net of the **Agentic Layer
 
 Its job is simple but critical:
 
-> **Receive proposed trades, autonomously fetch live portfolio state from Alpaca, strictly enforce mathematical risk limits, and decisively output a PASS or REJECT signal.**
+> **Receive qualitative trade proposals, autonomously fetch live portfolio state from Alpaca, calculate precise quantitative contract sizing based on buying power and risk budgets, strictly enforce mathematical risk limits, and decisively output a PASS or REJECT signal.**
 
-The engine bypasses the LLMs entirely. It relies on pure, deterministic Python math to evaluate the economic reality of a trade against user-configured risk thresholds. If a trade is too large, the engine will automatically resize it (if possible). If it breaches daily loss or portfolio exposure limits, it completely rejects the trade.
+The engine bypasses the LLMs entirely and serves as the single quantitative authority. It relies on pure, deterministic Python math to evaluate the economic reality of a trade against the global `User_Config`. The engine calculates exactly how many contracts are permitted. If it breaches daily loss or portfolio exposure limits, it completely rejects the trade.
 
 The final output is a JSON payload containing:
 

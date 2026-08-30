@@ -88,39 +88,171 @@ def compute_volume(bars: list[dict]) -> dict:
     }
 
 
-POSITIVE_WORDS = ["beats", "raises", "surge", "growth", "gains", "up", "record"]
-NEGATIVE_WORDS = ["falls", "misses", "cuts", "slows", "drops", "down", "loss"]
+def analyze_news_batch(news_items: list[dict]) -> list[dict]:
+    if not news_items:
+        return []
+        
+    client = None
+    try:
+        api_key = os.getenv("GROQ_API_KEY")
+        if api_key:
+            from groq import Groq
+            client = Groq(api_key=api_key)
+    except Exception as e:
+        print(f"Error initializing Groq client: {e}")
+        
+    model = os.getenv("NEWS_SENTIMENT_MODEL", "qwen/qwen3.8-27b")
+    
+    # Process in batches of 10 to avoid huge prompts
+    batch_size = 10
+    results = []
+    
+    for i in range(0, len(news_items), batch_size):
+        batch = news_items[i:i+batch_size]
+        
+        # Prepare input with IDs
+        prompt_items = []
+        for idx, item in enumerate(batch):
+            prompt_items.append({
+                "id": idx,
+                "headline": item.get("title", "")
+            })
+            
+        default_fallback = [{"id": idx, "sentiment": "neutral", "confidence": 0.0} for idx in range(len(batch))]
+            
+        if not client:
+            batch_results = default_fallback
+        else:
+            prompt = f"""
+You are a financial news sentiment classifier.
 
+Your task is to classify the likely financial/market sentiment of each news article
+toward the underlying company's stock or financial outlook.
 
-def tag_sentiment(headline: str) -> dict:
-    text = headline.lower()
-    pos_hits = sum(word in text for word in POSITIVE_WORDS)
-    neg_hits = sum(word in text for word in NEGATIVE_WORDS)
+IMPORTANT RULES:
+1. Evaluate the COMPLETE financial context of the headline.
+2. Do NOT classify based on individual positive/negative words.
+3. Consider earnings, revenue, guidance, growth, acquisitions, partnerships,
+   regulatory actions, lawsuits, analyst actions, layoffs, product developments,
+   macroeconomic effects, and other material financial implications.
+4. When positive and negative information conflict, determine which factor has
+   the stronger likely financial/market impact.
+5. Use "neutral" when the headline has no clear material directional impact,
+   is purely informational, or the impact is genuinely balanced/uncertain.
+6. "positive" means the news is likely favorable for the company's stock/financial outlook.
+7. "negative" means the news is likely unfavorable for the company's stock/financial outlook.
+8. Confidence must represent how certain you are about the classification:
+   - 0.90-1.00 = very clear
+   - 0.70-0.89 = reasonably clear
+   - 0.50-0.69 = uncertain/mixed
+   - below 0.50 = highly ambiguous
+9. Do NOT calculate a final news_score.
+10. Return exactly ONE result for every input ID.
+11. Never invent, modify, duplicate, or omit an ID.
 
-    if pos_hits > neg_hits:
-        sentiment = "positive"
-        confidence = min(0.6 + 0.1 * pos_hits, 0.95)
-    elif neg_hits > pos_hits:
-        sentiment = "negative"
-        confidence = min(0.6 + 0.1 * neg_hits, 0.95)
-    else:
-        sentiment = "neutral"
-        confidence = 0.5
+Examples:
+- "Company beats earnings expectations and raises full-year guidance"
+  -> positive
+- "Company misses earnings estimates and cuts full-year guidance"
+  -> negative
+- "Company misses earnings but raises guidance and announces strong future demand"
+  -> evaluate the overall context; likely positive if the forward outlook materially outweighs the miss.
+- "Company announces date of next quarterly earnings report"
+  -> neutral
+- "Company faces major regulatory investigation that could materially affect operations"
+  -> negative
 
-    return {"sentiment": sentiment, "confidence": round(confidence, 2)}
+INPUT:
+{json.dumps(prompt_items, indent=2)}
+
+OUTPUT REQUIREMENTS:
+Return ONLY a valid JSON array.
+No markdown.
+No ```json fences.
+No explanations.
+No additional fields.
+
+Required format:
+[
+  {{
+    "id": 0,
+    "sentiment": "positive",
+    "confidence": 0.91
+  }},
+  {{
+    "id": 1,
+    "sentiment": "negative",
+    "confidence": 0.84
+  }}
+]
+
+Every input ID must appear exactly once in the output.
+"""
+            try:
+                response = client.chat.completions.create(
+                    model=model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0.0
+                )
+                content = response.choices[0].message.content.strip()
+                if content.startswith("```json"):
+                    content = content.replace("```json", "").replace("```", "").strip()
+                if content.startswith("```"):
+                    content = content.replace("```", "").strip()
+                    
+                parsed = json.loads(content)
+                if not isinstance(parsed, list):
+                    raise ValueError("LLM did not return a JSON array.")
+                    
+                batch_results = []
+                for p in parsed:
+                    if "id" not in p or "sentiment" not in p or "confidence" not in p:
+                        continue
+                    sid = p["id"]
+                    sent = p["sentiment"].lower()
+                    try:
+                        conf = float(p["confidence"])
+                    except:
+                        conf = 0.0
+                    
+                    if sent not in ["positive", "negative", "neutral"]:
+                        sent = "neutral"
+                    if conf < 0.0 or conf > 1.0:
+                        conf = 0.0
+                        
+                    batch_results.append({
+                        "id": sid,
+                        "sentiment": sent,
+                        "confidence": conf
+                    })
+                    
+            except Exception as e:
+                print(f"LLM sentiment batch failure: {e}")
+                batch_results = default_fallback
+                
+        # Merge back to original items by matching IDs
+        result_map = {r["id"]: r for r in batch_results if isinstance(r, dict) and "id" in r}
+        
+        for idx, original_item in enumerate(batch):
+            r = result_map.get(idx)
+            if r:
+                results.append({
+                    "headline": original_item.get("title", ""),
+                    "sentiment": r["sentiment"],
+                    "confidence": r["confidence"]
+                })
+            else:
+                results.append({
+                    "headline": original_item.get("title", ""),
+                    "sentiment": "neutral",
+                    "confidence": 0.0
+                })
+                
+    return results
 
 
 def process_news(news_items: list[dict]) -> list[dict]:
-    processed = []
-    for item in news_items:
-        headline = item.get("title", "")
-        tag = tag_sentiment(headline)
-        processed.append({
-            "headline": headline,
-            "sentiment": tag["sentiment"],
-            "confidence": tag["confidence"]
-        })
-    return processed
+    return analyze_news_batch(news_items)
 
 
 def process_options(options_raw: list[dict], max_contracts: int = 5) -> list[dict]:

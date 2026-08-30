@@ -23,23 +23,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DETERMINISTIC_FILTER_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "Deterministic-Filter-Output")
 NEWS_AGENT_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "News-Agent-Output")
 OPTIONS_AGENT_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "Options-Agent-Output")
+MARKET_AGENT_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "Market-Agent-Output")
+
+STRATEGY_BIAS = {
+    "LongCall": "BULLISH",
+    "BullCallSpread": "BULLISH",
+    "BullPutSpread": "BULLISH",
+    "LongPut": "BEARISH",
+    "BearPutSpread": "BEARISH",
+    "BearCallSpread": "BEARISH"
+}
 
 os.makedirs(OPTIONS_AGENT_OUT_DIR, exist_ok=True)
 
-# Initialize Clients
-alpaca_client = None
-if ALPACA_API_KEY and ALPACA_SECRET_KEY:
-    try:
-        alpaca_client = OptionHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
-    except Exception as e:
-        print(f"Warning: Could not initialize Alpaca Option client: {e}")
+if not ALPACA_API_KEY or not ALPACA_SECRET_KEY or not GROQ_API_KEY:
+    raise ValueError("ALPACA_API_KEY, ALPACA_SECRET_KEY, and GROQ_API_KEY are strictly required.")
 
-groq_client = None
-if GROQ_API_KEY:
-    try:
-        groq_client = Groq(api_key=GROQ_API_KEY)
-    except Exception as e:
-        print(f"Warning: Could not initialize Groq client: {e}")
+alpaca_client = OptionHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
+groq_client = Groq(api_key=GROQ_API_KEY)
 
 
 def get_latest_json_file(directory: str):
@@ -136,8 +137,22 @@ def aggregate_candidate_data():
             except json.JSONDecodeError:
                 print(f"Failed to decode {news_file}")
     
-    # 3. Data Processing Mock (Provides price, returns, trend, volatility, volume)
-    dp_mock_data = get_data_processing_layer()
+    # 3. Data Processing (Provides price, returns, trend, volatility, volume)
+    dp_data = get_data_processing_layer()
+    
+    # 4. Market Agent Output (Provides direction, confidence, trend_strength)
+    market_file = get_latest_json_file(MARKET_AGENT_OUT_DIR)
+    market_data_map = {}
+    if market_file:
+        with open(market_file, 'r') as f:
+            try:
+                ma_data = json.load(f)
+                if isinstance(ma_data, dict) and "analyses" in ma_data:
+                    for item in ma_data["analyses"]:
+                        if "symbol" in item:
+                            market_data_map[item["symbol"]] = item
+            except json.JSONDecodeError:
+                print(f"Failed to decode {market_file}")
     
     # Merge Data
     for ms_cand in ms_candidates:
@@ -145,11 +160,12 @@ def aggregate_candidate_data():
         if not symbol:
             continue
             
-        dp_info = dp_mock_data.get(symbol, {})
+        dp_info = dp_data.get(symbol, {})
         
         candidate = {
             "symbol": symbol,
             "price": dp_info.get("price", 0.0),
+            "market_analysis": market_data_map.get(symbol, {}),
             "scores": {
                 "opportunity": ms_cand.get("opportunity_score", dp_info.get("scores", {}).get("opportunity", 0)),
                 "momentum": ms_cand.get("momentum", dp_info.get("scores", {}).get("momentum", 0)),
@@ -162,12 +178,12 @@ def aggregate_candidate_data():
                 "atr": dp_info.get("volatility", {}).get("atr", 0),
                 "returns": dp_info.get("returns", {})
             },
-            "news": news_data.get(symbol, dp_info.get("news", [])) # Fallback to mock news if agent hasn't run
+            "news": news_data.get(symbol, dp_info.get("news", []))
         }
         
         # If we couldn't find a price, we can't fetch options, so skip.
         if candidate["price"] == 0.0:
-            print(f"Skipping {symbol}: No price data found in Data Processing mock.")
+            print(f"Skipping {symbol}: No price data found in Data Processing layer.")
             continue
             
         candidates.append(candidate)
@@ -240,31 +256,38 @@ def apply_python_filters(raw_chain: list, spot_price: float):
             continue
             
         strike = contract.get('strike', 0)
+        if not (spot_price * 0.85 <= strike <= spot_price * 1.15):
+            continue
+            
+        # Calculate spread percentage
+        bid = contract['bid']
+        ask = contract['ask']
+        spread = ask - bid
+        mid = (ask + bid) / 2
+        spread_pct = spread / mid if mid > 0 else float('inf')
+        
+        # Filter out ridiculous spreads (e.g. > 15%)
+        if spread_pct > 0.15:
+            continue
+            
+        # Preference Penalties (Soft Ranking)
+        penalty = 0.0
+        
+        # DTE Penalty: Preferred is 21-60
+        if not (21 <= days_to_exp <= 60):
+            penalty += 0.05
+            
+        # Strike Penalty: Preferred is +/- 10%
         if not (spot_price * 0.90 <= strike <= spot_price * 1.10):
-            continue
+            penalty += 0.05
             
-        bid = contract.get('bid')
-        ask = contract.get('ask')
-        if bid is None or ask is None or bid <= 0 or ask <= 0:
-            continue
-            
-        mid_price = (bid + ask) / 2
-        if mid_price > 0:
-            spread_pct = (ask - bid) / mid_price
-            # Strict spread check for liquidity (15%)
-            if spread_pct > 0.15:
-                continue
-            contract['spread_pct'] = spread_pct
-        else:
-            continue
-                
+        contract['spread_pct'] = spread_pct
+        contract['sort_score'] = spread_pct + penalty
         filtered_chain.append(contract)
         
-    # Sort by spread_pct (tightest first) and limit to 20 to prevent LLM TPM limits
-    filtered_chain.sort(key=lambda x: x.get('spread_pct', 1.0))
+    # Sort by tightest spread + penalties to prioritize preferred contracts
+    filtered_chain.sort(key=lambda x: x.get('sort_score', 1.0))
     return filtered_chain[:20]
-
-
 
 
 
@@ -272,9 +295,42 @@ def generate_strategy(candidate: dict, filtered_chain: list) -> dict:
     if not groq_client:
         raise RuntimeError("Groq client not initialized. Cannot generate options strategy.")
 
+    market_analysis = candidate.get("market_analysis", {})
+    market_direction = market_analysis.get("direction", "NEUTRAL")
+    market_confidence = market_analysis.get("confidence", 0.5)
+    trend_strength = market_analysis.get("trend_strength", 50)
+
     prompt = f"""
     You are an expert options trading agent.
-    Analyze the following market candidate and propose ONE multi-leg options strategy.
+
+    The Market Agent has already determined the underlying market thesis.
+
+    Your job is NOT to independently determine whether the underlying
+    is bullish or bearish.
+
+    Your job is to find the most appropriate options strategy that
+    expresses the supplied market thesis using the available option chain.
+
+    Market Direction:
+    {market_direction}
+
+    Market Confidence:
+    {market_confidence}
+
+    Trend Strength:
+    {trend_strength}
+
+    If Market Direction is BULLISH:
+    prefer strategies with bullish directional exposure.
+
+    If Market Direction is BEARISH:
+    prefer strategies with bearish directional exposure.
+
+    Do not reverse the Market Agent's thesis simply because an individual
+    option metric is unfavorable.
+
+    If no suitable options structure can be constructed while satisfying
+    the options constraints, return NO_VALID_STRUCTURE.
     
     Candidate Symbol: {candidate.get('symbol')}
     Current Price: {candidate.get('price')}
@@ -285,17 +341,17 @@ def generate_strategy(candidate: dict, filtered_chain: list) -> dict:
     Available Filtered Options Chain:
     {json.dumps(filtered_chain, indent=2)}
     
-    You are strictly limited to ONLY these 6 strategy types. NEVER use Calendar or Diagonal spreads:
-    1. "LongCall"
-    2. "LongPut"
-    3. "BullCallSpread"
-    4. "BearPutSpread"
-    5. "BearCallSpread"
-    6. "BullPutSpread"
+    You may ONLY use:
+    1. LongCall
+    2. LongPut
+    3. BullCallSpread
+    4. BearPutSpread
+    5. BearCallSpread
+    6. BullPutSpread
     
     Respond STRICTLY in JSON format with the following structure:
     {{
-      "type": "StrategyName", (MUST be exactly one of the 6 approved types)
+      "type": "StrategyName", (MUST be exactly one of the 6 approved types, or "NO_VALID_STRUCTURE")
       "confidence": 0.0 to 1.0,
       "legs": [
         {{
@@ -453,6 +509,16 @@ def run_options_agent():
             results.append({"symbol": symbol, "error": msg})
             continue
             
+        strategy_type = raw_strategy["type"]
+        if strategy_type == "NO_VALID_STRUCTURE":
+            print(f"{symbol}: NO_VALID_STRUCTURE generated by LLM.")
+            results.append({
+                "symbol": symbol,
+                "strategy": "NO_VALID_STRUCTURE",
+                "reason": raw_strategy.get("reason", "No suitable liquid option structure satisfies the required constraints.")
+            })
+            continue
+            
         metrics = validate_and_calculate_metrics(raw_strategy, filtered_chain)
         if "error" in metrics:
             msg = f"Strategy rejected: {metrics['error']}"
@@ -463,8 +529,9 @@ def run_options_agent():
         final_output = {
             "symbol": symbol,
             "strategy": {
-                "type": raw_strategy["type"],
+                "type": strategy_type,
                 "confidence": raw_strategy.get("confidence"),
+                "strategy_bias": STRATEGY_BIAS.get(strategy_type, "NEUTRAL"),
                 "legs": metrics["validated_legs"],
                 "risk_reward": {
                     "net_debit": metrics["net_debit"],

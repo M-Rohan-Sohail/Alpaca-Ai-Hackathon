@@ -19,9 +19,9 @@ The **Decision Agent** is the final and most critical component of the **Agentic
 
 Its job is simple but critical:
 
-> **Aggregate outputs from all upstream agents, qualitatively evaluate the strategy using an LLM, and quantitatively enforce hard risk limits using a deterministic Python engine to make a final TRADE or PASS decision.**
+> **Aggregate outputs from all upstream agents and qualitatively evaluate the strategy using an LLM to formulate a coherent TRADE or PASS decision.**
 
-The agent acts as the ultimate gatekeeper. It ensures that the market, news, and options signals are perfectly aligned, and heavily penalizes or rejects trades that breach your portfolio's risk parameters.
+The agent acts as the qualitative evaluator. It ensures that the market, news, and options signals are perfectly aligned before passing its proposal to the Risk Assessment Engine for strict quantitative sizing and risk validation.
 
 ---
 

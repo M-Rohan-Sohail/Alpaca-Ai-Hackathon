@@ -130,7 +130,7 @@ def process_market_data(assets, save_output=True):
     if save_output:
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         base_dir = os.path.dirname(os.path.abspath(__file__))
-        output_dir = os.path.join(base_dir, "..", "Deterministic Filter Output")
+        output_dir = os.path.join(base_dir, "..", "SAVE-DATA-PER-AGENT", "Deterministic-Filter-Output")
         os.makedirs(output_dir, exist_ok=True)
         
         # Add marker to identify the latest run output
@@ -150,7 +150,7 @@ def process_market_data(assets, save_output=True):
 
 def load_latest_processing_data():
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    dp_output_dir = os.path.abspath(os.path.join(base_dir, "..", "Data-Processing", "Data-Processing-Output"))
+    dp_output_dir = os.path.abspath(os.path.join(base_dir, "..", "SAVE-DATA-PER-AGENT", "Data-Processing-Output"))
     
     if not os.path.exists(dp_output_dir):
         print(f"Data-Processing-Output directory not found at {dp_output_dir}")

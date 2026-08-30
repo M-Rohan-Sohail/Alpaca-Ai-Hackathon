@@ -23,6 +23,16 @@ except ImportError:
     ALPACA_AVAILABLE = False
 
 
+STRATEGY_BIAS = {
+    "LongCall": "BULLISH",
+    "BullCallSpread": "BULLISH",
+    "BullPutSpread": "BULLISH",
+    "LongPut": "BEARISH",
+    "BearPutSpread": "BEARISH",
+    "BearCallSpread": "BEARISH"
+}
+
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -36,12 +46,7 @@ class IncompleteDataError(Exception):
     pass
 
 
-@dataclass
-class RiskConstraints:
-    """Risk constraints from user config"""
-    max_trade_allocation_pct: float = 5.0
-    max_total_exposure_pct: float = 20.0
-    max_account_risk_pct: float = 1.0
+# Removed RiskConstraints since Risk Engine handles quantitative risk
 
 
 class DecisionAgent:
@@ -59,7 +64,6 @@ class DecisionAgent:
         self.model = model
         self.temperature = temperature
         self.sandbox_mode = sandbox_mode
-        self.risk_constraints = risk_constraints or RiskConstraints()
         
         load_dotenv(find_dotenv())
         
@@ -158,103 +162,146 @@ class DecisionAgent:
             cash = float(account.cash)
             buying_power = float(account.buying_power)
             
-            total_exposure = sum([abs(float(p.market_value)) for p in positions])
-            total_risk = sum([abs(float(p.cost_basis)) for p in positions]) 
+            # Use the authoritative shared portfolio economics module
+            import sys
+            import os
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            if base_dir not in sys.path:
+                sys.path.append(base_dir)
+                
+            from shared_portfolio import calculate_portfolio_economics
+            eco = calculate_portfolio_economics(positions)
             
             return {
                 "account_equity": equity,
                 "cash": cash,
                 "buying_power": buying_power,
                 "existing_positions": [{"symbol": p.symbol, "market_value": str(p.market_value)} for p in positions],
-                "total_exposure": total_exposure,
-                "total_risk": total_risk
+                "total_exposure": eco["total_exposure"],
+                "total_risk": eco["total_risk"],
+                "open_positions_count": eco["open_positions_count"]
             }
         except Exception as e:
             logger.error(f"Error fetching portfolio data from Alpaca: {e}")
             raise
 
-    def _calculate_metrics(self, legs: List[Dict]) -> Dict:
-        """
-        Determines Max Profit, Max Loss, Net Cost, and Breakeven for Single Leg and Vertical Spreads.
-        Multiplier is strictly 100 per contract.
-        """
-        if not legs:
-            raise ValueError("No option legs provided")
-
-        cost_per_share = 0.0
-        for leg in legs:
-            multiplier = 1 if leg.get('action', '').upper() == 'BUY' else -1
-            cost_per_share += multiplier * leg.get('price', 0.0)
-            
-        net_cost = cost_per_share # positive = debit, negative = credit
-
-        if len(legs) == 1:
-            leg = legs[0]
-            action = leg.get('action', '').upper()
-            op_type = leg.get('option_type', '').upper()
-            strike = leg.get('strike', 0.0)
-            price = leg.get('price', 0.0)
-
-            if action == 'BUY':
-                max_loss = price
-                max_profit = float('inf')
-                breakeven = strike + price if op_type == 'CALL' else strike - price
-            else:
-                max_profit = price
-                max_loss = float('inf')
-                breakeven = strike + price if op_type == 'CALL' else strike - price
-                
-        elif len(legs) == 2:
-            # Sort by strike for consistent vertical spread logic
-            legs = sorted(legs, key=lambda x: x.get('strike', 0.0))
-            leg1 = legs[0]
-            leg2 = legs[1]
-            strike_width = leg2.get('strike', 0.0) - leg1.get('strike', 0.0)
-            
-            op_type1 = leg1.get('option_type', '').upper()
-            op_type2 = leg2.get('option_type', '').upper()
-            
-            if op_type1 == op_type2:
-                # Vertical spread
-                if net_cost > 0: # Debit spread
-                    max_loss = net_cost
-                    max_profit = strike_width - net_cost
-                    if op_type1 == 'CALL': # Bull Call
-                        breakeven = leg1.get('strike', 0.0) + net_cost
-                    else: # Bear Put
-                        breakeven = leg2.get('strike', 0.0) - net_cost
-                else: # Credit spread
-                    max_profit = abs(net_cost)
-                    max_loss = strike_width - max_profit
-                    if op_type1 == 'CALL': # Bear Call
-                        breakeven = leg1.get('strike', 0.0) + max_profit
-                    else: # Bull Put
-                        breakeven = leg2.get('strike', 0.0) - max_profit
-            else:
-                raise ValueError("Unsupported 2-leg strategy (types differ)")
-        else:
-            raise ValueError("Unsupported strategy structure: too many legs")
-
-        return {
-            "net_cost": net_cost * 100,
-            "max_loss": max_loss * 100,
-            "max_profit": max_profit * 100 if max_profit != float('inf') else max_profit,
-            "breakeven": breakeven,
-            "risk_reward_ratio": (max_profit / max_loss) if max_loss > 0 and max_loss != float('inf') else float('inf')
-        }
+    # Removed _calculate_metrics since Risk Engine is the quantitative authority
 
     def _get_llm_decision(self, symbol: str, m_cand: Dict, n_cand: Dict, o_cand: Dict, portfolio: Dict) -> Dict:
         """Step 1: LLM Qualitative Reasoning"""
         prompt = f"""
-You are a senior portfolio manager making a qualitative decision (TRADE or REJECT).
+You are a senior portfolio manager making a qualitative final decision: TRADE or REJECT.
+
+Your role is to evaluate whether the proposed trade forms a coherent and executable investment thesis based on the outputs of the Market Agent, News Agent, and Options Agent.
 
 AGENT ROLES:
-- Market Agent: Primary directional signal. It answers "What is the underlying currently doing?"
-- News Agent: Confirmation / catalyst / risk modifier. It answers "Is there fundamental/news information supporting or contradicting that direction?"
-- Options Agent: Strategy proposal. It answers "Given the current market/options conditions, what options structure could exploit the opportunity?"
-- You (Decision LLM): Final reasoning layer. You answer "Do these signals make a coherent trade?"
 
-IMPORTANT INSTRUCTION: DO NOT CALCULATE NUMBERS. Your job is reasoning and decision-making, not mathematical calculation.
+* Market Agent: Primary directional thesis. It answers:
+  "What is the underlying currently doing?"
+  The Market Agent is the primary source for the underlying's directional bias.
+
+* News Agent: Confirmation, catalyst, or risk modifier. It answers:
+  "Does current news support, weaken, or contradict the market thesis?"
+  News disagreement is not automatically a reason to reject a trade.
+
+* Options Agent: Strategy implementation. It answers:
+  "Given the Market Agent's thesis and the available option chain, what options structure is the most appropriate way to express that thesis?"
+  The Options Agent should not be treated as an independent source of the underlying's directional thesis.
+
+* You (Decision LLM): Final qualitative reasoning layer. You answer:
+  "Does the proposed options trade logically express the market thesis, and is there a sufficient qualitative basis to proceed?"
+
+IMPORTANT INSTRUCTION:
+DO NOT CALCULATE NUMBERS.
+
+Do not calculate or recalculate:
+
+* Maximum loss
+* Maximum profit
+* Risk/reward ratio
+* Number of contracts
+* Position size
+* Buying power
+* Portfolio exposure
+* Account risk
+
+These values are calculated by deterministic components and/or the Risk Engine. Use the provided results as authoritative inputs.
+
+DECISION PROCESS:
+
+1. MARKET THESIS
+   Evaluate the Market Agent's direction and confidence.
+
+The Market Agent provides the primary underlying directional thesis:
+
+* BULLISH
+* BEARISH
+* NEUTRAL
+
+Do not override the Market Agent's direction based solely on the Options Agent's opinion.
+
+2. NEWS ALIGNMENT
+   Determine whether the News Agent:
+
+* Supports the market thesis
+* Is neutral
+* Contradicts the market thesis
+
+News disagreement is a risk modifier, not an automatic rejection.
+
+Reject based on news only when the provided news indicates a material development that substantially undermines the proposed trade thesis.
+
+3. OPTIONS STRATEGY ALIGNMENT
+   Directional alignment has already been verified by the Python validation layer. Do not independently recalculate or override that validation. Evaluate whether the proposed structure qualitatively makes sense given the already-validated market thesis and the available options information.
+
+If the Options Agent returns NO_VALID_STRUCTURE, REJECT the trade because there is no suitable options implementation of the market thesis.
+
+4. CONFLICT RESOLUTION
+   Do not treat every disagreement between agents as a hard conflict.
+
+Use the following hierarchy:
+
+* Market Agent = primary directional thesis
+* News Agent = confirmation / risk modifier
+* Options Agent = implementation of the market thesis
+* Risk Engine = final authority on quantitative risk constraints
+
+Do not reject a trade simply because News and Market signals are not perfectly aligned.
+
+5. STRATEGY SUITABILITY
+   Evaluate qualitatively whether the proposed strategy is appropriate for the market thesis and the available options data.
+
+Consider:
+
+* Directional consistency
+* Quality of the proposed structure
+* Whether the strategy is defined-risk
+* Whether the strategy reasonably expresses the market thesis
+* Whether the available option data supports the proposed structure
+
+Do not override deterministic option filters or Risk Engine results.
+
+6. QUALITATIVE PORTFOLIO CONSIDERATIONS
+   Consider the overall quality and coherence of the opportunity based on the provided information.
+
+Avoid introducing assumptions or information that is not provided.
+
+FINAL DECISION:
+
+Return TRADE only when:
+
+* The market thesis provides a reasonable directional basis,
+* There is no material qualitative contradiction that invalidates the thesis,
+* The proposed strategy is qualitatively suitable,
+* And all provided deterministic/risk checks have passed.
+
+Otherwise return REJECT.
+
+The Risk Engine is authoritative for quantitative risk constraints. If the Risk Engine returns REJECT, the final decision must be REJECT regardless of the qualitative assessment.
+
+Do not invent missing information.
+Do not speculate beyond the provided data.
+Do not override deterministic validation results.
 
 Evaluate the following data for {symbol}:
 
@@ -269,17 +316,6 @@ OPTIONS AGENT:
 
 PORTFOLIO:
 {json.dumps(portfolio, indent=2)}
-
-RISK CONSTRAINTS:
-{json.dumps(self.risk_constraints.__dict__, indent=2)}
-
-You must evaluate:
-1. Market direction: Is the Market Agent bullish, bearish, or neutral?
-2. News alignment: Is news supporting or contradicting the market view? Are there important catalysts or risks?
-3. Options strategy alignment: Does the proposed strategy match the market direction? (e.g. bullish market + Bull Call Spread -> aligned. Bullish market + Bear Call Spread -> conflicting).
-4. Conflict Resolution: You are allowed to reject an Options strategy if there is a contradiction, but you MUST clearly explain the contradiction. If the signals do not form a coherent trade, REJECT. If the conflict can be rationally justified (e.g. a short-term hedge against a macro trend), you may TRADE.
-5. Strategy suitability: Does the proposed strategy make sense given the outlook?
-6. Qualitative portfolio considerations: Existing positions, concentration, whether the new trade duplicates an existing exposure, correlation/concentration concerns if provided.
 
 Output strictly in JSON format matching this structure exactly:
 {{
@@ -314,86 +350,7 @@ Output strictly in JSON format matching this structure exactly:
             logger.error(f"LLM request failed: {e}")
             return {"symbol": symbol, "decision": "REJECT", "reasoning": f"LLM error: {e}", "confidence": 0.0}
 
-    def _validate_and_resize_trade(self, llm_decision: Dict, portfolio: Dict) -> Dict:
-        """Step 2: Python Quantitative Validation & Risk Enforcement"""
-        if llm_decision.get('decision') != 'TRADE':
-            return {
-                "symbol": llm_decision.get("symbol"),
-                "decision": "REJECT",
-                "reasoning": llm_decision.get("reasoning", "LLM decided to pass."),
-                "confidence": llm_decision.get("confidence", 0.0)
-            }
-            
-        strategy = llm_decision.get('strategy', {})
-        legs = strategy.get('legs', [])
-        
-        try:
-            metrics = self._calculate_metrics(legs)
-        except Exception as e:
-            logger.error(f"Error calculating metrics: {e}")
-            return {
-                "symbol": llm_decision.get("symbol"),
-                "decision": "REJECT",
-                "reasoning": f"Rejected by Risk Engine: {str(e)}",
-                "confidence": 0.0
-            }
-
-        max_loss_per_contract = metrics['max_loss']
-        if max_loss_per_contract == float('inf'):
-            logger.warning("Trade rejected: Strategy involves unlimited risk.")
-            return {
-                "symbol": llm_decision.get("symbol"),
-                "decision": "REJECT",
-                "reasoning": "Rejected by Risk Engine: Strategy has unlimited max loss.",
-                "confidence": 0.0
-            }
-
-        account_equity = portfolio['account_equity']
-        
-        max_trade_cap = account_equity * (self.risk_constraints.max_trade_allocation_pct / 100.0)
-        max_total_exposure = account_equity * (self.risk_constraints.max_total_exposure_pct / 100.0)
-        max_account_risk = account_equity * (self.risk_constraints.max_account_risk_pct / 100.0)
-        
-        if max_loss_per_contract <= 0:
-            # Prevent zero division or illogical scenarios
-            max_contracts = 0 
-        else:
-            c1 = max_trade_cap // max_loss_per_contract
-            avail_exposure = max(0, max_total_exposure - portfolio['total_exposure'])
-            c2 = avail_exposure // max_loss_per_contract
-            avail_risk = max(0, max_account_risk - portfolio['total_risk'])
-            c3 = avail_risk // max_loss_per_contract
-            
-            max_contracts = int(min(c1, c2, c3))
-        
-        if max_contracts <= 0:
-            return {
-                "symbol": llm_decision.get("symbol"),
-                "decision": "REJECT",
-                "reasoning": "Rejected by Risk Engine: Risk limits exceeded (would require < 1 contract).",
-                "confidence": 0.0,
-                "risk_assessment": {
-                    "status": "REJECTED",
-                    "max_loss_per_contract": max_loss_per_contract
-                }
-            }
-            
-        return {
-            "symbol": llm_decision.get("symbol"),
-            "decision": "TRADE",
-            "direction": llm_decision.get("direction", ""),
-            "strategy": strategy,
-            "confidence": llm_decision.get("confidence", 0.0),
-            "reasoning": llm_decision.get("reasoning", ""),
-            "risk_assessment": {
-                "status": "ACCEPTABLE",
-                "approved_contracts": max_contracts,
-                "max_loss_per_contract": metrics['max_loss'],
-                "max_profit_per_contract": metrics['max_profit'] if metrics['max_profit'] != float('inf') else "Unlimited",
-                "risk_reward_ratio": metrics['risk_reward_ratio'],
-                "breakeven": metrics['breakeven']
-            }
-        }
+    # Removed _validate_and_resize_trade since Risk Engine is the quantitative authority
 
     def decide(self, symbols: List[str]) -> Dict:
         """Main orchestrator for making decisions on a list of symbols"""
@@ -411,13 +368,14 @@ Output strictly in JSON format matching this structure exactly:
             try:
                 m_cand, n_cand, o_cand = self._load_latest_agent_outputs(symbol)
                 llm_decision = self._get_llm_decision(symbol, m_cand, n_cand, o_cand, portfolio)
-                final_decision = self._validate_and_resize_trade(llm_decision, portfolio)
-                results.append(final_decision)
                 
-                if final_decision.get('decision') == 'TRADE':
-                    logger.info(f"✅ {symbol}: TRADE approved for {final_decision.get('risk_assessment', {}).get('approved_contracts', 0)} contracts.")
+                # The LLM outputs qualitative data ONLY. We append it exactly as received.
+                results.append(llm_decision)
+                
+                if llm_decision.get('decision') == 'TRADE':
+                    logger.info(f"✅ {symbol}: TRADE qualitatively approved by LLM. Passing to Risk Engine.")
                 else:
-                    logger.info(f"❌ {symbol}: REJECT - {final_decision.get('reasoning')}")
+                    logger.info(f"❌ {symbol}: REJECT - {llm_decision.get('reasoning')}")
 
             except IncompleteDataError as e:
                 logger.error(f"❌ Incomplete Data for {symbol}: {e}")

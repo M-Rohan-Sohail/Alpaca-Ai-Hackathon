@@ -27,6 +27,7 @@ class MarketAnalysis:
     symbol: str
     direction: str  # BULLISH, BEARISH, or NEUTRAL
     confidence: float  # 0.0 to 1.0
+    trend_strength: int # 0 to 100
     reasoning: str
     key_factors: list
     timestamp: str
@@ -67,16 +68,55 @@ class MarketAgent:
         self.client = Groq(api_key=api_key)
         
         # System prompt for the agent
-        self.system_prompt = """You are a professional market analyst specializing in technical analysis.
-Your role is to analyze price action and indicators to determine market trends.
-Always base your analysis on the provided data, not speculation.
+        self.system_prompt = """You are a professional market analyst specializing in technical analysis and market trend identification.
 
-Rules:
-1. BULLISH if: price > SMA20 > SMA50 AND RSI > 60
-2. BEARISH if: price < SMA20 < SMA50 AND RSI < 40
-3. NEUTRAL otherwise (but consider other factors)
+Your role is to analyze the provided price action, technical indicators, and market data to determine the current directional condition of the underlying asset.
 
-Provide reasoning for your decision with specific data points.
+IMPORTANT:
+* Base your analysis ONLY on the data provided.
+* Do not speculate or invent missing information.
+* Do not make predictions based on information that is not provided.
+* Do not analyze or recommend options strategies.
+* Do not consider option-chain data when determining the market direction.
+* Your output represents the underlying market thesis that will be passed to downstream agents.
+
+Determine the underlying market direction as one of:
+* BULLISH
+* BEARISH
+* NEUTRAL
+
+Use the following general framework and rules:
+
+BULLISH:
+- Price > SMA20
+- SMA20 >= SMA50
+- RSI > 55
+* Price is generally above key moving averages.
+* Short-term trend is generally above or strengthening relative to the medium-term trend.
+* Momentum indicators provide bullish confirmation.
+* Multiple technical signals should preferably support the bullish view.
+
+BEARISH:
+- Price < SMA20
+- SMA20 <= SMA50
+- RSI < 45
+* Price is generally below key moving averages.
+* Short-term trend is generally below or weakening relative to the medium-term trend.
+* Momentum indicators provide bearish confirmation.
+* Multiple technical signals should preferably support the bearish view.
+
+NEUTRAL:
+- Otherwise
+* Technical signals are mixed, contradictory, or insufficient to establish a clear directional bias.
+
+Do not require every indicator to agree before identifying a directional trend. Evaluate the overall technical evidence.
+
+Confidence should reflect the strength and consistency of the available evidence:
+* Higher confidence: multiple independent technical signals support the same direction.
+* Medium confidence: evidence is directionally supportive but contains some conflicting signals.
+* Lower confidence: signals are weak, mixed, or incomplete.
+
+The Market Agent determines the underlying market thesis only. The Options Agent is responsible for determining how that thesis can be expressed through an appropriate options strategy.
 """
     
     def analyze(self, market_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -167,19 +207,16 @@ Provide reasoning for your decision with specific data points.
 
 Based on this data, determine if {symbol} is BULLISH, BEARISH, or NEUTRAL.
 
-**Decision Rules (use as guidelines):**
-- BULLISH: Price > SMA20 > SMA50 AND RSI > 60
-- BEARISH: Price < SMA20 < SMA50 AND RSI < 40
-- NEUTRAL: Mixed signals or range-bound
-
 **Return JSON:**
 {{
     "direction": "BULLISH|BEARISH|NEUTRAL",
     "confidence": 0.85,
+    "trend_strength": 75,
     "reasoning": "Brief explanation of your decision using specific data points",
     "key_factors": ["factor1", "factor2", "factor3"]
 }}
-NOTE: 'confidence' MUST be a numeric float (e.g., 0.9), NEVER use words like 'nine' or fractions."""
+NOTE: 'confidence' MUST be a numeric float (e.g., 0.9), NEVER use words like 'nine' or fractions.
+'trend_strength' MUST be a numeric integer between 0 and 100."""
         
         return prompt
     
@@ -199,6 +236,10 @@ NOTE: 'confidence' MUST be a numeric float (e.g., 0.9), NEVER use words like 'ni
         
         # Clamp confidence
         result['confidence'] = min(1.0, max(0.0, float(result['confidence'])))
+        
+        if 'trend_strength' not in result:
+            result['trend_strength'] = 50
+        result['trend_strength'] = max(0, min(100, int(result['trend_strength'])))
         
         if 'reasoning' not in result:
             result['reasoning'] = 'Analysis completed'
@@ -223,6 +264,7 @@ NOTE: 'confidence' MUST be a numeric float (e.g., 0.9), NEVER use words like 'ni
             'symbol': symbol,
             'direction': 'NEUTRAL',
             'confidence': 0.0,
+            'trend_strength': 0,
             'reasoning': f'Error occurred during analysis: {error}',
             'key_factors': ['Error in analysis'],
             'timestamp': datetime.now().isoformat(),
@@ -244,7 +286,7 @@ def main():
     
     # Find the latest scanner output
     base_dir = os.path.dirname(os.path.abspath(__file__))
-    scanner_dir = os.path.join(base_dir, "..", "Deterministic Filter Output")
+    scanner_dir = os.path.join(base_dir, "..", "SAVE-DATA-PER-AGENT", "Deterministic-Filter-Output")
     
     json_files = glob.glob(os.path.join(scanner_dir, "*.json"))
     if not json_files:
@@ -280,11 +322,12 @@ def main():
         # Display results
         print(f"   Direction: {result['direction']}")
         print(f"   Confidence: {result['confidence']:.2%}")
+        print(f"   Trend Strength: {result['trend_strength']}")
         print(f"   Reasoning: {result['reasoning']}")
         print(f"   Key Factors: {', '.join(result['key_factors'])}")
         
     # Save to file
-    output_dir = os.path.join(base_dir, "..", "Market Agent Output")
+    output_dir = os.path.join(base_dir, "..", "SAVE-DATA-PER-AGENT", "Market-Agent-Output")
     os.makedirs(output_dir, exist_ok=True)
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
