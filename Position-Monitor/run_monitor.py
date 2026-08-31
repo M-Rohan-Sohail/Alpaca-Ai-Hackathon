@@ -5,7 +5,8 @@ from datetime import datetime, timezone
 from dotenv import load_dotenv, find_dotenv
 
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import OptionChainRequest
+from alpaca.data.historical.option import OptionHistoricalDataClient
+from alpaca.data.requests import OptionChainRequest
 
 logging.basicConfig(
     level=logging.INFO,
@@ -30,6 +31,7 @@ class PositionMonitor:
             raise ValueError("Alpaca API credentials missing.")
             
         self.trading_client = TradingClient(api_key, api_secret, paper=True)
+        self.option_client = OptionHistoricalDataClient(api_key, api_secret)
         
         with open(CONFIG_FILE, 'r') as f:
             self.config = json.load(f).get("exit_rules", {})
@@ -81,7 +83,7 @@ class PositionMonitor:
                 
             try:
                 req = OptionChainRequest(underlying_symbol=symbol)
-                chain_response = self.trading_client.get_option_chain(req)
+                chain_response = self.option_client.get_option_chain(req)
             except Exception as e:
                 logger.error(f"Failed to fetch option chain for {symbol}: {e}")
                 continue
