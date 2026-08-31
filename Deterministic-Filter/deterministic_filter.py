@@ -99,8 +99,8 @@ def process_market_data(assets, save_output=True):
     # Sort by opportunity score descending
     scored_candidates.sort(key=lambda x: x["opportunity_score"], reverse=True)
 
-    # Limit to top 5 candidates
-    scored_candidates = scored_candidates[:5]
+    # Limit to top 8 candidates
+    scored_candidates = scored_candidates[:8]
 
     # Build Output 1 (Detailed)
     output1 = {"candidates": []}

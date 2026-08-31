@@ -58,8 +58,7 @@ class DecisionAgent:
                  api_key: Optional[str] = None,
                  model: str = "openai/gpt-oss-120b",
                  temperature: float = 0.2,
-                 sandbox_mode: bool = False,
-                 risk_constraints: Optional[RiskConstraints] = None):
+                 sandbox_mode: bool = False):
         
         self.model = model
         self.temperature = temperature
