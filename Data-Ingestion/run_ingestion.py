@@ -165,7 +165,46 @@ def fetch_options(symbol: str, run_folder: str):
     save_json(options_list, run_folder, symbol, "options")
 
 
+def fetch_mcp_account_info(run_folder: str):
+    import asyncio
+    from mcp_client import AlpacaMCPClient
+    client = AlpacaMCPClient()
+    print("Fetching Account Info via MCP...")
+    # Will raise if fails, strictly enforcing the MCP rule
+    account_data = asyncio.run(client.call_tool("get_account_info", {}))
+    
+    target_dir = os.path.join(run_folder, "account")
+    os.makedirs(target_dir, exist_ok=True)
+    filepath = os.path.join(target_dir, "account_info.json")
+    with open(filepath, "w") as f:
+        json.dump(account_data, f, indent=2)
+    print(f"Saved MCP Account Data: {filepath}")
+
+def fetch_mcp_snapshot(symbol: str, run_folder: str):
+    import asyncio
+    from mcp_client import AlpacaMCPClient
+    client = AlpacaMCPClient()
+    print(f"Fetching Snapshot for {symbol} via MCP...")
+    # Use "symbols" as per Alpaca MCP spec for snapshots
+    snapshot_data = asyncio.run(client.call_tool("get_stock_snapshot", {"symbols": symbol}))
+    
+    target_dir = os.path.join(run_folder, "snapshot")
+    os.makedirs(target_dir, exist_ok=True)
+    filepath = os.path.join(target_dir, f"{symbol}_snapshot.json")
+    with open(filepath, "w") as f:
+        json.dump(snapshot_data, f, indent=2)
+    print(f"Saved MCP Snapshot Data: {filepath}")
+
+
 def fetch_and_cache(symbol: str, run_folder: str):
+    # MCP Required Data - Strict Failure if unavailable
+    try:
+        fetch_mcp_snapshot(symbol, run_folder)
+    except Exception as e:
+        print(f"FATAL: Could not fetch MCP snapshot for {symbol}: {e}")
+        raise RuntimeError("MCP Required Capability Failed") from e
+
+    # Fallback to alpaca-py only for historical bars (unsupported natively in MCP as multiple days)
     try:
         fetch_bars(symbol, run_folder)
     except Exception as e:
@@ -199,6 +238,13 @@ if __name__ == "__main__":
     run_folder_path = os.path.join(data_ingestion_dir, run_folder_name)
     
     print(f"Saving data to: {run_folder_path}")
+
+    # Enforce MCP utilization for Account Info first
+    try:
+        fetch_mcp_account_info(run_folder_path)
+    except Exception as e:
+        print(f"FATAL: MCP Failed to fetch account info: {e}")
+        sys.exit(1)
 
     for symbol in config.assets:
         print(f"\nFetching data for {symbol}...")
