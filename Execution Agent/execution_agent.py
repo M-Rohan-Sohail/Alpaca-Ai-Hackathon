@@ -331,6 +331,12 @@ class ExecutionAgent:
         with open(latest_file, 'r') as f:
             exit_data = json.load(f)
             
+        # Delete file after reading so it isn't re-processed next cycle
+        try:
+            os.remove(latest_file)
+        except Exception as e:
+            logger.error(f"Failed to delete {latest_file}: {e}")
+            
         directives = exit_data.get("exit_directives", [])
         if not directives:
             logger.info("No exit directives in payload.")
