@@ -159,16 +159,19 @@ class PositionMonitor:
             # Entry timestamp and holding days
             entry_ts_str = strategy.get("entry_timestamp")
             days_held = 0
+            hours_held = 0
             if entry_ts_str:
                 entry_ts = datetime.fromisoformat(entry_ts_str.replace('Z', '+00:00'))
-                days_held = (datetime.now(timezone.utc) - entry_ts).days
+                delta = datetime.now(timezone.utc) - entry_ts
+                days_held = delta.days
+                hours_held = delta.total_seconds() / 3600
                 
             # Rule Evaluation (Priority Order)
             exit_reason = None
             
             if min_dte <= 0:
                 exit_reason = "EXPIRED_OR_EXPIRING"
-            elif return_pct <= self.config.get("stop_loss_pct", -25.0):
+            elif return_pct <= self.config.get("stop_loss_pct", -25.0) and hours_held >= 0.5:
                 exit_reason = "STOP_LOSS"
             elif return_pct >= self.config.get("take_profit_pct", 50.0):
                 exit_reason = "TAKE_PROFIT"

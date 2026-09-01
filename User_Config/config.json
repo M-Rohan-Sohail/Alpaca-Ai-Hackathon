@@ -58,7 +58,7 @@
   "min_risk_reward": 0.75,
   "max_holding_days": 10,
   "exit_rules": {
-    "take_profit_pct": 50.0,
+    "take_profit_pct": 25.0,
     "stop_loss_pct": -25.0,
     "max_dte": 3,
     "max_holding_days": 10
