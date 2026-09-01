@@ -275,7 +275,7 @@ class ExecutionAgent:
                     order_request = LimitOrderRequest(
                         symbol=alpaca_legs[0].symbol,
                         qty=contracts,
-                        limit_price=net_price,
+                        limit_price=abs(net_price),
                         side=alpaca_legs[0].side,
                         time_in_force=TimeInForce.DAY
                     )
@@ -390,7 +390,7 @@ class ExecutionAgent:
                     order_request = LimitOrderRequest(
                         symbol=alpaca_legs[0].symbol,
                         qty=quantity,
-                        limit_price=calculated_net_price,
+                        limit_price=abs(calculated_net_price),
                         side=alpaca_legs[0].side,
                         position_intent=alpaca_legs[0].position_intent,
                         time_in_force=TimeInForce.DAY

@@ -50,8 +50,6 @@ def main():
     cleanup_save_data(base_dir)
     
     pipeline = [
-        (os.path.join(base_dir, "Position-Monitor", "run_monitor.py"), []),
-        (os.path.join(base_dir, "Execution Agent", "execution_agent.py"), ["--exits-only"]),
         (os.path.join(base_dir, "Data-Ingestion", "run_ingestion.py"), []),
         (os.path.join(base_dir, "Data-Processing", "run_processing.py"), []),
         (os.path.join(base_dir, "Deterministic-Filter", "deterministic_filter.py"), []),
@@ -70,6 +68,35 @@ def main():
     
     for script, args in pipeline:
         run_script(script, args)
+        
+    # Launch Fast Exit Daemon as a background subprocess
+    daemon_script = os.path.join(base_dir, "fast_exit_daemon.py")
+    pid_file = os.path.join(base_dir, "fast_exit_daemon.pid")
+    
+    daemon_running = False
+    if os.path.exists(pid_file):
+        try:
+            with open(pid_file, 'r') as f:
+                old_pid = int(f.read().strip())
+            # Check if process is actually running
+            os.kill(old_pid, 0)
+            daemon_running = True
+            print(f"\n🔄 Fast Exit Daemon is already running (PID: {old_pid}). Skipping launch.")
+        except (ValueError, OSError):
+            # Process is not running or PID file is invalid
+            pass
+            
+    if not daemon_running:
+        print("\n🚀 Launching Fast Exit Daemon as a Subprocess...")
+        # Launch detached subprocess (Linux/Mac)
+        subprocess.Popen(
+            [sys.executable, daemon_script],
+            cwd=base_dir,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            start_new_session=True
+        )
+        print("✅ Fast Exit Daemon is Running at Subprocess")
         
     elapsed = time.time() - start_time
     print(f"{'='*50}")
