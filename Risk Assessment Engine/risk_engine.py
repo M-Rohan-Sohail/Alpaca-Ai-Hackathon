@@ -377,10 +377,8 @@ def main():
         logger.error(f"Error loading config: {e}")
         sys.exit(1)
         
-    risk_config = config_data.get("risk_limits", {})
-    
     # Initialize without mock TradingClient to use the live Alpaca config via .env
-    evaluator = RiskEvaluator(risk_config)
+    evaluator = RiskEvaluator(config_data)
     evaluator.process_decisions()
 
 if __name__ == "__main__":
