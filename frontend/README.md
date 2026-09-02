@@ -2,7 +2,7 @@
 
 Frontend for the **Alpaca AI Hackathon 2026: Agentic Options Trading Terminal**,
 built against the Frontend Design & UX Specification. This is a
-visualization/interaction layer only — it never computes options math, risk
+visualization/interaction layer only  it never computes options math, risk
 budgets, P&L, or Alpaca payloads; all of that is expected from the backend.
 
 Stack: Next.js (App Router) + TypeScript + Tailwind CSS v4 + TanStack Query +
