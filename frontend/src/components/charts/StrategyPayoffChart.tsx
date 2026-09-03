@@ -49,7 +49,8 @@ function buildPayoffPoints(
     ];
   }
 
-  const [beLow, beHigh] = [Math.min(...breakeven), Math.max(...breakeven)];
+  const beArray = Array.isArray(breakeven) ? breakeven : [breakeven];
+  const [beLow, beHigh] = [Math.min(...beArray), Math.max(...beArray)];
   return [
     { price: rangeLow, pnl: -maxLoss },
     { price: beLow, pnl: 0 },
@@ -72,7 +73,8 @@ export function StrategyPayoffChart({
   breakeven: number[];
   strategyType: string;
 }) {
-  if (maxLoss == null || maxProfit == null || breakeven.length === 0) {
+  const beArray = Array.isArray(breakeven) ? breakeven : (breakeven != null ? [breakeven] : []);
+  if (maxLoss == null || maxProfit == null || beArray.length === 0) {
     return (
       <div className="flex h-40 items-center justify-center rounded-md border border-dashed border-border text-xs text-subtle-foreground">
         Payoff data not available.
@@ -84,7 +86,7 @@ export function StrategyPayoffChart({
     legs,
     maxLoss,
     maxProfit,
-    breakeven,
+    beArray,
     strategyType,
   );
 
@@ -97,15 +99,20 @@ export function StrategyPayoffChart({
               <stop offset="0%" stopColor="var(--profit)" stopOpacity={0.35} />
               <stop offset="100%" stopColor="var(--profit)" stopOpacity={0} />
             </linearGradient>
+            <linearGradient id="payoffLoss" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--loss)" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="var(--loss)" stopOpacity={0} />
+            </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+          <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
           <XAxis
             dataKey="price"
             type="number"
             domain={["dataMin", "dataMax"]}
             tick={{ fontSize: 10, fill: "var(--subtle-foreground)" }}
-            tickFormatter={(v: number) => v.toFixed(0)}
+            tickFormatter={(v: number) => formatCurrency(v)}
             stroke="var(--border-strong)"
+            height={24}
           />
           <YAxis
             tick={{ fontSize: 10, fill: "var(--subtle-foreground)" }}
@@ -114,7 +121,7 @@ export function StrategyPayoffChart({
             width={64}
           />
           <ReferenceLine y={0} stroke="var(--border-strong)" />
-          {breakeven.map((be, i) => (
+          {beArray.map((be, i) => (
             <ReferenceLine
               key={i}
               x={be}

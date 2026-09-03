@@ -113,7 +113,7 @@ def get_dashboard():
     daily_loss_used = 0.0
     daily_loss_limit = equity * (config.get("max_daily_loss_pct", 5.0) / 100)
     
-    exposure_used = sum([j.get("max_loss", 0) for j in journal if j.get("status") == "OPEN"])
+    exposure_used = sum([j.get("max_loss") or j.get("max_risk") or 0 for j in journal if j.get("status") == "OPEN"])
     exposure_limit = equity * (config.get("max_exposure_pct", 20.0) / 100)
     
     exec_path = os.path.join(SAVE_DIR, "Execution-Agent-Output")
@@ -125,11 +125,11 @@ def get_dashboard():
                 with open(f, 'r') as fp:
                     receipts = json.load(fp)
                     for r in receipts:
-                        if r.get("status") in ["FILLED", "SUBMITTED", "REJECTED"]:
+                        if r.get("status") in ["FILLED", "SUBMITTED", "REJECTED", "OrderStatus.PENDING_NEW", "OrderStatus.FILLED", "OrderStatus.REJECTED"]:
                             recent_activity.append({
                                 "id": r.get("order_id") or str(time.time()),
                                 "timestamp": r.get("filled_at") or r.get("submitted_at") or datetime.now().isoformat(),
-                                "type": "FILL" if r.get("status") == "FILLED" else "TRADE" if r.get("status") == "SUBMITTED" else "REJECT",
+                                "type": "FILL" if "FILLED" in r.get("status") else "TRADE" if ("SUBMITTED" in r.get("status") or "PENDING" in r.get("status")) else "REJECT",
                                 "message": f"{r.get('symbol')} order {r.get('status').lower()}",
                                 "symbol": r.get("symbol")
                             })
@@ -154,13 +154,27 @@ def get_pipeline():
     det_data = get_latest_json("Deterministic-Filter-Output") or {}
     det = det_data.get("detailed_scores", {}).get("candidates", [])
     
-    market = get_latest_json("Market-Agent-Output") or {}
-    news = get_latest_json("News-Agent-Output") or {}
-    options = get_latest_json("Options-Agent-Output") or {}
-    decision = get_latest_json("Decision-Agent-Output") or {}
-    risk = get_latest_json("Risk-Engine-Output") or {}
+    market_raw = get_latest_json("Market-Agent-Output") or {}
+    market_list = market_raw.get("analyses", []) if isinstance(market_raw, dict) else market_raw
+    market = {item.get("symbol"): item for item in market_list} if isinstance(market_list, list) else {}
+
+    news_raw = get_latest_json("News-Agent-Output") or {}
+    news_list = news_raw.get("news_analysis", []) if isinstance(news_raw, dict) else news_raw
+    news = {item.get("symbol"): item for item in news_list} if isinstance(news_list, list) else {}
+
+    options_raw = get_latest_json("Options-Agent-Output") or []
+    options_list = options_raw if isinstance(options_raw, list) else options_raw.get("strategies", [])
+    options = {item.get("symbol"): item for item in options_list} if isinstance(options_list, list) else {}
+
+    decision_raw = get_latest_json("Decision-Agent-Output") or {}
+    decision_list = decision_raw.get("decisions", []) if isinstance(decision_raw, dict) else decision_raw
+    decision = {item.get("symbol"): item for item in decision_list} if isinstance(decision_list, list) else {}
+
+    risk_raw = get_latest_json("Risk-Engine-Output") or {}
+    risk_list = risk_raw.get("evaluations", []) if isinstance(risk_raw, dict) else risk_raw
+    risk = {item.get("symbol"): item for item in risk_list} if isinstance(risk_list, list) else {}
+
     execution = get_latest_json("Execution-Agent-Output") or []
-    
     exec_map = {r.get("symbol"): r for r in execution}
 
     candidates = []
@@ -198,9 +212,9 @@ def get_pipeline():
                 "summary": m_data.get("reasoning")
             },
             "news": {
-                "sentiment": n_data.get("sentiment"),
+                "sentiment": n_data.get("overall_sentiment") or n_data.get("sentiment"),
                 "news_score": n_data.get("news_score"),
-                "headlines": [h.get("title") for h in n_data.get("articles", [])]
+                "headlines": [h.get("headline", h.get("title", "")) for h in n_data.get("events", n_data.get("articles", []))]
             },
             "strategy": None,
             "decisions": [],
@@ -213,12 +227,23 @@ def get_pipeline():
         }
         
         if o_data:
+            strat = o_data.get("strategy") if isinstance(o_data.get("strategy"), dict) else o_data
+            import math
+            def safe_float(v):
+                if v is None: return None
+                if isinstance(v, str) and v.lower() == "unlimited": return 999999.0
+                try:
+                    f = float(v)
+                    return 999999.0 if math.isinf(f) else f
+                except:
+                    return None
+
             c["strategy"] = {
-                "type": o_data.get("strategy_type"),
-                "legs": o_data.get("legs", []),
-                "max_loss": o_data.get("max_loss"),
-                "max_profit": o_data.get("max_profit"),
-                "breakeven": o_data.get("breakeven", [])
+                "type": strat.get("strategy_type") or strat.get("type"),
+                "legs": strat.get("legs", []),
+                "max_loss": safe_float(strat.get("max_loss") or strat.get("risk_reward", {}).get("max_loss")),
+                "max_profit": safe_float(strat.get("max_profit") or strat.get("risk_reward", {}).get("max_profit")),
+                "breakeven": strat.get("breakeven") or strat.get("risk_reward", {}).get("breakeven", [])
             }
             
         if d_data:
@@ -275,7 +300,7 @@ def get_positions():
         except:
             days_held = 0
 
-        max_loss = trade.get("max_loss", 1)
+        max_loss = trade.get("max_loss") or trade.get("max_risk") or 1
         if max_loss == 0: max_loss = 1
 
         positions_res.append({
@@ -288,7 +313,7 @@ def get_positions():
             "current_value": current_value,
             "unrealized_pnl": unrealized_pnl,
             "return_pct": (unrealized_pnl / max_loss) * 100 if unrealized_pnl else 0,
-            "max_loss": trade.get("max_loss"),
+            "max_loss": trade.get("max_loss") or trade.get("max_risk"),
             "max_profit": trade.get("max_profit"),
             "breakeven": trade.get("breakeven", []),
             "dte": trade.get("min_dte", 0),
