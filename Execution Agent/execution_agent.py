@@ -90,16 +90,15 @@ class ExecutionAgent:
                         qty = float(entry.get("quantity", 1))
                         if entry.get("initial_debit", 0) > 0:
                             # Debit strategy profit: sell (credit) > buy (debit)
-                            # close value is credit received, so filled_price is negative
-                            # current_close_value = abs(filled_price) * 100
-                            current_close_value = -filled_price * 100 
+                            # close value is credit received. Use abs() to normalize single-leg vs MLEG pricing
+                            current_close_value = abs(filled_price) * 100 
                             pnl = current_close_value - entry["initial_debit"]
                             entry["realized_pnl"] = pnl * qty
                             entry["return_pct"] = (pnl / entry["initial_debit"]) * 100
                         else:
                             # Credit strategy profit: buy back (debit) < sell (credit)
-                            # close value is debit paid, so filled_price is positive
-                            current_close_cost = filled_price * 100
+                            # close value is debit paid.
+                            current_close_cost = abs(filled_price) * 100
                             pnl = entry["initial_credit"] - current_close_cost
                             entry["realized_pnl"] = pnl * qty
                             entry["return_pct"] = (pnl / entry["initial_credit"]) * 100

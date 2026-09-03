@@ -36,6 +36,26 @@ class PositionMonitor:
         with open(CONFIG_FILE, 'r') as f:
             self.config = json.load(f).get("exit_rules", {})
             
+    def mark_strategy_closed(self, strategy_id, reason="MANUALLY_CLOSED_OR_EXPIRED"):
+        try:
+            with open(JOURNAL_FILE, 'r') as f:
+                journal = json.load(f)
+            updated = False
+            for entry in journal:
+                if entry.get("strategy_id") == strategy_id and entry.get("status") == "OPEN":
+                    entry["status"] = "CLOSED"
+                    entry["exit_reason"] = reason
+                    entry["exit_timestamp"] = datetime.now(timezone.utc).isoformat()
+                    entry["realized_pnl"] = entry.get("realized_pnl", 0.0)
+                    updated = True
+                    break
+            if updated:
+                with open(JOURNAL_FILE, 'w') as f:
+                    json.dump(journal, f, indent=2)
+                logger.info(f"Updated journal: marked {strategy_id} as CLOSED ({reason}).")
+        except Exception as e:
+            logger.error(f"Failed to mark strategy closed: {e}")
+
     def run(self):
         logger.info("🛡️ Position Monitor Starting")
         
@@ -74,11 +94,12 @@ class PositionMonitor:
             has_legs = True
             for leg in legs:
                 if leg.get("symbol") not in alpaca_symbols:
-                    logger.warning(f"Strategy {strategy_id} leg {leg.get('symbol')} missing from portfolio. Skipping.")
+                    logger.warning(f"Strategy {strategy_id} leg {leg.get('symbol')} missing from portfolio. Marking as CLOSED.")
                     has_legs = False
                     break
             
             if not has_legs:
+                self.mark_strategy_closed(strategy_id, "MANUALLY_CLOSED_OR_EXPIRED")
                 continue
                 
             try:
