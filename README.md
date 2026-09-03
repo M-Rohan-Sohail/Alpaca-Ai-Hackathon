@@ -1,74 +1,93 @@
-# Architecture Audit: Alpaca AI Trading Agents
+# Autonomous AI Options Trading Terminal: Comprehensive Technical Report
 
-This document provides a comprehensive audit of the finalized multi-agent options trading system.
+## 1. Abstract
+The Autonomous AI Options Trading Terminal is an advanced, fully automated, multi-agent algorithmic trading system. Built on top of the Alpaca Trading API, the system eliminates human discretionary bias by employing a sequentially structured pipeline of Large Language Model (LLM) agents powered by DeepSeek-V4-Flash via Featherless AI. The architecture handles end-to-end trading operations: from universe screening and macroeconomic sentiment analysis, to complex multi-leg options strategy formulation, strict deterministic risk-management, automated execution, and continuous real-time portfolio monitoring for automated exits.
 
-## 1. System Philosophy: "AI Proposes, Math Disposes"
-The system strictly decouples **qualitative intelligence** (LLMs) from **quantitative risk management** (Deterministic Python). The LLMs act as a creative advisory board to propose trading strategies, while a rigid Python engine enforces mathematical safety rules and execution mechanics. At no point can an LLM override capital allocation limits or place orders directly.
+## 2. Architecture Overview
+The system is built on a highly modular, decoupled architecture consisting of three primary layers:
+1. **The State-Driven AI Pipeline**: A sequential series of Python-based AI agents.
+2. **The Execution & Monitoring Daemons**: Background processes handling live API interactions.
+3. **The Presentation Layer**: A FastAPI bridge serving a real-time Next.js React dashboard.
 
----
+### 2.1 Decoupled State Management (JSON-driven)
+Unlike monolithic trading bots that hold state in memory, this system utilizes a file-based state machine. Each agent in the pipeline acts as an isolated microservice. An agent reads the output of the preceding agent from a localized JSON file in the `SAVE-DATA-PER-AGENT/` directory, processes it, and writes its own output to a new JSON file. 
+This decoupled design provides massive technical benefits:
+- **Crash Resilience**: If the pipeline is interrupted or an API rate limit is hit, execution can resume exactly where it left off without losing historical context.
+- **Auditability**: Every decision, from the LLM's raw reasoning to the final calculated Option Clearing Corporation (OCC) symbol, is permanently logged and easily queryable by the frontend UI.
+- **Asynchronous Execution**: The UI does not need to wait for the LLM to finish; it simply polls the JSON directory for updates.
 
-## 2. Core Pipeline Flow
-The entire pipeline is orchestrated by `Run_Pipeline.py`, executing locally in batch increments.
+### 2.2 System Workflow Diagram
+```mermaid
+graph TD
+    Z[Data Ingestion] -->|Raw Data| Y(Data Processing)
+    Y -->|Clean Data| A[Deterministic Filter]
+    A -->|JSON: Shortlist| B(Market Agent)
+    A -->|JSON: Shortlist| C(News Agent)
+    B -->|JSON: Tech Bias| D(Options Agent)
+    C -->|JSON: Sentiment| D
+    D -->|JSON: Strategy| E(Decision Agent)
+    E -->|JSON: Go/No-Go| F(Risk Engine)
+    F -->|Config Constraints| G(Execution Agent)
+    G -->|Alpaca MLEG Orders| H[Alpaca Trading API]
+    G -.->|Trade Journal| I(Fast Exit Daemon)
+    I -.->|Real-Time Chains| H
+    I -->|Take Profit / Stop Loss| H
+```
 
-> `Data Ingestion (MCP + API) -> Data Processing -> Market Agent -> News Agent -> Options Agent -> Decision Agent -> Risk Engine -> Execution Agent -> Position Monitor -> Trade Journal`
+## 3. The Multi-Agent Pipeline
+The core intelligence of the system is driven by `Run_Pipeline.py`, which sequences the agents in a strict chronological order.
 
----
+### 3.1 The Deterministic Filter (Quantitative Analysis)
+Before invoking expensive and time-consuming LLM calls, the system runs a deterministic Python script to narrow down the universe of tradable equities (e.g., S&P 500 components). It calculates technical indicators using historical market data:
+- **Momentum & Trend**: Moving Average crossovers (e.g., 20-day vs. 50-day SMA).
+- **Volume**: Identifies unusual options or equity volume spikes to gauge institutional interest.
+The output is a highly curated shortlist of 5-10 actionable tickers, complete with mathematical scores, which are passed downstream.
 
-## 3. Agent & Component Roles
+### 3.2 Market Agent (Macro/Micro Technical Synthesis)
+The Market Agent acts as the technical analyst. It consumes the quantitative data from the Deterministic Filter and uses the LLM to synthesize a qualitative market view. It analyzes the broader market context and the specific equity's technical structure to generate a distinct directional bias (Bullish, Bearish, or Neutral) and assigns an `ai_confidence` score from 0.0 to 1.0.
 
-### 3.1 Data Ingestion (MCP + API)
-- **Role**: Fetch raw state from Alpaca and Serper.
-- **MCP Integration**: Fully integrates the **Alpaca MCP Server** via a programmatic Python `mcp_client.py`. It securely fetches global account constraints (`get_account_info`) and real-time equity snapshots (`get_stock_snapshot`) using the MCP protocol.
-- **API Fallback**: Uses `alpaca-py` exclusively for features not yet fully supported by the MCP server (e.g., 100-day historical OHLCV bars and deep option chain Greeks).
-- **Directory**: `Data-Ingestion/`
+### 3.3 News Agent (Sentiment Analysis & NLP)
+Running in parallel or immediately after the Market Agent, the News Agent acts as the fundamental analyst. It fetches the latest headlines for the shortlisted tickers via news APIs. 
+**Technical Highlight: Resilience Engine**: Because LLMs can occasionally hallucinate JSON structures, the News Agent is wrapped in a 3-retry resilience loop. If the LLM returns malformed JSON or markdown-wrapped strings, the agent programmatically strips the markdown blockticks and validates the schema. It scores the sentiment on a numerical scale, outputting structured data that can be programmatically interpreted by the next stage.
 
-### 3.2 Data Processing & Deterministic Filter
-- **Role**: Computes technical indicators (EMA, RSI, MACD) and filters out assets with unfavorable liquidity, IV, or trend alignment.
-- **Directory**: `Data-Processing/`
+### 3.4 Options Agent (Strategy Formulation)
+The Options Agent is the most technically complex LLM node. Given the directional bias (e.g., Bullish) and the current underlying price, it parses live option chains to construct a targeted derivative strategy.
+- **Strategy Selection**: Depending on volatility and confidence, it selects from Long Calls, Long Puts, Bull Call Spreads, or Bull Put (Credit) Spreads.
+- **Symbology & Pricing**: It mathematically calculates the required strike prices, selects an expiration date (DTE), and formats the legs into strict OCC symbology (e.g., `AAPL260116C00150000`).
+- **Greeks & Profitability**: It calculates theoretical Max Loss, Max Profit, and Breakeven points for the proposed strategy.
 
-### 3.3 Market Agent (LLM)
-- **Role**: Analyzes the filtered technical OHLCV data to formulate a macro directional bias (e.g., `BULLISH` or `BEARISH`).
-- **Model**: Qwen3.8-27b via Groq.
-- **Directory**: `Market-Agent/`
+### 3.5 Decision Agent (The Consensus Engine)
+The Decision Agent acts as the Portfolio Manager. It aggregates the outputs from the Market, News, and Options agents. It evaluates conflicting data (e.g., Bullish technicals but Bearish news sentiment) and makes a final, binary Go/No-Go decision (`PASS` or `REJECT`) for each ticker, providing a detailed reasoning paragraph for its conclusion.
 
-### 3.4 News Agent (LLM)
-- **Role**: Replaces naive keyword-matching with deep semantic sentiment classification. It analyzes Serper news headlines, outputting a `positive`/`negative`/`neutral` sentiment and a confidence score.
-- **Model**: Qwen3.8-27b via Groq.
-- **Directory**: `News-Agent/` (Part of Data-Processing flow).
+## 4. Risk Assessment Engine
+To protect the portfolio from LLM hallucinations or over-leveraging, the approved strategies are passed to the **Risk Engine**. This is a purely deterministic, non-AI Python script.
+It reads the user's hardcoded parameters from `config.json` and evaluates:
+- **Account Constraints**: Fetches live buying power and equity from Alpaca.
+- **Max Exposure**: Ensures the total capital at risk for the proposed trade does not exceed the allowed percentage of total equity (e.g., 20%).
+- **Daily Loss Limits**: Calculates if the account has already hit its maximum drawdown threshold for the trading session.
+- **Position Sizing**: Dynamically adjusts the number of contracts to trade based on the max risk allowed per trade.
+If any constraint is violated, the trade is rejected and marked with a `binding_constraint` (e.g., `INSUFFICIENT_BUYING_POWER`).
 
-### 3.5 Options Agent (LLM)
-- **Role**: Ingests the Market and News biases alongside live Option Chains to construct specific, multi-leg options strategies (e.g., Bull Call Spreads).
-- **Output**: OCC Symbols, Strikes, Expirations, and Leg Directions (Buy/Sell).
-- **Directory**: `Options-Agent/`
+## 5. Execution Agent
+Trades that survive the Risk Engine are handed to the Execution Agent. This module interfaces directly with the Alpaca Trading API via the `alpaca-py` SDK.
+- **Multi-Leg (MLEG) Routing**: For complex strategies like spreads, the agent constructs an `OrderClass.MLEG` request. This is critical: it guarantees that both legs (the long and the short) are routed to the exchange atomically, eliminating execution leg-risk.
+- **Limit Pricing**: It calculates the net debit or net credit based on the bid/ask spreads provided by the Options Agent and submits a strict `LimitOrderRequest` to avoid slippage.
+- **Trade Journaling**: Upon a successful `SUBMITTED` response from Alpaca, the order ID, entry timestamps, and exact legs are serialized into `trade_journal.json`. 
 
-### 3.6 Decision Agent (Qualitative Authority)
-- **Role**: The final AI judge. It reviews the outputs from the previous agents, synthesizing the data into a human-readable qualitative rationale, and issues a simple `TRADE` or `PASS` directive.
-- **Constraint**: It is explicitly stripped of all sizing and capital allocation authority.
-- **Directory**: `Decision-agent/`
+## 6. Continuous Monitoring & Fast Exit Daemon
+Execution is only the beginning of the trade lifecycle. To manage open positions, the system employs the `fast_exit_daemon.py`.
+- **Subprocess Architecture**: The daemon is spawned as a detached subprocess by the API server upon startup. It runs in an infinite `while True` loop, waking up every 30 seconds.
+- **Real-Time P&L Calculation**: The daemon fetches the latest options chain pricing for all `OPEN` legs in the `trade_journal.json`. It meticulously handles the sign conventions of Alpaca fills—normalizing single-leg fill prices against multi-leg net-credit fill prices using absolute value conversions (`abs(filled_price) * 100`).
+- **Automated Exits**: It evaluates the real-time return percentage against the user's configuration. If a trade hits the `take_profit_pct` (e.g., +50%), drops below the `stop_loss_pct` (e.g., -25%), or approaches the `max_dte` limit, the daemon constructs a closing order (`SELL_TO_CLOSE` or `BUY_TO_CLOSE`) and executes it immediately.
+- **State Reconciliation**: If a position is manually closed by the user in the Alpaca web dashboard, the daemon detects the discrepancy between the portfolio and the journal, automatically marking the ghost position as `CLOSED` to maintain state integrity.
 
-### 3.7 Risk Assessment Engine (Quantitative Authority)
-- **Role**: The absolute, un-overrideable mathematical gatekeeper. 
-- **Mechanism**:
-  1. **Economics**: Computes exact Max Loss, Max Profit, and Breakeven for the proposed multi-leg spreads using `shared_portfolio.py`.
-  2. **Capacity Check**: Evaluates the trade against `config.json` limits (Account Risk, Daily Loss, Buying Power, Exposure limits).
-  3. **Resize & Reject**: Converts available dollar-risk into integer contracts. If limits are breached or the R:R is unacceptable, it issues a `REJECT` directive, logging a `binding_constraint`.
-- **Directory**: `Risk Assessment Engine/`
+## 7. Presentation Layer & Integration
+The system provides full transparency to the user via a modern web interface.
+- **FastAPI Backend (`api_server.py`)**: Acts as the middleware. It exposes RESTful endpoints (`/api/dashboard`, `/api/pipeline/latest`) that stitch together the static JSON state files with live, dynamic portfolio data fetched from Alpaca.
+- **Next.js Frontend**: A responsive, Tailwind-styled React application. 
+  - The **Dashboard** provides real-time telemetry on account equity, risk utilization capacity, and active positions. 
+  - The **Pipeline Explorer** visually maps the JSON state into an interactive Stepper UI, allowing the user to click through every stage of the AI's reasoning process in real-time as the background scripts run.
+- **Unified Bootstrapper**: The entire tech stack—FastAPI, Next.js, and the background Exit Daemon—is launched via a single `start_server.py` script, which automatically injects virtual environment paths and manages subprocess lifecycles.
 
-### 3.8 Execution Agent
-- **Role**: The exclusive bridge to the Alpaca Paper Trading API.
-- **Constraint**: It will **only** execute orders that contain an `ACCEPT` flag from the Risk Engine. It rejects any attempt by the LLM to route trades independently.
-- **Outputs**: Generates execution receipts and updates the initial entry state in the Trade Journal.
-- **Directory**: `Execution Agent/`
-
-### 3.9 Position Monitor & Exits
-- **Role**: Continuously monitors open positions in the Trade Journal against live Alpaca prices.
-- **Mechanism**: Strictly deterministic. It evaluates Unrealized P&L against hardcoded constraints in `config.json` (e.g., Take Profit > 50%, Stop Loss < -20%, Max DTE limit).
-- **Output**: Generates `exit_orders_[timestamp].json` directives, which the Execution Agent executes to close the trades.
-- **Directory**: `Position-Monitor/`
-
----
-
-## 4. Frontend & UI Strategy
-The frontend acts as a **Visualization Layer Only**, consuming the local JSON batch files via a Fast API backend proxy.
-- **Transparency**: Clearly visualizes the hand-off between the AI Agents (italicized qualitative text) and the Risk Engine (bold quantitative math).
-- **Safety**: Banned from generating Alpaca payloads or overriding the Risk Engine. All manual force-closures must be routed through the backend `POST /api/execute/close` endpoint to prevent rogue client-side execution.
+## 8. Conclusion
+By decoupling the heavy analytical lifting of Large Language Models from the strict, deterministic logic required for risk management and execution, the Autonomous AI Options Trading Terminal achieves a highly resilient, scalable, and professional-grade architecture. The system successfully bridges the gap between qualitative AI market analysis and quantitative API execution.
