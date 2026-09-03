@@ -307,11 +307,12 @@ def get_journal_api():
 @app.post("/api/execute/pipeline")
 def start_pipeline():
     pipeline_script = os.path.join(BASE_DIR, "Run_Pipeline.py")
+    log_file = open(os.path.join(BASE_DIR, "pipeline.log"), "w")
     subprocess.Popen(
         [sys.executable, pipeline_script],
         cwd=BASE_DIR,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        stdout=log_file,
+        stderr=subprocess.STDOUT,
         start_new_session=True
     )
     return {"status": "SUBMITTED"}
