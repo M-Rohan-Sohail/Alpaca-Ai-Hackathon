@@ -10,6 +10,7 @@ import type {
   PipelineCandidate,
   Position,
 } from "@/lib/api/types";
+import type { SubmitCandidateResponse } from "@/app/api/pipeline/submit/route";
 
 // Refresh intervals per Section F of the spec.
 const DASHBOARD_REFRESH_MS = 8_000;
@@ -44,6 +45,17 @@ export function useJournal() {
   return useQuery({
     queryKey: ["journal"],
     queryFn: () => apiClient.get<JournalEntry[]>("/api/journal"),
+  });
+}
+
+export function useSubmitCandidate() {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (symbol: string) =>
+      apiClient.post<SubmitCandidateResponse>("/api/pipeline/submit", { symbol }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["pipeline", "latest"] });
+    },
   });
 }
 

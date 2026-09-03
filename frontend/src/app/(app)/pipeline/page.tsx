@@ -4,6 +4,7 @@ import { useState } from "react";
 import { usePipelineLatest } from "@/lib/api/hooks";
 import { CandidateList } from "@/components/pipeline/CandidateList";
 import { PipelineStepper } from "@/components/pipeline/PipelineStepper";
+import { SubmitCandidateForm } from "@/components/pipeline/SubmitCandidateForm";
 import { EmptyState, ErrorState, LoadingSkeleton, StaleDataBanner } from "@/components/ui/States";
 import { isStale } from "@/lib/utils";
 
@@ -28,6 +29,7 @@ export default function PipelinePage() {
 
   return (
     <div className="flex h-full flex-col gap-4">
+      <SubmitCandidateForm />
       {isStale(selected.updated_at) && <StaleDataBanner />}
       <div className="flex flex-1 flex-col gap-4 lg:flex-row lg:overflow-hidden">
         <div className="shrink-0 lg:w-72 lg:overflow-y-auto">
