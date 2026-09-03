@@ -67,11 +67,13 @@ class ExecutionAgent:
                             entry["initial_debit"] = abs(filled_price) * 100
                             entry["initial_credit"] = 0.0
                         else:
-                            entry["initial_debit"] = 0.0
                             entry["initial_credit"] = abs(filled_price) * 100
+                            entry["initial_debit"] = 0.0
                             
+                        limit_price = float(order.limit_price) if order.limit_price else 0.0
+                        slippage = filled_price - limit_price
+                        logger.info(f"Journal Synced ENTRY: {entry['trade_id']} FILLED at {filled_price:.2f} (Requested Limit: {limit_price:.2f} | Slippage: {slippage:.2f})")
                         updated = True
-                        logger.info(f"Journal Synced: {entry['trade_id']} FILLED at {filled_price}")
                 except Exception as e:
                     logger.error(f"Failed to sync order {entry['alpaca_order_id']}: {e}")
                     
@@ -102,8 +104,10 @@ class ExecutionAgent:
                             entry["realized_pnl"] = pnl * qty
                             entry["return_pct"] = (pnl / entry["initial_credit"]) * 100
                             
+                        limit_price = float(order.limit_price) if order.limit_price else 0.0
+                        slippage = filled_price - limit_price
+                        logger.info(f"Journal Synced EXIT: {entry['trade_id']} CLOSED at {filled_price:.2f} (Requested Limit: {limit_price:.2f} | Slippage: {slippage:.2f})")
                         updated = True
-                        logger.info(f"Journal Synced EXIT: {entry['trade_id']} CLOSED at {filled_price}")
                 except Exception as e:
                     logger.error(f"Failed to sync exit order {entry['exit_alpaca_order_id']}: {e}")
 
@@ -256,10 +260,19 @@ class ExecutionAgent:
             strat_name = strategy.get("type", "Unknown")
             contracts = normalized_payload["risk_assessment"]["approved_contracts"]
             
+            leg_logs = []
+            for leg in strategy.get("legs", []):
+                sym = leg.get("symbol")
+                bid = leg.get("bid", "N/A")
+                ask = leg.get("ask", "N/A")
+                mid = leg.get("mid", "N/A")
+                leg_logs.append(f"  - {sym}: Bid={bid} | Ask={ask} | Mid={mid}")
+            leg_log_str = "\n".join(leg_logs)
+            
             if is_mleg:
-                logger.info(f"Submitting MLeg Order:\nSymbol: {symbol}\nStrategy: {strat_name}\nContracts: {contracts}\nNet {'Debit' if net_price > 0 else 'Credit'}: ${abs(net_price):.2f}\nAlpaca limit_price: {net_price:.2f}")
+                logger.info(f"Submitting MLeg Order:\nSymbol: {symbol}\nStrategy: {strat_name}\nContracts: {contracts}\nLegs:\n{leg_log_str}\nNet {'Debit' if net_price > 0 else 'Credit'}: ${abs(net_price):.2f}\nAlpaca limit_price: {net_price:.2f}")
             else:
-                logger.info(f"Submitting Single-Leg Order for {symbol}: {contracts} contracts @ {net_price:.2f}")
+                logger.info(f"Submitting Single-Leg Order for {symbol}:\nContracts: {contracts}\nLegs:\n{leg_log_str}\nAlpaca limit_price: {net_price:.2f}")
 
             # 3. Construct Limit Order Request
             try:

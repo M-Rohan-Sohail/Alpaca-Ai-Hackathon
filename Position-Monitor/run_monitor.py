@@ -171,7 +171,7 @@ class PositionMonitor:
             
             if min_dte <= 0:
                 exit_reason = "EXPIRED_OR_EXPIRING"
-            elif return_pct <= self.config.get("stop_loss_pct", -25.0) and hours_held >= 0.5:
+            elif return_pct <= self.config.get("stop_loss_pct", -25.0) and hours_held >= (5 / 60):
                 exit_reason = "STOP_LOSS"
             elif return_pct >= self.config.get("take_profit_pct", 50.0):
                 exit_reason = "TAKE_PROFIT"

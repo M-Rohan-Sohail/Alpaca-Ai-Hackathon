@@ -7,7 +7,7 @@ from datetime import datetime
 from dataclasses import dataclass, asdict
 
 # Third-party imports
-from groq import Groq
+from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
@@ -44,14 +44,14 @@ class MarketAgent:
     
     def __init__(self, 
                  api_key: Optional[str] = None,
-                 model: str = "openai/gpt-oss-120b",
+                 model: str = "deepseek-ai/DeepSeek-V4-Flash-0731",
                  temperature: float = 0.3,
                  sandbox_mode: bool = False):
         """
         Initialize the Market Agent
         
         Args:
-            api_key: Groq API key (defaults to env var)
+            api_key: Featherless API key (defaults to env var)
             model: LLM model to use
             temperature: LLM temperature (0.0-1.0)
             sandbox_mode: Legacy flag (unused)
@@ -61,11 +61,11 @@ class MarketAgent:
         self.sandbox_mode = sandbox_mode
         
         # Initialize LLM client
-        api_key = api_key or os.getenv('GROQ_API_KEY')
+        api_key = api_key or os.getenv('FEATHERLESS_API_KEY')
         if not api_key:
-            raise ValueError("GROQ_API_KEY is required to run the Market Agent in live mode.")
+            raise ValueError("FEATHERLESS_API_KEY is required to run the Market Agent in live mode.")
         
-        self.client = Groq(api_key=api_key)
+        self.client = OpenAI(api_key=api_key, base_url="https://api.featherless.ai/v1")
         
         # System prompt for the agent
         self.system_prompt = """You are a professional market analyst specializing in technical analysis and market trend identification.

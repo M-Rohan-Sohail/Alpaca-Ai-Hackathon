@@ -11,8 +11,7 @@ import logging
 from typing import Dict, Any, Optional, List, Tuple
 from datetime import datetime
 from dataclasses import dataclass
-
-from groq import Groq
+from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 
 # Optional Alpaca integration
@@ -56,7 +55,7 @@ class DecisionAgent:
     
     def __init__(self,
                  api_key: Optional[str] = None,
-                 model: str = "openai/gpt-oss-120b",
+                 model: str = "deepseek-ai/DeepSeek-V4-Flash-0731",
                  temperature: float = 0.2,
                  sandbox_mode: bool = False):
         
@@ -76,15 +75,15 @@ class DecisionAgent:
         self.trading_client = TradingClient(self.alpaca_api_key, self.alpaca_secret_key, paper=self.alpaca_paper)
         logger.info("✅ Alpaca client initialized")
             
-        api_key = api_key or os.getenv('GROQ_API_KEY')
+        api_key = api_key or os.getenv('FEATHERLESS_API_KEY')
         if not api_key:
-            raise ValueError("GROQ_API_KEY is required for the Decision Agent.")
+            raise ValueError("FEATHERLESS_API_KEY is required for the Decision Agent.")
             
         try:
-            self.client = Groq(api_key=api_key)
-            logger.info("✅ Groq client initialized")
+            self.client = OpenAI(api_key=api_key, base_url="https://api.featherless.ai/v1")
+            logger.info("✅ LLM client initialized")
         except Exception as e:
-            raise ValueError(f"Failed to initialize Groq: {e}")
+            raise ValueError(f"Failed to initialize LLM client: {e}")
 
     def _get_latest_json(self, folder_path: str) -> Optional[Any]:
         if not os.path.exists(folder_path):

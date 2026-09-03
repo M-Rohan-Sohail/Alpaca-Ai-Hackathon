@@ -7,8 +7,9 @@ import requests
 from datetime import datetime
 from typing import Dict, Any, List
 import time
+import re
 
-from groq import Groq
+from openai import OpenAI
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
@@ -22,15 +23,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class NewsAgent:
-    def __init__(self, model="qwen/qwen3.8-27b"):
-        self.model = model
+    def __init__(self, model="deepseek-ai/DeepSeek-V4-Flash-0731"):
         self.serper_api_key = os.getenv("SERPER_API_KEY")
-        self.groq_api_key = os.getenv("GROQ_API_KEY")
+        self.llm_api_key = os.getenv("FEATHERLESS_API_KEY")
         
-        if not self.serper_api_key or not self.groq_api_key:
-            raise ValueError("SERPER_API_KEY and GROQ_API_KEY environment variables are required.")
+        if not self.serper_api_key or not self.llm_api_key:
+            raise ValueError("SERPER_API_KEY and FEATHERLESS_API_KEY environment variables are required.")
             
-        self.client = Groq(api_key=self.groq_api_key)
+        self.client = OpenAI(api_key=self.llm_api_key, base_url="https://api.featherless.ai/v1")
+        self.model = os.getenv("LLM_MODEL", model)
 
     def fetch_news_from_serper(self, symbol: str) -> List[Dict[str, Any]]:
         """Fetch news articles from Serper API."""
@@ -81,7 +82,12 @@ Your task is to perform semantic deduplication: identify which articles describe
 Articles:
 {''.join(articles_summary)}
 
-Respond ONLY in valid JSON format mapping the exact URL to its assigned event_id. Do not include markdown formatting.
+CRITICAL INSTRUCTIONS:
+1. Respond ONLY in valid JSON format mapping the exact URL to its assigned event_id.
+2. DO NOT include markdown formatting, backticks, or any conversational text.
+3. You MUST use double quotes for all keys and values.
+4. You MUST properly escape any quotes or special characters within strings.
+
 Example:
 {{
     "https://example.com/1": "event_1",
@@ -99,15 +105,19 @@ Example:
                     max_tokens=4000,
                     response_format={"type": "json_object"}
                 )
-                result = json.loads(response.choices[0].message.content)
+                raw_content = response.choices[0].message.content.strip()
+                if raw_content.startswith("```json"): raw_content = raw_content[7:]
+                if raw_content.startswith("```"): raw_content = raw_content[3:]
+                if raw_content.endswith("```"): raw_content = raw_content[:-3]
+                result = json.loads(raw_content.strip())
                 return result
             except Exception as e:
                 logger.error(f"Error in semantic deduplication for {symbol} (Attempt {attempt}/{max_retries}): {e}")
                 if attempt == max_retries:
                     logger.critical("Max retries reached. Terminating process to prevent garbage data.")
                     sys.exit(1)
-                logger.info("Sleeping for 20s before retrying...")
-                time.sleep(20)
+                logger.info("Sleeping for 5s before retrying...")
+                time.sleep(5)
 
     def analyze_events(self, articles: List[Dict], event_mapping: Dict[str, str], symbol: str) -> Dict[str, Any]:
         """LLM Call 2 - Final analysis generation."""
@@ -135,6 +145,12 @@ Criteria for Relevance Score (0-100):
 - Specificity (20%): Is it about {symbol} specifically?
 - Recency (10%): Is it recent?
 - Source Quality (10%): Is the source credible?
+
+CRITICAL INSTRUCTIONS:
+1. Respond ONLY in valid JSON format.
+2. DO NOT include markdown formatting, backticks, or any conversational text.
+3. You MUST use double quotes for all keys and values.
+4. You MUST properly escape any quotes or special characters within strings.
 
 Generate an analysis in EXACTLY this JSON structure:
 {{
@@ -178,14 +194,18 @@ Articles:
                     max_tokens=4000,
                     response_format={"type": "json_object"}
                 )
-                return json.loads(response.choices[0].message.content)
+                raw_content = response.choices[0].message.content.strip()
+                if raw_content.startswith("```json"): raw_content = raw_content[7:]
+                if raw_content.startswith("```"): raw_content = raw_content[3:]
+                if raw_content.endswith("```"): raw_content = raw_content[:-3]
+                return json.loads(raw_content.strip())
             except Exception as e:
                 logger.error(f"Error in analysis for {symbol} (Attempt {attempt}/{max_retries}): {e}")
                 if attempt == max_retries:
                     logger.critical("Max retries reached. Terminating process to prevent garbage data.")
                     sys.exit(1)
-                logger.info("Sleeping for 20s before retrying...")
-                time.sleep(20)
+                logger.info("Sleeping for 5s before retrying...")
+                time.sleep(5)
 
     def calculate_python_news_score(self, llm_analysis: Dict[str, Any], original_articles: List[Dict]) -> float:
         """Calculate final news score using hardcoded python rules per article and averaging them."""
@@ -282,8 +302,8 @@ Articles:
         logger.info(f"Running semantic deduplication for {symbol}...")
         event_mapping = self.semantic_deduplication(unique_articles, symbol)
         
-        logger.info("⏳ Cooldown (10s) before final analysis to avoid API rate limits...")
-        time.sleep(10)
+        logger.info("⏳ Cooldown (5s) before final analysis to avoid API rate limits...")
+        time.sleep(5)
         
         logger.info(f"Running final analysis for {symbol}...")
         llm_analysis = self.analyze_events(unique_articles, event_mapping, symbol)
@@ -364,8 +384,8 @@ def main():
         all_analysis.append(result)
         
         if candidate != candidates[-1]:
-            print("⏳ Cooldown (15s) before processing next asset...")
-            time.sleep(15)
+            print("⏳ Cooldown (5s) before processing next asset...")
+            time.sleep(5)
         
     # Save Output
     output_dir = os.path.join(base_dir, "..", "SAVE-DATA-PER-AGENT", "News-Agent-Output")

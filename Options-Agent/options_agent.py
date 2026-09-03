@@ -5,18 +5,18 @@ import sys
 from datetime import datetime, timedelta
 from dotenv import load_dotenv, find_dotenv
 
-# Alpaca and Groq imports
+# Alpaca and OpenAI imports
 from alpaca.data.historical.option import OptionHistoricalDataClient
 from alpaca.data.requests import OptionChainRequest
-from groq import Groq
+from openai import OpenAI
 
 # Load environment variables
 load_dotenv(find_dotenv())
 
 ALPACA_API_KEY = os.getenv("ALPACA_API_KEY")
 ALPACA_SECRET_KEY = os.getenv("ALPACA_SECRET_KEY")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-GROQ_MODEL = os.getenv("GROQ_MODEL", "openai/gpt-oss-120b")
+FEATHERLESS_API_KEY = os.getenv("FEATHERLESS_API_KEY")
+LLM_MODEL = os.getenv("LLM_MODEL", "deepseek-ai/DeepSeek-V4-Flash-0731")
 
 # Directories
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,6 +24,13 @@ DETERMINISTIC_FILTER_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "De
 NEWS_AGENT_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "News-Agent-Output")
 OPTIONS_AGENT_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "Options-Agent-Output")
 MARKET_AGENT_OUT_DIR = os.path.join(BASE_DIR, "SAVE-DATA-PER-AGENT", "Market-Agent-Output")
+
+CONFIG_FILE = os.path.join(BASE_DIR, "User_Config", "config.json")
+with open(CONFIG_FILE, 'r') as f:
+    config_data = json.load(f)
+
+OPTIONS_USE_MID_PRICE = config_data.get("options_use_mid_price", False)
+MAX_OPTION_SPREAD_PCT = config_data.get("max_option_spread_pct", 0.15)
 
 STRATEGY_BIAS = {
     "LongCall": "BULLISH",
@@ -36,11 +43,11 @@ STRATEGY_BIAS = {
 
 os.makedirs(OPTIONS_AGENT_OUT_DIR, exist_ok=True)
 
-if not ALPACA_API_KEY or not ALPACA_SECRET_KEY or not GROQ_API_KEY:
-    raise ValueError("ALPACA_API_KEY, ALPACA_SECRET_KEY, and GROQ_API_KEY are strictly required.")
+if not ALPACA_API_KEY or not ALPACA_SECRET_KEY or not FEATHERLESS_API_KEY:
+    raise ValueError("ALPACA_API_KEY, ALPACA_SECRET_KEY, and FEATHERLESS_API_KEY are strictly required.")
 
 alpaca_client = OptionHistoricalDataClient(ALPACA_API_KEY, ALPACA_SECRET_KEY)
-groq_client = Groq(api_key=GROQ_API_KEY)
+llm_client = OpenAI(api_key=FEATHERLESS_API_KEY, base_url="https://api.featherless.ai/v1")
 
 
 def get_latest_json_file(directory: str):
@@ -266,8 +273,8 @@ def apply_python_filters(raw_chain: list, spot_price: float):
         mid = (ask + bid) / 2
         spread_pct = spread / mid if mid > 0 else float('inf')
         
-        # Filter out ridiculous spreads (e.g. > 15%)
-        if spread_pct > 0.15:
+        # Filter out ridiculous spreads (e.g. > config value)
+        if spread_pct > MAX_OPTION_SPREAD_PCT:
             continue
             
         # Preference Penalties (Soft Ranking)
@@ -292,8 +299,8 @@ def apply_python_filters(raw_chain: list, spot_price: float):
 
 
 def generate_strategy(candidate: dict, filtered_chain: list) -> dict:
-    if not groq_client:
-        raise RuntimeError("Groq client not initialized. Cannot generate options strategy.")
+    if not llm_client:
+        raise RuntimeError("LLM client not initialized. Cannot generate options strategy.")
 
     market_analysis = candidate.get("market_analysis", {})
     market_direction = market_analysis.get("direction", "NEUTRAL")
@@ -367,18 +374,18 @@ def generate_strategy(candidate: dict, filtered_chain: list) -> dict:
     """
     
     try:
-        response = groq_client.chat.completions.create(
+        response = llm_client.chat.completions.create(
             messages=[
-                {"role": "system", "content": "You are a specialized options trading JSON API."},
+                {"role": "system", "content": "You are a quantitative options strategist."},
                 {"role": "user", "content": prompt}
             ],
-            model=GROQ_MODEL,
+            model=LLM_MODEL,
             response_format={"type": "json_object"},
-            temperature=0.2,
+            temperature=0.1
         )
         return json.loads(response.choices[0].message.content)
     except Exception as e:
-        print(f"Error calling Groq API: {e}")
+        print(f"Error calling LLM API: {e}")
         return {}
 
 
@@ -406,11 +413,15 @@ def validate_and_calculate_metrics(strategy: dict, filtered_chain: list) -> dict
         if not matched_contract:
             return {"error": f"LLM suggested contract not found in chain: {option_type} {strike} {expiration}"}
             
+        c_bid = matched_contract['bid']
+        c_ask = matched_contract['ask']
+        c_mid = round((c_bid + c_ask) / 2.0, 2)
+            
         if action == "BUY":
-            price = matched_contract['ask']
+            price = c_mid if OPTIONS_USE_MID_PRICE else c_ask
             cost_per_share += price
         elif action == "SELL":
-            price = matched_contract['bid']
+            price = c_mid if OPTIONS_USE_MID_PRICE else c_bid
             cost_per_share -= price
         else:
             return {"error": f"Invalid action: {action}"}
@@ -421,7 +432,10 @@ def validate_and_calculate_metrics(strategy: dict, filtered_chain: list) -> dict
             "option_type": option_type.upper(),
             "strike": strike,
             "expiration": expiration,
-            "price": price
+            "price": price,
+            "bid": c_bid,
+            "ask": c_ask,
+            "mid": c_mid
         })
         
     net_cost = cost_per_share

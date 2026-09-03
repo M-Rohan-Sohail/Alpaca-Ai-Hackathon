@@ -3,7 +3,7 @@ import subprocess
 import sys
 import time
 
-def run_script(script_path: str, args: list = None):
+def run_script(script_path: str, args: list = None, max_retries: int = 1):
     if not os.path.exists(script_path):
         print(f"\n❌ ERROR: Script not found at {script_path}")
         sys.exit(1)
@@ -15,17 +15,23 @@ def run_script(script_path: str, args: list = None):
     python_exe = sys.executable
     cmd = [python_exe, script_path] + (args or [])
     
-    try:
-        subprocess.run(
-            cmd,
-            cwd=os.path.dirname(script_path),
-            check=True
-        )
-        print(f"\n✅ SUCCESS: {os.path.basename(script_path)} completed.\n")
-    except subprocess.CalledProcessError as e:
-        print(f"\n❌ FAILED: {os.path.basename(script_path)} crashed with exit code {e.returncode}.")
-        print("Pipeline aborted.")
-        sys.exit(1)
+    for attempt in range(max_retries):
+        try:
+            subprocess.run(
+                cmd,
+                cwd=os.path.dirname(script_path),
+                check=True
+            )
+            print(f"\n✅ SUCCESS: {os.path.basename(script_path)} completed.\n")
+            return
+        except subprocess.CalledProcessError as e:
+            if attempt < max_retries - 1:
+                print(f"\n⚠️ WARNING: {os.path.basename(script_path)} crashed with exit code {e.returncode}. Retrying ({attempt+2}/{max_retries})...")
+            else:
+                print(f"\n❌ FAILED: {os.path.basename(script_path)} crashed with exit code {e.returncode}.")
+                print("Pipeline aborted.")
+                sys.exit(1)
+
 
 def cleanup_save_data(base_dir):
     save_data_dir = os.path.join(base_dir, "SAVE-DATA-PER-AGENT")
@@ -67,7 +73,10 @@ def main():
     start_time = time.time()
     
     for script, args in pipeline:
-        run_script(script, args)
+        if "news_agent.py" in script:
+            run_script(script, args, max_retries=3)
+        else:
+            run_script(script, args)
         
     # Launch Fast Exit Daemon as a background subprocess
     daemon_script = os.path.join(base_dir, "fast_exit_daemon.py")
