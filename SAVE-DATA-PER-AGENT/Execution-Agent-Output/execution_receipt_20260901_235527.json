@@ -1,0 +1,136 @@
+[
+  {
+    "trade_id": "CVX_20260901_235527",
+    "symbol": "CVX",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "226a89ea-536b-4dde-923e-2c621d16ecec",
+    "normalized_payload": {
+      "trade_id": "CVX_20260901_235527",
+      "symbol": "CVX",
+      "strategy": {
+        "type": "LongCall",
+        "legs": [
+          {
+            "symbol": "CVX261016C00210000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 210.0,
+            "expiration": "2026-10-16",
+            "price": 8.3
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": 8.3,
+        "max_loss_per_contract": 830.0,
+        "max_loss_total": 830.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 218.3,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "XOM_20260901_235527",
+    "symbol": "XOM",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "f5e80a05-ab0c-4b1f-81c9-8a90180380aa",
+    "normalized_payload": {
+      "trade_id": "XOM_20260901_235527",
+      "symbol": "XOM",
+      "strategy": {
+        "type": "LongCall",
+        "legs": [
+          {
+            "symbol": "XOM261120C00165000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 165.0,
+            "expiration": "2026-11-20",
+            "price": 9.02
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": 9.02,
+        "max_loss_per_contract": 902.0,
+        "max_loss_total": 902.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 174.02,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "ADBE_20260901_235527",
+    "symbol": "ADBE",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "e4dc3d3c-ada0-4287-9228-424f9e9d8093",
+    "normalized_payload": {
+      "trade_id": "ADBE_20260901_235527",
+      "symbol": "ADBE",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "ADBE261120C00300000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 300.0,
+            "expiration": "2026-11-20",
+            "price": 20.37
+          },
+          {
+            "symbol": "ADBE261120C00310000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 310.0,
+            "expiration": "2026-11-20",
+            "price": 16.84
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 2,
+        "approved_limit_price": 3.53,
+        "max_loss_per_contract": 353.0,
+        "max_loss_total": 706.0,
+        "max_profit_per_contract": 647.0,
+        "max_profit_total": 1294.0,
+        "risk_reward_ratio": 1.83,
+        "breakeven": 303.53,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  }
+]

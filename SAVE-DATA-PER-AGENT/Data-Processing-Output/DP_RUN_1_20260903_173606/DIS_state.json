@@ -1,0 +1,81 @@
+{
+  "symbol": "DIS",
+  "price": 107.62,
+  "returns": {
+    "return_1d": -0.0033,
+    "return_5d": 0.0075,
+    "return_20d": 0.0281
+  },
+  "trend": {
+    "sma20": 106.59,
+    "sma50": 101.07,
+    "rsi14": 56.83
+  },
+  "volatility": {
+    "daily_std": 0.0168,
+    "atr": 2.27
+  },
+  "volume": {
+    "today": 2411075,
+    "avg20": 7644386
+  },
+  "options": [
+    {
+      "strike": 99.0,
+      "exp": "2026-09-18",
+      "bid": 8.38,
+      "ask": 10.53,
+      "iv": 0.4106,
+      "delta": 0.856
+    },
+    {
+      "strike": 60.0,
+      "exp": "2026-11-20",
+      "bid": 47.82,
+      "ask": 49.54,
+      "iv": 0.7737,
+      "delta": 0.9668
+    },
+    {
+      "strike": 135.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 1.37,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 123.0,
+      "exp": "2026-10-02",
+      "bid": 13.67,
+      "ask": 16.79,
+      "iv": 0.2882,
+      "delta": -0.9415
+    },
+    {
+      "strike": 110.0,
+      "exp": "2026-11-20",
+      "bid": 4.88,
+      "ask": 5.05,
+      "iv": 0.2844,
+      "delta": 0.4845
+    }
+  ],
+  "news": [
+    {
+      "headline": "The Walt Disney Company (DIS) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Disney: DIS Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "DIS: The Walt Disney Company - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

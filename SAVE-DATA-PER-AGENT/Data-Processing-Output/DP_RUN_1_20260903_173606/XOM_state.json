@@ -1,0 +1,81 @@
+{
+  "symbol": "XOM",
+  "price": 163.6,
+  "returns": {
+    "return_1d": -0.0034,
+    "return_5d": 0.0458,
+    "return_20d": 0.0566
+  },
+  "trend": {
+    "sma20": 161.17,
+    "sma50": 152.55,
+    "rsi14": 59.73
+  },
+  "volatility": {
+    "daily_std": 0.0162,
+    "atr": 3.33
+  },
+  "volume": {
+    "today": 6085380,
+    "avg20": 13810807
+  },
+  "options": [
+    {
+      "strike": 250.0,
+      "exp": "2027-03-19",
+      "bid": 0.44,
+      "ask": 0.79,
+      "iv": 0.3029,
+      "delta": 0.0446
+    },
+    {
+      "strike": 130.0,
+      "exp": "2026-11-20",
+      "bid": 34.16,
+      "ask": 36.55,
+      "iv": 0.3519,
+      "delta": 0.9385
+    },
+    {
+      "strike": 141.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 0.89,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 180.0,
+      "exp": "2026-09-04",
+      "bid": 0.0,
+      "ask": 0.01,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 142.0,
+      "exp": "2026-09-11",
+      "bid": 21.42,
+      "ask": 22.24,
+      "iv": 0.5311,
+      "delta": 0.9676
+    }
+  ],
+  "news": [
+    {
+      "headline": "ExxonMobil Holdings Corporation (XOM) Stock Price, ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Exxonmobil Holdings Corp (XOM) Stock Price & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "ExxonMobil Holdings Corp - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

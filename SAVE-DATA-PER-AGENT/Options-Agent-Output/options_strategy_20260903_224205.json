@@ -1,0 +1,185 @@
+[
+  {
+    "symbol": "CVX",
+    "strategy": {
+      "type": "LongCall",
+      "confidence": 0.95,
+      "strategy_bias": "BULLISH",
+      "legs": [
+        {
+          "symbol": "CVX261016C00210000",
+          "action": "BUY",
+          "option_type": "CALL",
+          "strike": 210.0,
+          "expiration": "2026-10-16",
+          "price": 9.17,
+          "bid": 8.84,
+          "ask": 9.17,
+          "mid": 9.0
+        }
+      ],
+      "risk_reward": {
+        "net_debit": 9.17,
+        "max_profit": Infinity,
+        "max_loss": 9.17,
+        "breakeven": 219.17,
+        "risk_reward_ratio": Infinity
+      },
+      "reason": "Bullish thesis with high confidence (0.95) and strong trend (85) suggests continued upside. A long call on CVX at the 210 strike with a delta of 0.58 provides direct bullish exposure with unlimited profit potential and limited risk (premium paid). The 2026-10-16 expiration offers sufficient time for the trend to play out, and the ask price of 9.17 is reasonable given the current price of 212.23."
+    }
+  },
+  {
+    "symbol": "WFC",
+    "strategy": {
+      "type": "LongCall",
+      "confidence": 0.85,
+      "strategy_bias": "BULLISH",
+      "legs": [
+        {
+          "symbol": "WFC261016C00090000",
+          "action": "BUY",
+          "option_type": "CALL",
+          "strike": 90.0,
+          "expiration": "2026-10-16",
+          "price": 3.2,
+          "bid": 3.13,
+          "ask": 3.2,
+          "mid": 3.17
+        }
+      ],
+      "risk_reward": {
+        "net_debit": 3.2,
+        "max_profit": Infinity,
+        "max_loss": 3.2,
+        "breakeven": 93.2,
+        "risk_reward_ratio": Infinity
+      },
+      "reason": "Bullish thesis with high confidence and strong trend strength. Buying a slightly out-of-the-money call on WFC to capture upside while maintaining a defined risk (limited to premium paid). The 90 strike offers a delta of ~0.50, providing balanced directional exposure with reasonable cost."
+    }
+  },
+  {
+    "symbol": "JNJ",
+    "error": "LLM failed to generate a valid strategy."
+  },
+  {
+    "symbol": "JPM",
+    "strategy": {
+      "type": "LongCall",
+      "confidence": 0.85,
+      "strategy_bias": "BULLISH",
+      "legs": [
+        {
+          "symbol": "JPM261016C00360000",
+          "action": "BUY",
+          "option_type": "CALL",
+          "strike": 360.0,
+          "expiration": "2026-10-16",
+          "price": 13.1,
+          "bid": 12.88,
+          "ask": 13.1,
+          "mid": 12.99
+        }
+      ],
+      "risk_reward": {
+        "net_debit": 13.1,
+        "max_profit": Infinity,
+        "max_loss": 13.1,
+        "breakeven": 373.1,
+        "risk_reward_ratio": Infinity
+      },
+      "reason": "Bullish market thesis with high confidence (0.85) and strong trend strength (75). The stock is trading at 361.78 with positive momentum and RSI at 60.1, indicating upward bias. Buying an ATM call (strike 360) provides direct bullish exposure with a delta of 0.57, allowing participation in the expected upside. The option has tight bid-ask spread (1.7%) and reasonable IV (22.4%), making it a cost-effective expression of the bullish view."
+    }
+  },
+  {
+    "symbol": "BAC",
+    "strategy": {
+      "type": "LongCall",
+      "confidence": 0.75,
+      "strategy_bias": "BULLISH",
+      "legs": [
+        {
+          "symbol": "BAC261016C00060000",
+          "action": "BUY",
+          "option_type": "CALL",
+          "strike": 60.0,
+          "expiration": "2026-10-16",
+          "price": 4.16,
+          "bid": 4.05,
+          "ask": 4.16,
+          "mid": 4.11
+        }
+      ],
+      "risk_reward": {
+        "net_debit": 4.16,
+        "max_profit": Infinity,
+        "max_loss": 4.16,
+        "breakeven": 64.16,
+        "risk_reward_ratio": Infinity
+      },
+      "reason": "Bullish thesis with high confidence and strong trend; long call provides unlimited upside with high delta to capture expected upward move."
+    }
+  },
+  {
+    "symbol": "XOM",
+    "strategy": {
+      "type": "LongCall",
+      "confidence": 0.9,
+      "strategy_bias": "BULLISH",
+      "legs": [
+        {
+          "symbol": "XOM261016C00165000",
+          "action": "BUY",
+          "option_type": "CALL",
+          "strike": 165.0,
+          "expiration": "2026-10-16",
+          "price": 5.88,
+          "bid": 5.67,
+          "ask": 5.88,
+          "mid": 5.78
+        }
+      ],
+      "risk_reward": {
+        "net_debit": 5.88,
+        "max_profit": Infinity,
+        "max_loss": 5.88,
+        "breakeven": 170.88,
+        "risk_reward_ratio": Infinity
+      },
+      "reason": "Bullish thesis with high confidence and strong trend. A long call on the 165 strike provides direct upside exposure with limited risk to the premium paid. The strike is near the current price, offering a delta of ~0.49, capturing the expected upward move."
+    }
+  },
+  {
+    "symbol": "NFLX",
+    "strategy": {
+      "type": "LongCall",
+      "confidence": 0.9,
+      "strategy_bias": "BULLISH",
+      "legs": [
+        {
+          "symbol": "NFLX261016C00085000",
+          "action": "BUY",
+          "option_type": "CALL",
+          "strike": 85.0,
+          "expiration": "2026-10-16",
+          "price": 3.36,
+          "bid": 3.31,
+          "ask": 3.36,
+          "mid": 3.33
+        }
+      ],
+      "risk_reward": {
+        "net_debit": 3.36,
+        "max_profit": Infinity,
+        "max_loss": 3.36,
+        "breakeven": 88.36,
+        "risk_reward_ratio": Infinity
+      },
+      "reason": "Bullish market direction with high confidence (0.9) and strong trend strength (80). Buying a call option on NFLX with strike 85 and expiration 2026-10-16 provides direct upside exposure with a delta of 0.46, allowing participation in the expected upward move. The option has a tight bid-ask spread (0.05) and reasonable IV, making it a cost-effective way to express the bullish thesis."
+    }
+  },
+  {
+    "symbol": "TSLA",
+    "strategy": "NO_VALID_STRUCTURE",
+    "reason": "The market direction is NEUTRAL with moderate confidence, but the allowed strategies (LongCall, LongPut, BullCallSpread, BearPutSpread, BearCallSpread, BullPutSpread) are all directional. No neutral strategy such as a straddle or strangle is permitted. Therefore, no suitable options structure can be constructed to express the neutral thesis."
+  }
+]

@@ -1,0 +1,294 @@
+[
+  {
+    "trade_id": "CRM_20260901_222318",
+    "symbol": "CRM",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "d30e8d1d-14df-4811-8ce6-f93dc0233282",
+    "normalized_payload": {
+      "trade_id": "CRM_20260901_222318",
+      "symbol": "CRM",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "CRM261120C00260000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 260.0,
+            "expiration": "2026-11-20",
+            "price": 18.84
+          },
+          {
+            "symbol": "CRM261120C00270000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 270.0,
+            "expiration": "2026-11-20",
+            "price": 14.42
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 2,
+        "approved_limit_price": 4.42,
+        "max_loss_per_contract": 442.0,
+        "max_loss_total": 884.0,
+        "max_profit_per_contract": 558.0,
+        "max_profit_total": 1116.0,
+        "risk_reward_ratio": 1.26,
+        "breakeven": 264.42,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "CVX_20260901_222318",
+    "symbol": "CVX",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "d681cb2a-7490-44ee-afc8-4eb32520d95c",
+    "normalized_payload": {
+      "trade_id": "CVX_20260901_222318",
+      "symbol": "CVX",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "CVX261016C00210000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 210.0,
+            "expiration": "2026-10-16",
+            "price": 8.18
+          },
+          {
+            "symbol": "CVX261016C00220000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 220.0,
+            "expiration": "2026-10-16",
+            "price": 3.8
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 2,
+        "approved_limit_price": 4.38,
+        "max_loss_per_contract": 438.0,
+        "max_loss_total": 876.0,
+        "max_profit_per_contract": 562.0,
+        "max_profit_total": 1124.0,
+        "risk_reward_ratio": 1.28,
+        "breakeven": 214.38,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "XOM_20260901_222318",
+    "symbol": "XOM",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "fdfd64cc-c96c-4fcb-97b6-eabee9f8bb01",
+    "normalized_payload": {
+      "trade_id": "XOM_20260901_222318",
+      "symbol": "XOM",
+      "strategy": {
+        "type": "LongCall",
+        "legs": [
+          {
+            "symbol": "XOM260925C00162500",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 162.5,
+            "expiration": "2026-09-25",
+            "price": 5.68
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": 5.68,
+        "max_loss_per_contract": 568.0,
+        "max_loss_total": 568.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 168.18,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "NOW_20260901_222318",
+    "symbol": "NOW",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "15a86c6c-7388-46c0-a4dd-4d258593689c",
+    "normalized_payload": {
+      "trade_id": "NOW_20260901_222318",
+      "symbol": "NOW",
+      "strategy": {
+        "type": "BullPutSpread",
+        "legs": [
+          {
+            "symbol": "NOW260925P00140000",
+            "action": "SELL",
+            "option_type": "PUT",
+            "strike": 140.0,
+            "expiration": "2026-09-25",
+            "price": 5.76
+          },
+          {
+            "symbol": "NOW260925P00130000",
+            "action": "BUY",
+            "option_type": "PUT",
+            "strike": 130.0,
+            "expiration": "2026-09-25",
+            "price": 2.5
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": -3.26,
+        "max_loss_per_contract": 674.0,
+        "max_loss_total": 674.0,
+        "max_profit_per_contract": 326.0,
+        "max_profit_total": 326.0,
+        "risk_reward_ratio": 0.48,
+        "breakeven": 136.74,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "ADBE_20260901_222318",
+    "symbol": "ADBE",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "7c994d39-7017-4d0d-ab61-11456da80bda",
+    "normalized_payload": {
+      "trade_id": "ADBE_20260901_222318",
+      "symbol": "ADBE",
+      "strategy": {
+        "type": "BullPutSpread",
+        "legs": [
+          {
+            "symbol": "ADBE261016P00290000",
+            "action": "SELL",
+            "option_type": "PUT",
+            "strike": 290.0,
+            "expiration": "2026-10-16",
+            "price": 19.96
+          },
+          {
+            "symbol": "ADBE261016P00275000",
+            "action": "BUY",
+            "option_type": "PUT",
+            "strike": 275.0,
+            "expiration": "2026-10-16",
+            "price": 13.3
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": -6.66,
+        "max_loss_per_contract": 834.0,
+        "max_loss_total": 834.0,
+        "max_profit_per_contract": 666.0,
+        "max_profit_total": 666.0,
+        "risk_reward_ratio": 0.8,
+        "breakeven": 283.34,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "ACN_20260901_222318",
+    "symbol": "ACN",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "3db1cc41-2bcd-4250-be2e-a61f70a73ba3",
+    "normalized_payload": {
+      "trade_id": "ACN_20260901_222318",
+      "symbol": "ACN",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "ACN261016C00185000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 185.0,
+            "expiration": "2026-10-16",
+            "price": 14.77
+          },
+          {
+            "symbol": "ACN261016C00195000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 195.0,
+            "expiration": "2026-10-16",
+            "price": 10.0
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 2,
+        "approved_limit_price": 4.77,
+        "max_loss_per_contract": 477.0,
+        "max_loss_total": 954.0,
+        "max_profit_per_contract": 523.0,
+        "max_profit_total": 1046.0,
+        "risk_reward_ratio": 1.1,
+        "breakeven": 189.77,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  }
+]

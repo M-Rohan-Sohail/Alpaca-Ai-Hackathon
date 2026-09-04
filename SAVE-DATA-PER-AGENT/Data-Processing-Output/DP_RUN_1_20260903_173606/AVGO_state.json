@@ -1,0 +1,81 @@
+{
+  "symbol": "AVGO",
+  "price": 354.46,
+  "returns": {
+    "return_1d": -0.0348,
+    "return_5d": -0.046,
+    "return_20d": -0.1572
+  },
+  "trend": {
+    "sma20": 381.68,
+    "sma50": 384.03,
+    "rsi14": 36.31
+  },
+  "volatility": {
+    "daily_std": 0.0335,
+    "atr": 13.6
+  },
+  "volume": {
+    "today": 42023358,
+    "avg20": 21672861
+  },
+  "options": [
+    {
+      "strike": 455.0,
+      "exp": "2026-09-09",
+      "bid": 0.03,
+      "ask": 0.12,
+      "iv": 0.7715,
+      "delta": 0.0068
+    },
+    {
+      "strike": 570.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 0.01,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 365.0,
+      "exp": "2026-09-04",
+      "bid": 1.17,
+      "ask": 1.2,
+      "iv": 0.6231,
+      "delta": 0.1893
+    },
+    {
+      "strike": 387.5,
+      "exp": "2026-09-04",
+      "bid": 31.58,
+      "ask": 33.66,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 530.0,
+      "exp": "2026-09-09",
+      "bid": 173.92,
+      "ask": 174.18,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Broadcom Inc. (AVGO)",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "AVGO: Broadcom Inc - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Why Broadcom (AVGO) Stock Is Nosediving",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

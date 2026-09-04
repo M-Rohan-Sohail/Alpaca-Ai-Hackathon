@@ -1,0 +1,81 @@
+{
+  "symbol": "KO",
+  "price": 88.87,
+  "returns": {
+    "return_1d": 0.0071,
+    "return_5d": -0.0021,
+    "return_20d": 0.0233
+  },
+  "trend": {
+    "sma20": 88.81,
+    "sma50": 85.91,
+    "rsi14": 54.13
+  },
+  "volatility": {
+    "daily_std": 0.0151,
+    "atr": 1.47
+  },
+  "volume": {
+    "today": 5065862,
+    "avg20": 13760893
+  },
+  "options": [
+    {
+      "strike": 97.0,
+      "exp": "2026-10-23",
+      "bid": 7.28,
+      "ask": 10.63,
+      "iv": 0.2963,
+      "delta": -0.7568
+    },
+    {
+      "strike": 78.0,
+      "exp": "2026-10-02",
+      "bid": 10.72,
+      "ask": 11.35,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 50.0,
+      "exp": "2026-10-16",
+      "bid": 37.24,
+      "ask": 39.57,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 85.0,
+      "exp": "2026-11-20",
+      "bid": 1.72,
+      "ask": 1.76,
+      "iv": 0.2235,
+      "delta": -0.2871
+    },
+    {
+      "strike": 100.0,
+      "exp": "2028-01-21",
+      "bid": 4.87,
+      "ask": 5.13,
+      "iv": 0.1737,
+      "delta": 0.4226
+    }
+  ],
+  "news": [
+    {
+      "headline": "The Coca-Cola Company (KO) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "KO Stock Price Quote & News - Coca-Cola - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "KO: Coca-Cola Co - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

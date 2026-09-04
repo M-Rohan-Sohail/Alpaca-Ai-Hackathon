@@ -1,0 +1,81 @@
+{
+  "symbol": "BAC",
+  "price": 63.085,
+  "returns": {
+    "return_1d": 0.0077,
+    "return_5d": 0.0313,
+    "return_20d": 0.0013
+  },
+  "trend": {
+    "sma20": 62.97,
+    "sma50": 61.53,
+    "rsi14": 55.86
+  },
+  "volatility": {
+    "daily_std": 0.0118,
+    "atr": 1.07
+  },
+  "volume": {
+    "today": 12811191,
+    "avg20": 27585551
+  },
+  "options": [
+    {
+      "strike": 57.0,
+      "exp": "2026-09-25",
+      "bid": 5.79,
+      "ask": 6.23,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 41.0,
+      "exp": "2027-01-15",
+      "bid": 20.98,
+      "ask": 22.97,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 70.0,
+      "exp": "2027-09-17",
+      "bid": 4.26,
+      "ask": 4.36,
+      "iv": 0.2313,
+      "delta": 0.443
+    },
+    {
+      "strike": 57.5,
+      "exp": "2027-04-16",
+      "bid": 8.13,
+      "ask": 8.78,
+      "iv": 0.2172,
+      "delta": 0.7801
+    },
+    {
+      "strike": 65.0,
+      "exp": "2026-09-11",
+      "bid": 0.08,
+      "ask": 0.13,
+      "iv": 0.1732,
+      "delta": 0.1308
+    }
+  ],
+  "news": [
+    {
+      "headline": "Bank of America Corporation (BAC) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Bank of America: BAC Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "BAC: Bank of America Corporation - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

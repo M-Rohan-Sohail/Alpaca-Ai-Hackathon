@@ -1,0 +1,81 @@
+{
+  "symbol": "MA",
+  "price": 584.61,
+  "returns": {
+    "return_1d": -0.006,
+    "return_5d": -0.012,
+    "return_20d": 0.015
+  },
+  "trend": {
+    "sma20": 578.81,
+    "sma50": 555.89,
+    "rsi14": 56.92
+  },
+  "volatility": {
+    "daily_std": 0.0144,
+    "atr": 10.1
+  },
+  "volume": {
+    "today": 1012593,
+    "avg20": 2750165
+  },
+  "options": [
+    {
+      "strike": 580.0,
+      "exp": "2026-09-04",
+      "bid": 4.92,
+      "ask": 7.75,
+      "iv": 0.2895,
+      "delta": 0.7042
+    },
+    {
+      "strike": 640.0,
+      "exp": "2026-10-09",
+      "bid": 1.23,
+      "ask": 2.94,
+      "iv": 0.2195,
+      "delta": 0.1102
+    },
+    {
+      "strike": 720.0,
+      "exp": "2026-09-18",
+      "bid": 132.34,
+      "ask": 139.71,
+      "iv": 0.621,
+      "delta": -0.9429
+    },
+    {
+      "strike": 455.0,
+      "exp": "2026-09-18",
+      "bid": 125.96,
+      "ask": 133.7,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 690.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 8.7,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Mastercard Incorporated (MA) Stock Price, News, Quote & ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Mastercard Inc (MA) Stock Price & News - Google Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Mastercard Incorporated Common Stock (MA)",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

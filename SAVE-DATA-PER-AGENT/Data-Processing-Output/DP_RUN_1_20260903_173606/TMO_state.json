@@ -1,0 +1,81 @@
+{
+  "symbol": "TMO",
+  "price": 609.7601,
+  "returns": {
+    "return_1d": 0.002,
+    "return_5d": -0.0332,
+    "return_20d": 0.0513
+  },
+  "trend": {
+    "sma20": 610.51,
+    "sma50": 568.4,
+    "rsi14": 56.64
+  },
+  "volatility": {
+    "daily_std": 0.0211,
+    "atr": 16.24
+  },
+  "volume": {
+    "today": 718170,
+    "avg20": 1580500
+  },
+  "options": [
+    {
+      "strike": 330.0,
+      "exp": "2026-09-25",
+      "bid": 0.0,
+      "ask": 8.77,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 500.0,
+      "exp": "2026-09-25",
+      "bid": 106.27,
+      "ask": 116.56,
+      "iv": 0.3174,
+      "delta": 0.9957
+    },
+    {
+      "strike": 620.0,
+      "exp": "2026-10-16",
+      "bid": 25.86,
+      "ask": 28.27,
+      "iv": 0.2784,
+      "delta": -0.5287
+    },
+    {
+      "strike": 470.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 6.08,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 880.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 8.56,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Thermo Fisher Scientific Inc. (TMO)",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "TMO Stock Price Quote & News - Thermo Fisher Scientific",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Thermo Fisher Scientific Inc (TMO) Stock Price & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

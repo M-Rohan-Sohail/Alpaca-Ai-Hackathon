@@ -1,0 +1,120 @@
+{
+  "run_timestamp": "20260903_223629",
+  "analyses": [
+    {
+      "direction": "BULLISH",
+      "confidence": 0.95,
+      "trend_strength": 85,
+      "reasoning": "Price is well above both the 20-day SMA ($202.18) and 50-day SMA ($190.44), with the 20-day SMA above the 50-day SMA, confirming a strong uptrend. RSI at 72.2 indicates strong bullish momentum, though it is in overbought territory. The price is 5% above SMA20 and 11.4% above SMA50, showing robust trend strength.",
+      "key_factors": [
+        "Price above both SMA20 and SMA50",
+        "SMA20 above SMA50 (golden cross alignment)",
+        "RSI 72.2 confirms bullish momentum"
+      ],
+      "symbol": "CVX",
+      "timestamp": "2026-09-03T22:36:11.892980",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "BULLISH",
+      "confidence": 0.85,
+      "trend_strength": 75,
+      "reasoning": "Price is above both the 20-day and 50-day SMAs, with the 20-day SMA above the 50-day SMA, indicating a strong short-term uptrend. RSI at 61.6 confirms bullish momentum without being overbought. The price is 2.9% above the 20-day SMA and 3.1% above the 50-day SMA, showing consistent upward pressure.",
+      "key_factors": [
+        "Price above 20-day SMA",
+        "Price above 50-day SMA",
+        "SMA20 above SMA50",
+        "RSI at 61.6 (>55)"
+      ],
+      "symbol": "WFC",
+      "timestamp": "2026-09-03T22:36:14.193898",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "BULLISH",
+      "confidence": 0.9,
+      "trend_strength": 75,
+      "reasoning": "Price is above both the 20-day and 50-day SMAs, with the 20-day SMA above the 50-day SMA, indicating a strong uptrend. RSI at 65.2 confirms bullish momentum without being overbought. The positive relationships between price and moving averages align with a bullish thesis.",
+      "key_factors": [
+        "Price above 20-day SMA",
+        "Price above 50-day SMA",
+        "SMA20 above SMA50",
+        "RSI above 55"
+      ],
+      "symbol": "JNJ",
+      "timestamp": "2026-09-03T22:36:16.193414",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "BULLISH",
+      "confidence": 0.85,
+      "trend_strength": 75,
+      "reasoning": "Price is above both the 20-day and 50-day SMAs, with the 20-day SMA above the 50-day SMA, indicating a healthy uptrend. RSI at 60.1 confirms bullish momentum without being overbought. All key technical signals align in the bullish direction.",
+      "key_factors": [
+        "Price above 20-day SMA ($358.27) and 50-day SMA ($349.30)",
+        "20-day SMA above 50-day SMA",
+        "RSI (14-day) at 60.1, above the 55 bullish threshold"
+      ],
+      "symbol": "JPM",
+      "timestamp": "2026-09-03T22:36:19.164738",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "BULLISH",
+      "confidence": 0.75,
+      "trend_strength": 70,
+      "reasoning": "Price is above both the 20-day and 50-day SMAs, and the 20-day SMA is above the 50-day SMA, indicating a bullish short-term trend. RSI at 55.9 is above the 55 threshold, providing mild bullish momentum confirmation. However, the price is only 0.2% above the 20-day SMA and RSI is not strongly overbought, suggesting moderate conviction.",
+      "key_factors": [
+        "Price above both SMA20 and SMA50",
+        "SMA20 above SMA50 (positive alignment)",
+        "RSI at 55.9 (above 55, bullish momentum)"
+      ],
+      "symbol": "BAC",
+      "timestamp": "2026-09-03T22:36:20.923998",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "BULLISH",
+      "confidence": 0.9,
+      "trend_strength": 75,
+      "reasoning": "Price ($163.60) is above both the 20-day SMA ($161.17) and 50-day SMA ($152.55), with the 20-day SMA above the 50-day SMA, indicating a clear uptrend. RSI at 59.7 confirms bullish momentum without being overbought. All key technical signals align, supporting a strong bullish bias.",
+      "key_factors": [
+        "Price above 20-day SMA and 50-day SMA",
+        "20-day SMA above 50-day SMA (golden cross structure)",
+        "RSI (59.7) in bullish territory (>55)"
+      ],
+      "symbol": "XOM",
+      "timestamp": "2026-09-03T22:36:23.509431",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "BULLISH",
+      "confidence": 0.9,
+      "trend_strength": 80,
+      "reasoning": "Price is above both the 20-day and 50-day SMAs, with the 20-day SMA above the 50-day SMA, confirming a bullish trend structure. RSI at 64.6 indicates strong momentum without being overbought. All key indicators align in the bullish direction.",
+      "key_factors": [
+        "Price above 20-day SMA",
+        "Price above 50-day SMA",
+        "20-day SMA above 50-day SMA",
+        "RSI above 55"
+      ],
+      "symbol": "NFLX",
+      "timestamp": "2026-09-03T22:36:27.046751",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    },
+    {
+      "direction": "NEUTRAL",
+      "confidence": 0.6,
+      "trend_strength": 50,
+      "reasoning": "Price is above both the 20-day and 50-day SMAs, and RSI at 62.2 indicates bullish momentum. However, the 20-day SMA is below the 50-day SMA, suggesting short-term trend is lagging the medium-term trend. This mixed signal prevents a clear directional bias.",
+      "key_factors": [
+        "Price above SMA20 and SMA50",
+        "RSI > 55 (bullish momentum)",
+        "SMA20 below SMA50 (bearish trend structure)"
+      ],
+      "symbol": "TSLA",
+      "timestamp": "2026-09-03T22:36:29.399563",
+      "model_used": "deepseek-ai/DeepSeek-V4-Flash-0731"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "symbol": "NVDA",
+  "price": 227.2,
+  "returns": {
+    "return_1d": 0.0124,
+    "return_5d": -0.0034,
+    "return_20d": 0.0375
+  },
+  "trend": {
+    "sma20": 219.7,
+    "sma50": 209.85,
+    "rsi14": 58.49
+  },
+  "volatility": {
+    "daily_std": 0.0273,
+    "atr": 7.37
+  },
+  "volume": {
+    "today": 70891550,
+    "avg20": 125009341
+  },
+  "options": [
+    {
+      "strike": 280.0,
+      "exp": "2026-09-09",
+      "bid": 0.0,
+      "ask": 0.03,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 305.0,
+      "exp": "2026-09-04",
+      "bid": 76.31,
+      "ask": 78.63,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 265.0,
+      "exp": "2026-09-25",
+      "bid": 36.34,
+      "ask": 38.97,
+      "iv": 0.3932,
+      "delta": -0.9352
+    },
+    {
+      "strike": 90.0,
+      "exp": "2026-09-18",
+      "bid": 0.01,
+      "ask": 0.02,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 220.0,
+      "exp": "2026-09-25",
+      "bid": 3.83,
+      "ask": 3.98,
+      "iv": 0.327,
+      "delta": -0.3165
+    }
+  ],
+  "news": [
+    {
+      "headline": "NVIDIA Corporation (NVDA) Stock Price, News, Quote & ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "NVDA: NVIDIA Corporation - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "NVIDIA: NVDA Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

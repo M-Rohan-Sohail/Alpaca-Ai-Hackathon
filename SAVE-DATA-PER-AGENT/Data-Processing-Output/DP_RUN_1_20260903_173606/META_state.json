@@ -1,0 +1,81 @@
+{
+  "symbol": "META",
+  "price": 613.205,
+  "returns": {
+    "return_1d": 0.0343,
+    "return_5d": 0.0737,
+    "return_20d": 0.0395
+  },
+  "trend": {
+    "sma20": 575.77,
+    "sma50": 594.06,
+    "rsi14": 61.39
+  },
+  "volatility": {
+    "daily_std": 0.0292,
+    "atr": 20.74
+  },
+  "volume": {
+    "today": 11436613,
+    "avg20": 15402927
+  },
+  "options": [
+    {
+      "strike": 820.0,
+      "exp": "2026-09-11",
+      "bid": 0.01,
+      "ask": 0.1,
+      "iv": 0.6981,
+      "delta": 0.003
+    },
+    {
+      "strike": 935.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 0.18,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 520.0,
+      "exp": "2026-09-09",
+      "bid": 0.01,
+      "ask": 0.2,
+      "iv": 0.5374,
+      "delta": -0.0074
+    },
+    {
+      "strike": 430.0,
+      "exp": "2026-09-09",
+      "bid": 180.76,
+      "ask": 186.99,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 490.0,
+      "exp": "2026-09-09",
+      "bid": 0.03,
+      "ask": 0.06,
+      "iv": 0.6451,
+      "delta": -0.0029
+    }
+  ],
+  "news": [
+    {
+      "headline": "Meta Platforms, Inc. (META) Stock Price, News, Quote & ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Meta Platforms, Inc. - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Meta Platforms: META Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

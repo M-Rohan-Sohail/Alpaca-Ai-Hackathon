@@ -1,0 +1,81 @@
+{
+  "symbol": "AMD",
+  "price": 458.05,
+  "returns": {
+    "return_1d": 0.0022,
+    "return_5d": -0.0391,
+    "return_20d": -0.0638
+  },
+  "trend": {
+    "sma20": 475.58,
+    "sma50": 500.41,
+    "rsi14": 43.08
+  },
+  "volatility": {
+    "daily_std": 0.0462,
+    "atr": 22.53
+  },
+  "volume": {
+    "today": 9455068,
+    "avg20": 17615186
+  },
+  "options": [
+    {
+      "strike": 220.0,
+      "exp": "2026-09-11",
+      "bid": 238.94,
+      "ask": 242.74,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 320.0,
+      "exp": "2026-09-09",
+      "bid": 135.95,
+      "ask": 142.48,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 720.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 0.14,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 675.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 0.05,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 90.0,
+      "exp": "2026-09-04",
+      "bid": 0.0,
+      "ask": 0.03,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Advanced Micro Devices, Inc. (AMD) Stock Price, News ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "AMD: Advanced Micro Devices, Inc. - Stock Price, Quote ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "AMD Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

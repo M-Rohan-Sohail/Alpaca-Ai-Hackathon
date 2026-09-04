@@ -1,0 +1,81 @@
+{
+  "symbol": "ACN",
+  "price": 194.63,
+  "returns": {
+    "return_1d": 0.037,
+    "return_5d": 0.0387,
+    "return_20d": 0.1375
+  },
+  "trend": {
+    "sma20": 182.7,
+    "sma50": 160.52,
+    "rsi14": 69.14
+  },
+  "volatility": {
+    "daily_std": 0.0372,
+    "atr": 6.82
+  },
+  "volume": {
+    "today": 2734965,
+    "avg20": 4876659
+  },
+  "options": [
+    {
+      "strike": 120.0,
+      "exp": "2026-09-11",
+      "bid": 74.03,
+      "ask": 75.49,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 175.0,
+      "exp": "2026-09-11",
+      "bid": 18.62,
+      "ask": 21.11,
+      "iv": 0.3497,
+      "delta": 0.982
+    },
+    {
+      "strike": 110.0,
+      "exp": "2027-01-15",
+      "bid": 82.33,
+      "ask": 87.0,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 215.0,
+      "exp": "2026-10-02",
+      "bid": 4.55,
+      "ask": 4.8,
+      "iv": 0.5249,
+      "delta": 0.2817
+    },
+    {
+      "strike": 190.0,
+      "exp": "2026-10-02",
+      "bid": 13.56,
+      "ask": 15.25,
+      "iv": 0.5381,
+      "delta": 0.6007
+    }
+  ],
+  "news": [
+    {
+      "headline": "Accenture plc (ACN) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Accenture: ACN Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "ACN: Accenture PLC - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "symbol": "CSCO",
+  "price": 109.04,
+  "returns": {
+    "return_1d": -0.0038,
+    "return_5d": -0.0277,
+    "return_20d": -0.0979
+  },
+  "trend": {
+    "sma20": 113.18,
+    "sma50": 114.49,
+    "rsi14": 39.6
+  },
+  "volatility": {
+    "daily_std": 0.0234,
+    "atr": 2.91
+  },
+  "volume": {
+    "today": 5169676,
+    "avg20": 19272497
+  },
+  "options": [
+    {
+      "strike": 145.0,
+      "exp": "2026-12-18",
+      "bid": 36.0,
+      "ask": 36.03,
+      "iv": 0.4245,
+      "delta": -0.8611
+    },
+    {
+      "strike": 114.0,
+      "exp": "2026-10-23",
+      "bid": 2.19,
+      "ask": 3.56,
+      "iv": 0.2905,
+      "delta": 0.3756
+    },
+    {
+      "strike": 109.0,
+      "exp": "2026-10-02",
+      "bid": 3.13,
+      "ask": 3.58,
+      "iv": 0.2864,
+      "delta": -0.4702
+    },
+    {
+      "strike": 75.0,
+      "exp": "2026-10-09",
+      "bid": 33.29,
+      "ask": 35.94,
+      "iv": 0.7046,
+      "delta": 0.9653
+    },
+    {
+      "strike": 140.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 0.03,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Cisco Systems, Inc. (CSCO) Stock Price, News, Quote & ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "CSCO Stock Price Quote & News - Cisco Systems",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "CSCO - Cisco Stock Price Quote - NASDAQ",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

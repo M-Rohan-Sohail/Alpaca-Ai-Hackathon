@@ -1,0 +1,81 @@
+{
+  "symbol": "ORCL",
+  "price": 154.38,
+  "returns": {
+    "return_1d": 0.0592,
+    "return_5d": 0.0161,
+    "return_20d": 0.076
+  },
+  "trend": {
+    "sma20": 147.74,
+    "sma50": 139.72,
+    "rsi14": 57.82
+  },
+  "volatility": {
+    "daily_std": 0.0421,
+    "atr": 6.75
+  },
+  "volume": {
+    "today": 13264668,
+    "avg20": 21949902
+  },
+  "options": [
+    {
+      "strike": 146.0,
+      "exp": "2026-09-11",
+      "bid": 13.04,
+      "ask": 13.11,
+      "iv": 0.9103,
+      "delta": 0.6885
+    },
+    {
+      "strike": 190.0,
+      "exp": "2026-10-09",
+      "bid": 2.78,
+      "ask": 3.27,
+      "iv": 0.658,
+      "delta": 0.1893
+    },
+    {
+      "strike": 500.0,
+      "exp": "2026-09-18",
+      "bid": 338.64,
+      "ask": 350.7,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 143.0,
+      "exp": "2026-10-23",
+      "bid": 19.45,
+      "ask": 20.35,
+      "iv": 0.5898,
+      "delta": 0.6866
+    },
+    {
+      "strike": 80.0,
+      "exp": "2026-09-04",
+      "bid": 0.0,
+      "ask": 0.01,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Oracle Corporation (ORCL) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "ORCL: Oracle Corporation - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Oracle: ORCL Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

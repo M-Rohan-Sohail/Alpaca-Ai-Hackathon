@@ -1,0 +1,20 @@
+[
+  {
+    "title": "Apple Inc. (AAPL) Stock Price, News, Quote & History",
+    "link": "https://finance.yahoo.com/quote/AAPL/",
+    "snippet": "What's happening with AAPL? \u00b7 Previous Close 324.96 \u00b7 Open 324.95 \u00b7 Bid 324.00 x 1000 \u00b7 Ask 326.00 x 300 \u00b7 Day's Range 324.11 - 327.50 \u00b7 52 Week Range 225.95 - ...",
+    "position": 1
+  },
+  {
+    "title": "AAPL: Apple Inc. - Stock Price, Quote and News",
+    "link": "https://www.cnbc.com/quotes/AAPL",
+    "snippet": "Get Apple Inc. (AAPL:NASDAQ) real-time stock quotes, news, price and financial information from CNBC.",
+    "position": 2
+  },
+  {
+    "title": "Buy or Sell Apple Stock - AAPL Stock Price Quote & News",
+    "link": "https://robinhood.com/stocks/AAPL?source=search",
+    "snippet": "At a current price of $317.06, the stock is -2.5% higher than the low and still -2.8% under the high. Trading activity shows a volume of 218.45K, compared to an ...",
+    "position": 3
+  }
+]

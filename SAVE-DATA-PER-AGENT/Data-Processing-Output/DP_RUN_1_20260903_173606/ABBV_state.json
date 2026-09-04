@@ -1,0 +1,81 @@
+{
+  "symbol": "ABBV",
+  "price": 260.92,
+  "returns": {
+    "return_1d": -0.0031,
+    "return_5d": 0.0107,
+    "return_20d": 0.0699
+  },
+  "trend": {
+    "sma20": 257.05,
+    "sma50": 254.23,
+    "rsi14": 56.33
+  },
+  "volatility": {
+    "daily_std": 0.018,
+    "atr": 5.78
+  },
+  "volume": {
+    "today": 992073,
+    "avg20": 4193388
+  },
+  "options": [
+    {
+      "strike": 195.0,
+      "exp": "2026-10-23",
+      "bid": 65.58,
+      "ask": 69.74,
+      "iv": 0.4737,
+      "delta": 0.9623
+    },
+    {
+      "strike": 180.0,
+      "exp": "2026-10-09",
+      "bid": 78.2,
+      "ask": 83.69,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 270.0,
+      "exp": "2026-09-11",
+      "bid": 8.73,
+      "ask": 10.77,
+      "iv": 0.2405,
+      "delta": -0.8214
+    },
+    {
+      "strike": 290.0,
+      "exp": "2026-11-20",
+      "bid": 31.93,
+      "ask": 35.34,
+      "iv": 0.3373,
+      "delta": -0.708
+    },
+    {
+      "strike": 220.0,
+      "exp": "2027-02-19",
+      "bid": 47.38,
+      "ask": 49.01,
+      "iv": 0.267,
+      "delta": 0.8706
+    }
+  ],
+  "news": [
+    {
+      "headline": "AbbVie Common Stock (ABBV) Stock Price & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "AbbVie: ABBV Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "AbbVie News Center - News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

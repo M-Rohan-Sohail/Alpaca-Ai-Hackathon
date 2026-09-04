@@ -1,0 +1,81 @@
+{
+  "symbol": "TSLA",
+  "price": 382.16,
+  "returns": {
+    "return_1d": 0.0704,
+    "return_5d": 0.0771,
+    "return_20d": 0.196
+  },
+  "trend": {
+    "sma20": 347.45,
+    "sma50": 358.48,
+    "rsi14": 62.25
+  },
+  "volatility": {
+    "daily_std": 0.036,
+    "atr": 14.52
+  },
+  "volume": {
+    "today": 45352880,
+    "avg20": 36042752
+  },
+  "options": [
+    {
+      "strike": 145.0,
+      "exp": "2026-09-18",
+      "bid": 234.5,
+      "ask": 241.56,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 315.0,
+      "exp": "2026-09-14",
+      "bid": 64.79,
+      "ask": 70.53,
+      "iv": 0.5749,
+      "delta": 0.9768
+    },
+    {
+      "strike": 610.0,
+      "exp": "2026-09-09",
+      "bid": 0.01,
+      "ask": 0.07,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 140.0,
+      "exp": "2026-09-18",
+      "bid": 235.93,
+      "ask": 245.75,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 605.0,
+      "exp": "2026-09-04",
+      "bid": 219.38,
+      "ask": 223.65,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Tesla, Inc. (TSLA) Stock Price, News, Quote & History - Yahoo Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "TSLA: Tesla Inc - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Tesla: TSLA Stock Price Quote & News | Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

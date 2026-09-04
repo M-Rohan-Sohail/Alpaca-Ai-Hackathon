@@ -1,0 +1,81 @@
+{
+  "symbol": "SPY",
+  "price": 772.29,
+  "returns": {
+    "return_1d": 0.0093,
+    "return_5d": 0.0015,
+    "return_20d": 0.0049
+  },
+  "trend": {
+    "sma20": 769.16,
+    "sma50": 756.12,
+    "rsi14": 58.05
+  },
+  "volatility": {
+    "daily_std": 0.0084,
+    "atr": 6.33
+  },
+  "volume": {
+    "today": 21229864,
+    "avg20": 35738875
+  },
+  "options": [
+    {
+      "strike": 808.0,
+      "exp": "2026-09-04",
+      "bid": 35.76,
+      "ask": 36.59,
+      "iv": 0.5493,
+      "delta": -0.9398
+    },
+    {
+      "strike": 595.0,
+      "exp": "2026-09-03",
+      "bid": 179.03,
+      "ask": 180.61,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 786.0,
+      "exp": "2026-09-03",
+      "bid": 13.75,
+      "ask": 14.0,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 734.0,
+      "exp": "2026-09-08",
+      "bid": 38.98,
+      "ask": 39.89,
+      "iv": 0.2929,
+      "delta": 0.9352
+    },
+    {
+      "strike": 500.0,
+      "exp": "2026-09-04",
+      "bid": 268.42,
+      "ask": 273.11,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "State Street SPDR S&P 500 ETF Trust (SPY)",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "(SPY) News Headlines",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "SPDR S&P 500 ETF Trust: SPY Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

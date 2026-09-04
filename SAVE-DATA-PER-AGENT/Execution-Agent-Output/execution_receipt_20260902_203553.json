@@ -1,0 +1,236 @@
+[
+  {
+    "trade_id": "CRM_20260902_203553",
+    "symbol": "CRM",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "3ef7689b-1e21-499c-a46d-dc2599a1e91e",
+    "normalized_payload": {
+      "trade_id": "CRM_20260902_203553",
+      "symbol": "CRM",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "CRM260918C00250000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 250.0,
+            "expiration": "2026-09-18",
+            "price": 10.93
+          },
+          {
+            "symbol": "CRM260918C00275000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 275.0,
+            "expiration": "2026-09-18",
+            "price": 1.96
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": 8.97,
+        "max_loss_per_contract": 897.0,
+        "max_loss_total": 897.0,
+        "max_profit_per_contract": 1603.0,
+        "max_profit_total": 1603.0,
+        "risk_reward_ratio": 1.79,
+        "breakeven": 258.97,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "WFC_20260902_203553",
+    "symbol": "WFC",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "f7bfbc5f-6685-416a-ba0f-0aa22d1316a2",
+    "normalized_payload": {
+      "trade_id": "WFC_20260902_203553",
+      "symbol": "WFC",
+      "strategy": {
+        "type": "LongCall",
+        "legs": [
+          {
+            "symbol": "WFC261016C00087500",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 87.5,
+            "expiration": "2026-10-16",
+            "price": 4.94
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 2,
+        "approved_limit_price": 4.94,
+        "max_loss_per_contract": 494.0,
+        "max_loss_total": 988.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 92.44,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "NFLX_20260902_203553",
+    "symbol": "NFLX",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "530cb05a-a900-4aad-a27a-1e20755413c8",
+    "normalized_payload": {
+      "trade_id": "NFLX_20260902_203553",
+      "symbol": "NFLX",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "NFLX261002C00083000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 83.0,
+            "expiration": "2026-10-02",
+            "price": 2.82
+          },
+          {
+            "symbol": "NFLX261002C00085000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 85.0,
+            "expiration": "2026-10-02",
+            "price": 1.99
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 5,
+        "approved_limit_price": 0.83,
+        "max_loss_per_contract": 83.0,
+        "max_loss_total": 415.0,
+        "max_profit_per_contract": 117.0,
+        "max_profit_total": 585.0,
+        "risk_reward_ratio": 1.41,
+        "breakeven": 83.83,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "MSFT_20260902_203553",
+    "symbol": "MSFT",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "d2e40714-bd01-472e-aea8-43f11719e050",
+    "normalized_payload": {
+      "trade_id": "MSFT_20260902_203553",
+      "symbol": "MSFT",
+      "strategy": {
+        "type": "LongCall",
+        "legs": [
+          {
+            "symbol": "MSFT260925C00505000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 505.0,
+            "expiration": "2026-09-25",
+            "price": 8.32
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 1,
+        "approved_limit_price": 8.32,
+        "max_loss_per_contract": 832.0,
+        "max_loss_total": 832.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 513.32,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  },
+  {
+    "trade_id": "NOW_20260902_203553",
+    "symbol": "NOW",
+    "status": "OrderStatus.PENDING_NEW",
+    "alpaca_order_id": "b16afbfb-e980-4f62-a853-8261c4cef1c5",
+    "normalized_payload": {
+      "trade_id": "NOW_20260902_203553",
+      "symbol": "NOW",
+      "strategy": {
+        "type": "BullCallSpread",
+        "legs": [
+          {
+            "symbol": "NOW261016C00140000",
+            "action": "BUY",
+            "option_type": "CALL",
+            "strike": 140.0,
+            "expiration": "2026-10-16",
+            "price": 9.06
+          },
+          {
+            "symbol": "NOW261016C00150000",
+            "action": "SELL",
+            "option_type": "CALL",
+            "strike": 150.0,
+            "expiration": "2026-10-16",
+            "price": 5.18
+          }
+        ]
+      },
+      "risk_assessment": {
+        "decision": "PASS",
+        "approved_contracts": 2,
+        "approved_limit_price": 3.88,
+        "max_loss_per_contract": 388.0,
+        "max_loss_total": 776.0,
+        "max_profit_per_contract": 612.0,
+        "max_profit_total": 1224.0,
+        "risk_reward_ratio": 1.58,
+        "breakeven": 143.88,
+        "checks": {
+          "max_risk_per_trade": "PASS",
+          "risk_reward": "PASS",
+          "portfolio_exposure": "PASS",
+          "buying_power": "PASS",
+          "open_positions": "PASS",
+          "daily_loss_limit": "PASS"
+        }
+      }
+    }
+  }
+]

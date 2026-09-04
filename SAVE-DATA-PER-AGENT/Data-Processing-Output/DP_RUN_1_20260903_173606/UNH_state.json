@@ -1,0 +1,81 @@
+{
+  "symbol": "UNH",
+  "price": 403.805,
+  "returns": {
+    "return_1d": 0.0104,
+    "return_5d": 0.0222,
+    "return_20d": -0.0004
+  },
+  "trend": {
+    "sma20": 397.55,
+    "sma50": 412.16,
+    "rsi14": 51.91
+  },
+  "volatility": {
+    "daily_std": 0.0154,
+    "atr": 8.78
+  },
+  "volume": {
+    "today": 1355466,
+    "avg20": 3791561
+  },
+  "options": [
+    {
+      "strike": 432.5,
+      "exp": "2026-09-04",
+      "bid": 26.31,
+      "ask": 32.39,
+      "iv": 0.9431,
+      "delta": -0.9131
+    },
+    {
+      "strike": 367.5,
+      "exp": "2026-09-18",
+      "bid": 0.66,
+      "ask": 0.83,
+      "iv": 0.3178,
+      "delta": -0.0641
+    },
+    {
+      "strike": 240.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 0.1,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 220.0,
+      "exp": "2026-09-25",
+      "bid": 179.84,
+      "ask": 185.96,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 382.5,
+      "exp": "2026-09-11",
+      "bid": 0.77,
+      "ask": 0.95,
+      "iv": 0.2966,
+      "delta": -0.1005
+    }
+  ],
+  "news": [
+    {
+      "headline": "UnitedHealth Group Incorporated (UNH) Stock Price, News ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "UnitedHealth: UNH Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "UNH: UnitedHealth Group Inc - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

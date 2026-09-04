@@ -1,0 +1,81 @@
+{
+  "symbol": "IBM",
+  "price": 234.19,
+  "returns": {
+    "return_1d": 0.0107,
+    "return_5d": -0.0193,
+    "return_20d": 0.0033
+  },
+  "trend": {
+    "sma20": 234.41,
+    "sma50": 241.81,
+    "rsi14": 49.25
+  },
+  "volatility": {
+    "daily_std": 0.043,
+    "atr": 6.8
+  },
+  "volume": {
+    "today": 1570843,
+    "avg20": 4775665
+  },
+  "options": [
+    {
+      "strike": 300.0,
+      "exp": "2026-09-18",
+      "bid": 64.61,
+      "ask": 66.44,
+      "iv": 0.5791,
+      "delta": -0.9792
+    },
+    {
+      "strike": 180.0,
+      "exp": "2026-11-20",
+      "bid": 55.97,
+      "ask": 58.53,
+      "iv": 0.4275,
+      "delta": 0.9295
+    },
+    {
+      "strike": 430.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 2.17,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 140.0,
+      "exp": "2026-09-04",
+      "bid": 0.0,
+      "ask": 0.03,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 290.0,
+      "exp": "2026-09-25",
+      "bid": 53.35,
+      "ask": 58.48,
+      "iv": 0.5367,
+      "delta": -0.938
+    }
+  ],
+  "news": [
+    {
+      "headline": "International Business Machines Corporation (IBM)",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "International Business Machines Corporation IBM:NYSE",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "IBM Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

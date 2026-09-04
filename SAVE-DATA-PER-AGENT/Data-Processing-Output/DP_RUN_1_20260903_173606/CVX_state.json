@@ -1,0 +1,81 @@
+{
+  "symbol": "CVX",
+  "price": 212.2301,
+  "returns": {
+    "return_1d": 0.0021,
+    "return_5d": 0.0624,
+    "return_20d": 0.1215
+  },
+  "trend": {
+    "sma20": 202.18,
+    "sma50": 190.44,
+    "rsi14": 72.16
+  },
+  "volatility": {
+    "daily_std": 0.0155,
+    "atr": 3.87
+  },
+  "volume": {
+    "today": 2929455,
+    "avg20": 7694431
+  },
+  "options": [
+    {
+      "strike": 210.0,
+      "exp": "2026-09-11",
+      "bid": 1.67,
+      "ask": 1.85,
+      "iv": 0.2262,
+      "delta": -0.3578
+    },
+    {
+      "strike": 275.0,
+      "exp": "2026-10-23",
+      "bid": 60.68,
+      "ask": 66.02,
+      "iv": 0.522,
+      "delta": -0.8881
+    },
+    {
+      "strike": null,
+      "exp": null,
+      "bid": 0.0,
+      "ask": 0.76,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 200.0,
+      "exp": "2026-10-02",
+      "bid": 1.41,
+      "ask": 1.62,
+      "iv": 0.2518,
+      "delta": -0.1795
+    },
+    {
+      "strike": 225.0,
+      "exp": "2026-10-09",
+      "bid": 2.41,
+      "ask": 2.89,
+      "iv": 0.2582,
+      "delta": 0.264
+    }
+  ],
+  "news": [
+    {
+      "headline": "Chevron Corporation (CVX) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "CVX: Chevron Corporation - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Chevron: CVX Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

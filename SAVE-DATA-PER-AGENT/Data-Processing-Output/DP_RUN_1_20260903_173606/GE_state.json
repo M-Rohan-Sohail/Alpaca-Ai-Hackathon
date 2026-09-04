@@ -1,0 +1,81 @@
+{
+  "symbol": "GE",
+  "price": 332.41,
+  "returns": {
+    "return_1d": 0.0088,
+    "return_5d": -0.0301,
+    "return_20d": -0.1125
+  },
+  "trend": {
+    "sma20": 352.64,
+    "sma50": 357.88,
+    "rsi14": 37.85
+  },
+  "volatility": {
+    "daily_std": 0.0196,
+    "atr": 8.64
+  },
+  "volume": {
+    "today": 1138282,
+    "avg20": 3430473
+  },
+  "options": [
+    {
+      "strike": 140.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 0.54,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 480.0,
+      "exp": "2026-09-18",
+      "bid": 145.81,
+      "ask": 151.83,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 270.0,
+      "exp": "2026-11-20",
+      "bid": 65.84,
+      "ask": 66.79,
+      "iv": 0.3452,
+      "delta": 0.9236
+    },
+    {
+      "strike": 280.0,
+      "exp": "2026-10-09",
+      "bid": 52.02,
+      "ask": 55.72,
+      "iv": 0.3354,
+      "delta": 0.9564
+    },
+    {
+      "strike": 500.0,
+      "exp": "2026-09-18",
+      "bid": 166.8,
+      "ask": 169.82,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "GE Aerospace",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "GE Aerospace - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "GE Stock Quote Price and Forecast",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

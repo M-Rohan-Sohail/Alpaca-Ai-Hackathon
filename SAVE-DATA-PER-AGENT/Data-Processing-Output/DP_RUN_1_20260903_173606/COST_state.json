@@ -1,0 +1,81 @@
+{
+  "symbol": "COST",
+  "price": 928.865,
+  "returns": {
+    "return_1d": 0.0004,
+    "return_5d": -0.0062,
+    "return_20d": -0.0214
+  },
+  "trend": {
+    "sma20": 948.95,
+    "sma50": 944.17,
+    "rsi14": 42.36
+  },
+  "volatility": {
+    "daily_std": 0.0133,
+    "atr": 17.47
+  },
+  "volume": {
+    "today": 1034161,
+    "avg20": 1678814
+  },
+  "options": [
+    {
+      "strike": 795.0,
+      "exp": "2026-09-11",
+      "bid": 128.55,
+      "ask": 135.36,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 995.0,
+      "exp": "2026-09-04",
+      "bid": 63.91,
+      "ask": 69.68,
+      "iv": 0.8366,
+      "delta": -0.9381
+    },
+    {
+      "strike": 740.0,
+      "exp": "2026-09-25",
+      "bid": 187.46,
+      "ask": 194.09,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 1020.0,
+      "exp": "2026-09-25",
+      "bid": 91.34,
+      "ask": 95.12,
+      "iv": 0.3203,
+      "delta": -0.8683
+    },
+    {
+      "strike": 870.0,
+      "exp": "2026-09-25",
+      "bid": 3.46,
+      "ask": 4.09,
+      "iv": 0.2512,
+      "delta": -0.1284
+    }
+  ],
+  "news": [
+    {
+      "headline": "Costco Wholesale Corporation (COST) Stock Price, News, ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Costco: COST Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Costco Wholesale Corp (COST) Stock Price & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

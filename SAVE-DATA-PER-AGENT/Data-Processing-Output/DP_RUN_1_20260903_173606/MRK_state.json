@@ -1,0 +1,81 @@
+{
+  "symbol": "MRK",
+  "price": 151.71,
+  "returns": {
+    "return_1d": 0.0005,
+    "return_5d": 0.0145,
+    "return_20d": 0.1818
+  },
+  "trend": {
+    "sma20": 143.91,
+    "sma50": 134.08,
+    "rsi14": 65.74
+  },
+  "volatility": {
+    "daily_std": 0.0233,
+    "atr": 4.11
+  },
+  "volume": {
+    "today": 2321057,
+    "avg20": 10810395
+  },
+  "options": [
+    {
+      "strike": 65.0,
+      "exp": "2026-09-18",
+      "bid": 85.85,
+      "ask": 86.29,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 132.0,
+      "exp": "2026-09-11",
+      "bid": 0.01,
+      "ask": 0.16,
+      "iv": 0.4747,
+      "delta": -0.0211
+    },
+    {
+      "strike": 146.0,
+      "exp": "2026-09-18",
+      "bid": 1.22,
+      "ask": 1.45,
+      "iv": 0.2956,
+      "delta": -0.2414
+    },
+    {
+      "strike": 148.0,
+      "exp": "2026-09-04",
+      "bid": 0.11,
+      "ask": 0.14,
+      "iv": 0.3654,
+      "delta": -0.0918
+    },
+    {
+      "strike": 70.0,
+      "exp": "2026-09-25",
+      "bid": 81.89,
+      "ask": 82.86,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Merck & Co., Inc. (MRK) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "MRK: Merck & Co Inc - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Merck: MRK Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

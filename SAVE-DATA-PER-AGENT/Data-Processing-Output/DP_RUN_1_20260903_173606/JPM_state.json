@@ -1,0 +1,81 @@
+{
+  "symbol": "JPM",
+  "price": 361.78,
+  "returns": {
+    "return_1d": 0.0156,
+    "return_5d": 0.0213,
+    "return_20d": 0.0154
+  },
+  "trend": {
+    "sma20": 358.27,
+    "sma50": 349.3,
+    "rsi14": 60.1
+  },
+  "volatility": {
+    "daily_std": 0.0128,
+    "atr": 5.77
+  },
+  "volume": {
+    "today": 2361286,
+    "avg20": 5297233
+  },
+  "options": [
+    {
+      "strike": 175.0,
+      "exp": "2026-09-11",
+      "bid": 181.96,
+      "ask": 191.72,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 360.0,
+      "exp": "2026-10-23",
+      "bid": 11.65,
+      "ask": 15.23,
+      "iv": 0.2153,
+      "delta": 0.5683
+    },
+    {
+      "strike": 357.5,
+      "exp": "2026-09-18",
+      "bid": 8.189,
+      "ask": 8.98,
+      "iv": 0.1981,
+      "delta": 0.6423
+    },
+    {
+      "strike": 330.0,
+      "exp": "2026-10-02",
+      "bid": 0.8,
+      "ask": 1.07,
+      "iv": 0.2466,
+      "delta": -0.0798
+    },
+    {
+      "strike": 420.0,
+      "exp": "2026-09-25",
+      "bid": 0.0,
+      "ask": 1.38,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "JPMorgan Chase & Co. (JPM) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "JPMorgan Chase: JPM Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "JPMorgan Chase & Co (JPM) Stock Price & News - Google Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

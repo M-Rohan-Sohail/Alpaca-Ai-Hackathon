@@ -1,0 +1,671 @@
+[
+  {
+    "trade_id": "CRM_20260901_222318",
+    "strategy_id": "CRM_20260901_222318",
+    "symbol": "CRM",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "d30e8d1d-14df-4811-8ce6-f93dc0233282",
+    "status": "PENDING",
+    "quantity": 2,
+    "max_risk": 884.0,
+    "legs": [
+      {
+        "symbol": "CRM261120C00260000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 260.0,
+        "expiration": "2026-11-20",
+        "price": 18.84
+      },
+      {
+        "symbol": "CRM261120C00270000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 270.0,
+        "expiration": "2026-11-20",
+        "price": 14.42
+      }
+    ]
+  },
+  {
+    "trade_id": "CVX_20260901_222318",
+    "strategy_id": "CVX_20260901_222318",
+    "symbol": "CVX",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "d681cb2a-7490-44ee-afc8-4eb32520d95c",
+    "status": "CLOSED",
+    "quantity": 2,
+    "max_risk": 876.0,
+    "legs": [
+      {
+        "symbol": "CVX261016C00210000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 210.0,
+        "expiration": "2026-10-16",
+        "price": 8.18
+      },
+      {
+        "symbol": "CVX261016C00220000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 220.0,
+        "expiration": "2026-10-16",
+        "price": 3.8
+      }
+    ],
+    "entry_price": 4.3,
+    "entry_timestamp": "2026-09-01 17:23:19.391046+00:00",
+    "initial_debit": 430.0,
+    "initial_credit": 0.0,
+    "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
+    "exit_timestamp": "2026-09-03T16:04:50.964704+00:00",
+    "realized_pnl": 0.0
+  },
+  {
+    "trade_id": "XOM_20260901_222318",
+    "strategy_id": "XOM_20260901_222318",
+    "symbol": "XOM",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "fdfd64cc-c96c-4fcb-97b6-eabee9f8bb01",
+    "status": "PENDING",
+    "quantity": 1,
+    "max_risk": 568.0,
+    "legs": [
+      {
+        "symbol": "XOM260925C00162500",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 162.5,
+        "expiration": "2026-09-25",
+        "price": 5.68
+      }
+    ]
+  },
+  {
+    "trade_id": "NOW_20260901_222318",
+    "strategy_id": "NOW_20260901_222318",
+    "symbol": "NOW",
+    "strategy_type": "BullPutSpread",
+    "alpaca_order_id": "15a86c6c-7388-46c0-a4dd-4d258593689c",
+    "status": "PENDING",
+    "quantity": 1,
+    "max_risk": 674.0,
+    "legs": [
+      {
+        "symbol": "NOW260925P00140000",
+        "action": "SELL",
+        "option_type": "PUT",
+        "strike": 140.0,
+        "expiration": "2026-09-25",
+        "price": 5.76
+      },
+      {
+        "symbol": "NOW260925P00130000",
+        "action": "BUY",
+        "option_type": "PUT",
+        "strike": 130.0,
+        "expiration": "2026-09-25",
+        "price": 2.5
+      }
+    ]
+  },
+  {
+    "trade_id": "ADBE_20260901_222318",
+    "strategy_id": "ADBE_20260901_222318",
+    "symbol": "ADBE",
+    "strategy_type": "BullPutSpread",
+    "alpaca_order_id": "7c994d39-7017-4d0d-ab61-11456da80bda",
+    "status": "CLOSED",
+    "quantity": 1,
+    "max_risk": 834.0,
+    "legs": [
+      {
+        "symbol": "ADBE261016P00290000",
+        "action": "SELL",
+        "option_type": "PUT",
+        "strike": 290.0,
+        "expiration": "2026-10-16",
+        "price": 19.96
+      },
+      {
+        "symbol": "ADBE261016P00275000",
+        "action": "BUY",
+        "option_type": "PUT",
+        "strike": 275.0,
+        "expiration": "2026-10-16",
+        "price": 13.3
+      }
+    ],
+    "entry_price": -6.7,
+    "entry_timestamp": "2026-09-01 17:37:54.067954+00:00",
+    "initial_debit": 0.0,
+    "initial_credit": 670.0,
+    "exit_alpaca_order_id": "82e6dd37-0916-48ae-a412-5a88e4487a53",
+    "exit_reason": "STOP_LOSS",
+    "exit_price": 7.8,
+    "exit_timestamp": "2026-09-01 18:09:37.574521+00:00",
+    "realized_pnl": -110.0,
+    "return_pct": -16.417910447761194
+  },
+  {
+    "trade_id": "ACN_20260901_222318",
+    "strategy_id": "ACN_20260901_222318",
+    "symbol": "ACN",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "3db1cc41-2bcd-4250-be2e-a61f70a73ba3",
+    "status": "PENDING",
+    "quantity": 2,
+    "max_risk": 954.0,
+    "legs": [
+      {
+        "symbol": "ACN261016C00185000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 185.0,
+        "expiration": "2026-10-16",
+        "price": 14.77
+      },
+      {
+        "symbol": "ACN261016C00195000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 195.0,
+        "expiration": "2026-10-16",
+        "price": 10.0
+      }
+    ]
+  },
+  {
+    "trade_id": "CRM_20260901_225459",
+    "strategy_id": "CRM_20260901_225459",
+    "symbol": "CRM",
+    "strategy_type": "BullPutSpread",
+    "alpaca_order_id": "f5d1069c-a824-400c-a5ee-567763b67d01",
+    "status": "CLOSED",
+    "quantity": 1,
+    "max_risk": 535.0,
+    "legs": [
+      {
+        "symbol": "CRM261016P00260000",
+        "action": "SELL",
+        "option_type": "PUT",
+        "strike": 260.0,
+        "expiration": "2026-10-16",
+        "price": 14.45
+      },
+      {
+        "symbol": "CRM261016P00250000",
+        "action": "BUY",
+        "option_type": "PUT",
+        "strike": 250.0,
+        "expiration": "2026-10-16",
+        "price": 9.8
+      }
+    ],
+    "entry_price": -4.65,
+    "entry_timestamp": "2026-09-01 18:59:34.909794+00:00",
+    "initial_credit": 465.00000000000006,
+    "initial_debit": 0.0,
+    "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
+    "exit_timestamp": "2026-09-03T16:04:50.965546+00:00",
+    "realized_pnl": 0.0
+  },
+  {
+    "trade_id": "CVX_20260901_225459",
+    "strategy_id": "CVX_20260901_225459",
+    "symbol": "CVX",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "e16fb7e7-031f-4c0b-8a42-d3fc21e38259",
+    "status": "CLOSED",
+    "quantity": 2,
+    "max_risk": 902.0,
+    "legs": [
+      {
+        "symbol": "CVX261016C00210000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 210.0,
+        "expiration": "2026-10-16",
+        "price": 8.59
+      },
+      {
+        "symbol": "CVX261016C00220000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 220.0,
+        "expiration": "2026-10-16",
+        "price": 4.08
+      }
+    ],
+    "entry_price": 4.3,
+    "entry_timestamp": "2026-09-01 17:55:00.030282+00:00",
+    "initial_debit": 430.0,
+    "initial_credit": 0.0,
+    "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
+    "exit_timestamp": "2026-09-03T16:04:50.966219+00:00",
+    "realized_pnl": 0.0
+  },
+  {
+    "trade_id": "NOW_20260901_225459",
+    "strategy_id": "NOW_20260901_225459",
+    "symbol": "NOW",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "0f1381b5-ced3-4c64-aeab-aabd19971f70",
+    "status": "CLOSED",
+    "quantity": 2,
+    "max_risk": 986.0,
+    "legs": [
+      {
+        "symbol": "NOW261016C00140000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 140.0,
+        "expiration": "2026-10-16",
+        "price": 13.14
+      },
+      {
+        "symbol": "NOW261016C00150000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 150.0,
+        "expiration": "2026-10-16",
+        "price": 8.21
+      }
+    ],
+    "entry_price": 4.85,
+    "entry_timestamp": "2026-09-01 17:55:00.315693+00:00",
+    "initial_debit": 484.99999999999994,
+    "initial_credit": 0.0,
+    "exit_alpaca_order_id": "d0cf79ad-2dd5-4a02-8440-653aa777800c",
+    "exit_reason": "STOP_LOSS",
+    "exit_price": -3.35,
+    "exit_timestamp": "2026-09-02 15:36:55.477148+00:00",
+    "realized_pnl": -299.9999999999999,
+    "return_pct": -30.92783505154638
+  },
+  {
+    "trade_id": "NFLX_20260901_225459",
+    "strategy_id": "NFLX_20260901_225459",
+    "symbol": "NFLX",
+    "strategy_type": "BullPutSpread",
+    "alpaca_order_id": "8980e39c-2a4a-4782-8a93-b23666cd01a0",
+    "status": "PENDING",
+    "quantity": 3,
+    "max_risk": 327.0,
+    "legs": [
+      {
+        "symbol": "NFLX260925P00081000",
+        "action": "SELL",
+        "option_type": "PUT",
+        "strike": 81.0,
+        "expiration": "2026-09-25",
+        "price": 2.44
+      },
+      {
+        "symbol": "NFLX260925P00079000",
+        "action": "BUY",
+        "option_type": "PUT",
+        "strike": 79.0,
+        "expiration": "2026-09-25",
+        "price": 1.53
+      }
+    ]
+  },
+  {
+    "trade_id": "CVX_20260901_235527",
+    "strategy_id": "CVX_20260901_235527",
+    "symbol": "CVX",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "226a89ea-536b-4dde-923e-2c621d16ecec",
+    "status": "PENDING",
+    "quantity": 1,
+    "max_risk": 830.0,
+    "legs": [
+      {
+        "symbol": "CVX261016C00210000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 210.0,
+        "expiration": "2026-10-16",
+        "price": 8.3
+      }
+    ]
+  },
+  {
+    "trade_id": "XOM_20260901_235527",
+    "strategy_id": "XOM_20260901_235527",
+    "symbol": "XOM",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "f5e80a05-ab0c-4b1f-81c9-8a90180380aa",
+    "status": "PENDING",
+    "quantity": 1,
+    "max_risk": 902.0,
+    "legs": [
+      {
+        "symbol": "XOM261120C00165000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 165.0,
+        "expiration": "2026-11-20",
+        "price": 9.02
+      }
+    ]
+  },
+  {
+    "trade_id": "ADBE_20260901_235527",
+    "strategy_id": "ADBE_20260901_235527",
+    "symbol": "ADBE",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "e4dc3d3c-ada0-4287-9228-424f9e9d8093",
+    "status": "PENDING",
+    "quantity": 2,
+    "max_risk": 706.0,
+    "legs": [
+      {
+        "symbol": "ADBE261120C00300000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 300.0,
+        "expiration": "2026-11-20",
+        "price": 20.37
+      },
+      {
+        "symbol": "ADBE261120C00310000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 310.0,
+        "expiration": "2026-11-20",
+        "price": 16.84
+      }
+    ]
+  },
+  {
+    "trade_id": "CRM_20260902_203553",
+    "strategy_id": "CRM_20260902_203553",
+    "symbol": "CRM",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "3ef7689b-1e21-499c-a46d-dc2599a1e91e",
+    "status": "CLOSED",
+    "quantity": 1,
+    "max_risk": 897.0,
+    "legs": [
+      {
+        "symbol": "CRM260918C00250000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 250.0,
+        "expiration": "2026-09-18",
+        "price": 10.93
+      },
+      {
+        "symbol": "CRM260918C00275000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 275.0,
+        "expiration": "2026-09-18",
+        "price": 1.96
+      }
+    ],
+    "entry_price": 8.96,
+    "entry_timestamp": "2026-09-02 15:35:53.991115+00:00",
+    "initial_debit": 896.0000000000001,
+    "initial_credit": 0.0,
+    "exit_alpaca_order_id": "336c33fe-6f6c-420b-883b-639594869399",
+    "exit_reason": "TAKE_PROFIT",
+    "exit_price": -13.0,
+    "exit_timestamp": "2026-09-03 14:42:32.676141+00:00",
+    "realized_pnl": 403.9999999999999,
+    "return_pct": 45.0892857142857
+  },
+  {
+    "trade_id": "WFC_20260902_203553",
+    "strategy_id": "WFC_20260902_203553",
+    "symbol": "WFC",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "f7bfbc5f-6685-416a-ba0f-0aa22d1316a2",
+    "status": "CLOSED",
+    "quantity": 2,
+    "max_risk": 988.0,
+    "legs": [
+      {
+        "symbol": "WFC261016C00087500",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 87.5,
+        "expiration": "2026-10-16",
+        "price": 4.94
+      }
+    ],
+    "entry_price": 4.9,
+    "entry_timestamp": "2026-09-02 15:58:15.226901+00:00",
+    "initial_debit": 490.00000000000006,
+    "initial_credit": 0.0,
+    "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
+    "exit_timestamp": "2026-09-03T17:56:07.466349+00:00",
+    "realized_pnl": 0.0
+  },
+  {
+    "trade_id": "NFLX_20260902_203553",
+    "strategy_id": "NFLX_20260902_203553",
+    "symbol": "NFLX",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "530cb05a-a900-4aad-a27a-1e20755413c8",
+    "status": "CLOSED",
+    "quantity": 5,
+    "max_risk": 415.0,
+    "legs": [
+      {
+        "symbol": "NFLX261002C00083000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 83.0,
+        "expiration": "2026-10-02",
+        "price": 2.82
+      },
+      {
+        "symbol": "NFLX261002C00085000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 85.0,
+        "expiration": "2026-10-02",
+        "price": 1.99
+      }
+    ],
+    "entry_price": 0.83,
+    "entry_timestamp": "2026-09-02 17:10:21.320610+00:00",
+    "initial_debit": 83.0,
+    "initial_credit": 0.0,
+    "exit_alpaca_order_id": "175a244b-862c-4631-816d-2f222b24f775",
+    "exit_reason": "STOP_LOSS",
+    "exit_price": -0.69,
+    "exit_timestamp": "2026-09-03 14:53:37.683632+00:00",
+    "realized_pnl": -70.0,
+    "return_pct": -16.867469879518072
+  },
+  {
+    "trade_id": "MSFT_20260902_203553",
+    "strategy_id": "MSFT_20260902_203553",
+    "symbol": "MSFT",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "d2e40714-bd01-472e-aea8-43f11719e050",
+    "status": "CLOSED",
+    "quantity": 1,
+    "max_risk": 832.0,
+    "legs": [
+      {
+        "symbol": "MSFT260925C00505000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 505.0,
+        "expiration": "2026-09-25",
+        "price": 8.32
+      }
+    ],
+    "entry_price": 8.3,
+    "entry_timestamp": "2026-09-02 15:40:55.817748+00:00",
+    "initial_debit": 830.0000000000001,
+    "initial_credit": 0.0,
+    "exit_alpaca_order_id": "1a3c64a1-ea55-45e0-b157-fde972c3b967",
+    "exit_reason": "TAKE_PROFIT",
+    "exit_price": 15.0,
+    "exit_timestamp": "2026-09-03 15:04:52.981528+00:00",
+    "realized_pnl": 669.9999999999999,
+    "return_pct": 80.72289156626503
+  },
+  {
+    "trade_id": "NOW_20260902_203553",
+    "strategy_id": "NOW_20260902_203553",
+    "symbol": "NOW",
+    "strategy_type": "BullCallSpread",
+    "alpaca_order_id": "b16afbfb-e980-4f62-a853-8261c4cef1c5",
+    "status": "CLOSED",
+    "quantity": 2,
+    "max_risk": 776.0,
+    "legs": [
+      {
+        "symbol": "NOW261016C00140000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 140.0,
+        "expiration": "2026-10-16",
+        "price": 9.06
+      },
+      {
+        "symbol": "NOW261016C00150000",
+        "action": "SELL",
+        "option_type": "CALL",
+        "strike": 150.0,
+        "expiration": "2026-10-16",
+        "price": 5.18
+      }
+    ],
+    "entry_price": 3.75,
+    "entry_timestamp": "2026-09-02 15:36:00.550836+00:00",
+    "initial_debit": 375.0,
+    "initial_credit": 0.0,
+    "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
+    "exit_timestamp": "2026-09-03T16:04:52.536827+00:00",
+    "realized_pnl": 0.0
+  },
+  {
+    "trade_id": "CVX_20260903_224240",
+    "strategy_id": "CVX_20260903_224240",
+    "symbol": "CVX",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "d65eb8a1-d756-439d-adef-511aee4cba0c",
+    "status": "OPEN",
+    "quantity": 1,
+    "max_risk": 917.0,
+    "legs": [
+      {
+        "symbol": "CVX261016C00210000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 210.0,
+        "expiration": "2026-10-16",
+        "price": 9.17
+      }
+    ],
+    "entry_price": 8.75,
+    "entry_timestamp": "2026-09-03 17:42:41.182531+00:00",
+    "initial_debit": 875.0,
+    "initial_credit": 0.0
+  },
+  {
+    "trade_id": "WFC_20260903_224240",
+    "strategy_id": "WFC_20260903_224240",
+    "symbol": "WFC",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "6b6c9911-8313-4f2e-b697-e89cf37dfe2b",
+    "status": "OPEN",
+    "quantity": 3,
+    "max_risk": 960.0,
+    "legs": [
+      {
+        "symbol": "WFC261016C00090000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 90.0,
+        "expiration": "2026-10-16",
+        "price": 3.2
+      }
+    ],
+    "entry_price": 3.2,
+    "entry_timestamp": "2026-09-03 17:46:21.293335+00:00",
+    "initial_debit": 320.0,
+    "initial_credit": 0.0
+  },
+  {
+    "trade_id": "BAC_20260903_224240",
+    "strategy_id": "BAC_20260903_224240",
+    "symbol": "BAC",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "aef14821-7ead-4e8a-872d-e127ee648662",
+    "status": "OPEN",
+    "quantity": 2,
+    "max_risk": 832.0,
+    "legs": [
+      {
+        "symbol": "BAC261016C00060000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 60.0,
+        "expiration": "2026-10-16",
+        "price": 4.16
+      }
+    ],
+    "entry_price": 4.1,
+    "entry_timestamp": "2026-09-03 17:42:41.720914+00:00",
+    "initial_debit": 409.99999999999994,
+    "initial_credit": 0.0
+  },
+  {
+    "trade_id": "XOM_20260903_224240",
+    "strategy_id": "XOM_20260903_224240",
+    "symbol": "XOM",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "30c69bd6-c749-4512-a72c-2754fa871e06",
+    "status": "OPEN",
+    "quantity": 1,
+    "max_risk": 588.0,
+    "legs": [
+      {
+        "symbol": "XOM261016C00165000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 165.0,
+        "expiration": "2026-10-16",
+        "price": 5.88
+      }
+    ],
+    "entry_price": 5.85,
+    "entry_timestamp": "2026-09-03 17:42:41.835719+00:00",
+    "initial_debit": 585.0,
+    "initial_credit": 0.0
+  },
+  {
+    "trade_id": "NFLX_20260903_224240",
+    "strategy_id": "NFLX_20260903_224240",
+    "symbol": "NFLX",
+    "strategy_type": "LongCall",
+    "alpaca_order_id": "a339c25d-acf4-4b9e-a127-469734c3946c",
+    "status": "OPEN",
+    "quantity": 2,
+    "max_risk": 672.0,
+    "legs": [
+      {
+        "symbol": "NFLX261016C00085000",
+        "action": "BUY",
+        "option_type": "CALL",
+        "strike": 85.0,
+        "expiration": "2026-10-16",
+        "price": 3.36
+      }
+    ],
+    "entry_price": 3.3,
+    "entry_timestamp": "2026-09-03 17:42:42.198686+00:00",
+    "initial_debit": 330.0,
+    "initial_credit": 0.0
+  }
+]

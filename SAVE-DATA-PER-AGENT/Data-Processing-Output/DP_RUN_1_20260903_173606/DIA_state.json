@@ -1,0 +1,81 @@
+{
+  "symbol": "DIA",
+  "price": 536.64,
+  "returns": {
+    "return_1d": 0.0113,
+    "return_5d": 0.0027,
+    "return_20d": -0.0029
+  },
+  "trend": {
+    "sma20": 534.44,
+    "sma50": 528.6,
+    "rsi14": 56.5
+  },
+  "volatility": {
+    "daily_std": 0.0078,
+    "atr": 4.66
+  },
+  "volume": {
+    "today": 3690182,
+    "avg20": 2848381
+  },
+  "options": [
+    {
+      "strike": 556.0,
+      "exp": "2026-09-11",
+      "bid": 18.73,
+      "ask": 19.18,
+      "iv": 0.1285,
+      "delta": -0.9642
+    },
+    {
+      "strike": 503.0,
+      "exp": "2026-09-18",
+      "bid": 0.24,
+      "ask": 0.3,
+      "iv": 0.1816,
+      "delta": -0.0342
+    },
+    {
+      "strike": 415.0,
+      "exp": "2026-09-11",
+      "bid": 124.3,
+      "ask": 124.6,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 533.0,
+      "exp": "2026-09-25",
+      "bid": 8.38,
+      "ask": 8.56,
+      "iv": 0.1083,
+      "delta": 0.6408
+    },
+    {
+      "strike": 535.0,
+      "exp": "2026-09-18",
+      "bid": 6.13,
+      "ask": 6.43,
+      "iv": 0.1131,
+      "delta": 0.5867
+    }
+  ],
+  "news": [
+    {
+      "headline": "State Street SPDR Dow Jones Industrial Average ETF Trust ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "DIA news, real time DIA stock news, State Street\u00ae SPDR\u00ae ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "DIA SPDR Dow Jones Industrial Average ETF",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

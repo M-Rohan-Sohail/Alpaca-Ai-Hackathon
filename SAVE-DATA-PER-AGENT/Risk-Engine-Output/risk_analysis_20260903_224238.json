@@ -1,0 +1,147 @@
+{
+  "run_timestamp": "20260903_224238",
+  "source_file": "decision_analysis_20260903_224233.json",
+  "evaluations": [
+    {
+      "decision": "ACCEPT",
+      "symbol": "CVX",
+      "strategy": "LongCall",
+      "risk": {
+        "max_loss_per_contract": 917.0,
+        "max_loss_total": 917.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 219.17
+      },
+      "checks": {
+        "max_risk_per_trade": "PASS",
+        "risk_reward": "PASS",
+        "portfolio_exposure": "PASS",
+        "buying_power": "PASS",
+        "open_positions": "PASS",
+        "daily_loss_limit": "PASS"
+      },
+      "order": {
+        "contracts": 1,
+        "limit_price": 9.17
+      }
+    },
+    {
+      "decision": "ACCEPT",
+      "symbol": "WFC",
+      "strategy": "LongCall",
+      "risk": {
+        "max_loss_per_contract": 320.0,
+        "max_loss_total": 960.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 93.2
+      },
+      "checks": {
+        "max_risk_per_trade": "PASS",
+        "risk_reward": "PASS",
+        "portfolio_exposure": "PASS",
+        "buying_power": "PASS",
+        "open_positions": "PASS",
+        "daily_loss_limit": "PASS"
+      },
+      "order": {
+        "contracts": 3,
+        "limit_price": 3.2
+      }
+    },
+    {
+      "decision": "REJECT",
+      "symbol": "JPM",
+      "strategy": "LongCall",
+      "checks": {
+        "max_risk_per_trade": "FAIL",
+        "risk_reward": "PASS",
+        "portfolio_exposure": "PASS",
+        "buying_power": "PASS",
+        "open_positions": "PASS",
+        "daily_loss_limit": "PASS"
+      },
+      "rejection_reasons": [
+        "NO_EXECUTABLE_CONTRACT_CAPACITY. Binding constraint: ALLOCATION (0 contracts allowed)."
+      ]
+    },
+    {
+      "decision": "ACCEPT",
+      "symbol": "BAC",
+      "strategy": "LongCall",
+      "risk": {
+        "max_loss_per_contract": 416.0,
+        "max_loss_total": 832.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 64.16
+      },
+      "checks": {
+        "max_risk_per_trade": "PASS",
+        "risk_reward": "PASS",
+        "portfolio_exposure": "PASS",
+        "buying_power": "PASS",
+        "open_positions": "PASS",
+        "daily_loss_limit": "PASS"
+      },
+      "order": {
+        "contracts": 2,
+        "limit_price": 4.16
+      }
+    },
+    {
+      "decision": "ACCEPT",
+      "symbol": "XOM",
+      "strategy": "LongCall",
+      "risk": {
+        "max_loss_per_contract": 588.0,
+        "max_loss_total": 588.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 170.88
+      },
+      "checks": {
+        "max_risk_per_trade": "PASS",
+        "risk_reward": "PASS",
+        "portfolio_exposure": "PASS",
+        "buying_power": "PASS",
+        "open_positions": "PASS",
+        "daily_loss_limit": "PASS"
+      },
+      "order": {
+        "contracts": 1,
+        "limit_price": 5.88
+      }
+    },
+    {
+      "decision": "ACCEPT",
+      "symbol": "NFLX",
+      "strategy": "LongCall",
+      "risk": {
+        "max_loss_per_contract": 336.0,
+        "max_loss_total": 672.0,
+        "max_profit_per_contract": "Unlimited",
+        "max_profit_total": "Unlimited",
+        "risk_reward_ratio": Infinity,
+        "breakeven": 88.36
+      },
+      "checks": {
+        "max_risk_per_trade": "PASS",
+        "risk_reward": "PASS",
+        "portfolio_exposure": "PASS",
+        "buying_power": "PASS",
+        "open_positions": "PASS",
+        "daily_loss_limit": "PASS"
+      },
+      "order": {
+        "contracts": 2,
+        "limit_price": 3.36
+      }
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "symbol": "MCD",
+  "price": 259.08,
+  "returns": {
+    "return_1d": -0.0072,
+    "return_5d": -0.0038,
+    "return_20d": -0.0622
+  },
+  "trend": {
+    "sma20": 268.02,
+    "sma50": 269.64,
+    "rsi14": 37.73
+  },
+  "volatility": {
+    "daily_std": 0.0141,
+    "atr": 4.86
+  },
+  "volume": {
+    "today": 2633918,
+    "avg20": 4133465
+  },
+  "options": [
+    {
+      "strike": 350.0,
+      "exp": "2026-09-18",
+      "bid": 90.43,
+      "ask": 93.35,
+      "iv": 0.9498,
+      "delta": -0.9276
+    },
+    {
+      "strike": 260.0,
+      "exp": "2026-10-02",
+      "bid": 5.78,
+      "ask": 6.13,
+      "iv": 0.207,
+      "delta": 0.5076
+    },
+    {
+      "strike": 315.0,
+      "exp": "2026-12-18",
+      "bid": 55.17,
+      "ask": 57.46,
+      "iv": 0.3289,
+      "delta": -0.8292
+    },
+    {
+      "strike": 335.0,
+      "exp": "2026-09-18",
+      "bid": 75.96,
+      "ask": 77.38,
+      "iv": 0.8112,
+      "delta": -0.9294
+    },
+    {
+      "strike": 285.0,
+      "exp": "2026-09-25",
+      "bid": 0.24,
+      "ask": 0.49,
+      "iv": 0.2368,
+      "delta": 0.0579
+    }
+  ],
+  "news": [
+    {
+      "headline": "McDonald's Corporation (MCD) Stock Price, News, Quote ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "McDonald's: MCD Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "MCD: McDonald's Corp - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

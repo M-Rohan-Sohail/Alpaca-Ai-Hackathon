@@ -1,0 +1,81 @@
+{
+  "symbol": "IWM",
+  "price": 294.99,
+  "returns": {
+    "return_1d": 0.0033,
+    "return_5d": -0.0161,
+    "return_20d": -0.0109
+  },
+  "trend": {
+    "sma20": 299.13,
+    "sma50": 297.07,
+    "rsi14": 46.17
+  },
+  "volatility": {
+    "daily_std": 0.0103,
+    "atr": 3.35
+  },
+  "volume": {
+    "today": 9242890,
+    "avg20": 16554056
+  },
+  "options": [
+    {
+      "strike": 250.0,
+      "exp": "2026-09-10",
+      "bid": 0.03,
+      "ask": 0.04,
+      "iv": 0.4786,
+      "delta": -0.0055
+    },
+    {
+      "strike": 399.0,
+      "exp": "2026-09-04",
+      "bid": 105.21,
+      "ask": 106.1,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 291.0,
+      "exp": "2026-09-03",
+      "bid": 4.08,
+      "ask": 4.15,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 261.0,
+      "exp": "2026-09-09",
+      "bid": 33.98,
+      "ask": 34.86,
+      "iv": 0.5206,
+      "delta": 0.9698
+    },
+    {
+      "strike": 319.0,
+      "exp": "2026-09-10",
+      "bid": 0.0,
+      "ask": 0.03,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "iShares Russell 2000 ETF (IWM) Stock Price, News, Quote ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "iShares Russell 2000 Index Fund (IWM) News Headlines",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "iShares Russell 2000 ETF: IWM Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

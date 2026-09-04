@@ -1,0 +1,842 @@
+{
+  "run_timestamp": "20260903_224014",
+  "news_analysis": [
+    {
+      "symbol": "CVX",
+      "news_score": 69.7,
+      "overall_sentiment": "positive",
+      "overall_impact": "high",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Venezuela oil deal expansion",
+        "Rising oil prices due to geopolitical tensions"
+      ],
+      "risks": [
+        "Declining Brent crude prices",
+        "Geopolitical instability in Venezuela and Middle East"
+      ],
+      "events": [
+        {
+          "headline": "Chevron Just Committed $7 Billion to Venezuela. Here's What It Means for CVX Stock.",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/09/02/chevron-just-committed-7-billion-to-venezuela-heres-what-it-means-for-cvx-stock/",
+          "published_at": "22 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "geopolitical"
+        },
+        {
+          "headline": "Chevron Stock Is A Bargain Amid Venezuela Deal (NYSE:CVX)",
+          "source": "Seeking Alpha",
+          "url": "https://seekingalpha.com/article/4942600-chevron-stock-bargain-amid-venezuela-deal",
+          "published_at": "14 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "earnings"
+        },
+        {
+          "headline": "Chevron Stock: Is CVX Underperforming the Energy Sector?",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/chevron-stock-cvx-underperforming-energy-193129112.html",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "analyst_commentary"
+        },
+        {
+          "headline": "Chevron (CVX) Stock Looks Reasonable On Earnings But Stretched On Its 5 Year Run",
+          "source": "Simply Wall Street",
+          "url": "https://simplywall.st/stocks/us/energy/nyse-cvx/news/chevron-cvx-stock-looks-reasonable-on-earnings-but-stretched/amp",
+          "published_at": "1 day ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "valuation"
+        },
+        {
+          "headline": "Chevron Stock (CVX): The Record Quarter Was Built on $104 Oil \u2014 Brent Is Now $91. What Changes?",
+          "source": "TOP1markets",
+          "url": "https://www.top1markets.com/news/chevron-stock-cvx-oil-price-dividend-analysis",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "negative",
+          "impact": "medium",
+          "event_type": "commodity_prices"
+        },
+        {
+          "headline": "$Chevron (CVX.US)$ #coffee oil giant, energy stock to diversify portfolio",
+          "source": "Moomoo",
+          "url": "https://www.moomoo.com/community/feed/chevron-cvx-us-coffee-oil-giant-energy-stock-to-diversify-117187738140678",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "miscellaneous"
+        }
+      ]
+    },
+    {
+      "symbol": "WFC",
+      "news_score": 53.6,
+      "overall_sentiment": "mixed",
+      "overall_impact": "high",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Q2 earnings beat with revenue up 8.2%",
+        "Higher-for-longer rate environment benefiting banks",
+        "AI boom trickling down to broader economy"
+      ],
+      "risks": [
+        "Narrowing net interest margins and rising deposit costs",
+        "Ongoing regulatory asset caps and compliance issues",
+        "Stock price volatility and market declines"
+      ],
+      "events": [
+        {
+          "headline": "Wells Fargo (NYSE:WFC) Beats Expectations in Strong Q2 CY2026",
+          "source": "StockStory",
+          "url": "https://stockstory.org/us/stocks/nyse/wfc/news/earnings/wells-fargo-nysewfc-beats-expectations-in-strong-q2-cy2026",
+          "published_at": "1 month ago",
+          "relevance_score": 100,
+          "sentiment": "mixed",
+          "impact": "high",
+          "event_type": "earnings"
+        },
+        {
+          "headline": "Wells Fargo Stock And Other Banks Built For Higher For Longer Rates",
+          "source": "Simply Wall Street",
+          "url": "https://simplywall.st/stocks/us/banks/nyse-wfc/wells-fargo/news/wells-fargo-stock-and-other-banks-built-for-higher-for-longe",
+          "published_at": "4 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "macro"
+        },
+        {
+          "headline": "Wells Fargo (WFC) Stock Declines While Market Improves: Some Information for Investors",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/wells-fargo-wfc-stock-declines-214503211.html",
+          "published_at": "2 weeks ago",
+          "relevance_score": 100,
+          "sentiment": "negative",
+          "impact": "medium",
+          "event_type": "price_movement"
+        },
+        {
+          "headline": "WFC 260828 99.00C (WFC260828C99000) Stock Options Chain | Quotes & News",
+          "source": "Moomoo",
+          "url": "https://www.moomoo.com/options/WFC260828C99000-US",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "options"
+        },
+        {
+          "headline": "Why Wells Fargo Stock Is Down Today",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/04/14/why-wells-fargo-stock-is-down-today/",
+          "published_at": "Apr 14, 2026",
+          "relevance_score": 100,
+          "sentiment": "negative",
+          "impact": "medium",
+          "event_type": "price_movement"
+        },
+        {
+          "headline": "Wells Fargo Stock (WFC) Opinions on Analyst Price Target Increases | WFC Stock News",
+          "source": "Quiver Quantitative",
+          "url": "https://www.quiverquant.com/news/Wells+Fargo+Stock+%28WFC%29+Opinions+on+Analyst+Price+Target+Increases",
+          "published_at": "Jul 3, 2026",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_ratings"
+        },
+        {
+          "headline": "Wells Fargo says stay disciplined as 2026 markets turn noisy",
+          "source": "Stock Titan",
+          "url": "https://www.stocktitan.net/news/WFC/wells-fargo-investment-institute-when-every-headline-shouts-pqyq58pley15.html",
+          "published_at": "Jun 17, 2026",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "guidance"
+        },
+        {
+          "headline": "AI Boom Is \u2018Trickling Down\u2019 to Old-Line Stocks, Wells Fargo Says",
+          "source": "Bloomberg.com",
+          "url": "https://www.bloomberg.com/news/articles/2026-08-04/ai-boom-is-trickling-down-to-old-line-stocks-wells-fargo-says",
+          "published_at": "1 month ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "macro"
+        },
+        {
+          "headline": "Do Wall Street Analysts Like Wells Fargo Stock?",
+          "source": "Barchart.com",
+          "url": "https://www.barchart.com/story/news/3519152/do-wall-street-analysts-like-wells-fargo-stock",
+          "published_at": "1 month ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "analyst_ratings"
+        }
+      ]
+    },
+    {
+      "symbol": "JNJ",
+      "news_score": 59.6,
+      "overall_sentiment": "positive",
+      "overall_impact": "low",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "European regulatory backing for Tecvayli",
+        "AI-driven drug discovery initiatives",
+        "Analyst price target upgrades",
+        "Strong stock performance relative to market"
+      ],
+      "risks": [
+        "Valuation concerns on earnings basis",
+        "Potential slowdown in certain business segments",
+        "Market volatility and sector rotation"
+      ],
+      "events": [
+        {
+          "headline": "Johnson & Johnson (JNJ) Stock Looks Cheap On Cash Flow But Rich On Earnings",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/johnson-johnson-jnj-stock-looks-190830511.html",
+          "published_at": "3 weeks ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "valuation"
+        },
+        {
+          "headline": "Johnson & Johnson (JNJ) Stock May Trade At A Discount As Europe Backs Tecvayli",
+          "source": "Simply Wall Street",
+          "url": "https://simplywall.st/stocks/us/pharmaceuticals-biotech/nyse-jnj/johnson-johnson/news/johnson-johnson-jnj-stock-may-trade-at-a-discount-as-europe",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "regulatory"
+        },
+        {
+          "headline": "Johnson & Johnson (JNJ) Rises As Market Takes a Dip: Key Facts",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/johnson-johnson-jnj-rises-market-214502046.html",
+          "published_at": "1 day ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "low",
+          "event_type": "price_movement"
+        },
+        {
+          "headline": "Johnson & Johnson Stock: Is JNJ Outperforming the Consumer Staples Sector?",
+          "source": "Webull",
+          "url": "https://www.webull.com/news/15487263237284864",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "sector_analysis"
+        },
+        {
+          "headline": "Forget Nvidia. Johnson & Johnson and 2 Other AI Stocks Are Beating the Market by 29 Points.",
+          "source": "Barchart.com",
+          "url": "https://www.barchart.com/story/news/4329641/forget-nvidia-johnson-johnson-and-2-other-ai-stocks-are-beating-the-market-by-29-points",
+          "published_at": "5 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_opinion"
+        },
+        {
+          "headline": "Why Johnson & Johnson (JNJ) Stock Is Up Today",
+          "source": "Quiver Quantitative",
+          "url": "https://www.quiverquant.com/news/Why+Johnson+%26+Johnson+%28JNJ%29+Stock+Is+Up+Today",
+          "published_at": "2 weeks ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "low",
+          "event_type": "price_movement"
+        },
+        {
+          "headline": "Johnson & Johnson Just Sent Shareholders an Important 11-Word Message About Its Future",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/08/20/johnson-johnson-just-sent-shareholders-an-importan/",
+          "published_at": "2 weeks ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "corporate_action"
+        },
+        {
+          "headline": "The Real Engine Behind Johnson & Johnson Stock\u2019s Next Climb",
+          "source": "Trefis",
+          "url": "https://www.trefis.com/stock/jnj/articles/607505/the-real-engine-behind-johnson-johnson-stocks-next-climb/2026-07-16",
+          "published_at": "1 month ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "business_growth"
+        },
+        {
+          "headline": "Why Johnson & Johnson Stock Popped on Friday",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/06/26/why-johnson-johnson-stock-popped-on-friday/",
+          "published_at": "Jun 26, 2026",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "analyst_upgrade"
+        }
+      ]
+    },
+    {
+      "symbol": "JPM",
+      "news_score": 67.6,
+      "overall_sentiment": "positive",
+      "overall_impact": "medium",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Strong stock performance with 20.6% gain in 3 months",
+        "Morningstar upgrade to attractive",
+        "Potential $20B acquisition war chest",
+        "Increased buybacks and dividend",
+        "Stablecoin plans and undervaluation"
+      ],
+      "risks": [
+        "Potential overvaluation after strong run",
+        "Institutional selling by some funds",
+        "Market volatility and interest rate changes"
+      ],
+      "events": [
+        {
+          "headline": "JPM Stock Gains 20.6% in 3 Months: Key Factors to Watch Before Buying",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jpm-stock-gains-20-6-135800820.html",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "stock performance"
+        },
+        {
+          "headline": "JPM Stock Slips Premarket: Morningstar Says JPMorgan Is Becoming Increasingly Attractive At Current Levels",
+          "source": "Stocktwits",
+          "url": "https://stocktwits.com/news-articles/markets/equity/jpm-stock-slips-premarket-morningstar-says-jpmorgan-is-becoming-increasingly-attractive/cZKtYvUR7BX",
+          "published_at": "21 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst rating"
+        },
+        {
+          "headline": "Solidarity Wealth LLC Sells 4,951 Shares of JPMorgan Chase & Co. $JPM",
+          "source": "MarketBeat",
+          "url": "https://www.marketbeat.com/instant-alerts/filing-solidarity-wealth-llc-sells-4951-shares-of-jpmorgan-chase-co-jpm-2026-09-03/",
+          "published_at": "9 hours ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "institutional trading"
+        },
+        {
+          "headline": "JPMorgan (JPM) Stock May Be 27% Undervalued Following Stablecoin Plans",
+          "source": "Simply Wall Street",
+          "url": "https://simplywall.st/stocks/us/banks/nyse-jpm/jpmorgan-chase/news/jpmorgan-jpm-stock-may-be-27-undervalued-following-stablecoi",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "valuation"
+        },
+        {
+          "headline": "JPMorgan's $20B Deal War Chest: What It Means for JPM Stock",
+          "source": "Eastern Progress",
+          "url": "https://www.easternprogress.com/jpmorgans-20b-deal-war-chest-what-it-means-for-jpm-stock/article_a68bbd7a-5871-5ad6-9c98-ca9e2c53b225.html",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "M&A"
+        },
+        {
+          "headline": "Elon Musk's Tesla vs. Jamie Dimon's JPMorgan Chase: Which Stock Has Performed Better Over the Past 5 Years?",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/09/01/elon-musks-tesla-vs-jamie-dimons-jpmorgan-chase-wh/",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "comparison"
+        },
+        {
+          "headline": "JPMorgan Chase (JPM) Raised Buybacks And Its Dividend, Is The Stock Fully Priced?",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/jpmorgan-chase-jpm-raised-buybacks-150828566.html",
+          "published_at": "1 day ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "capital return"
+        },
+        {
+          "headline": "JPMorgan Chase & Co. $JPM Stake Lifted by Baron Silver Stevens Financial Advisors LLC",
+          "source": "MarketBeat",
+          "url": "https://www.marketbeat.com/instant-alerts/filing-jpmorgan-chase-co-jpm-stake-lifted-by-baron-silver-stevens-financial-advisors-llc-2026-09-03/",
+          "published_at": "10 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "low",
+          "event_type": "institutional trading"
+        },
+        {
+          "headline": "Soltis Investment Advisors LLC Grows Holdings in JPMorgan Chase & Co. $JPM",
+          "source": "MarketBeat",
+          "url": "https://www.marketbeat.com/instant-alerts/filing-soltis-investment-advisors-llc-grows-holdings-in-jpmorgan-chase-co-jpm-2026-09-03/",
+          "published_at": "9 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "low",
+          "event_type": "institutional trading"
+        }
+      ]
+    },
+    {
+      "symbol": "BAC",
+      "news_score": 57.0,
+      "overall_sentiment": "positive",
+      "overall_impact": "medium",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Potential undervaluation with 31% upside",
+        "Strong analyst consensus with 84% buy ratings",
+        "AI expansion initiatives",
+        "Stablecoin plans"
+      ],
+      "risks": [
+        "Institutional selling by Royal London Asset Management",
+        "Interest rate shifts affecting banking sector",
+        "Market volatility and macroeconomic uncertainty"
+      ],
+      "events": [
+        {
+          "headline": "Bank of America (BAC) Stock May Be 31% Undervalued Despite Stablecoin Plans",
+          "source": "Yahoo Finance Singapore",
+          "url": "https://sg.finance.yahoo.com/news/bank-america-bac-stock-may-130815324.html",
+          "published_at": "2026-08-30",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "valuation"
+        },
+        {
+          "headline": "Bank of America Corporation $BAC Stock Position Reduced by Royal London Asset Management Ltd.",
+          "source": "MarketBeat",
+          "url": "https://www.marketbeat.com/instant-alerts/filing-bank-of-america-corporation-bac-stock-position-reduced-by-royal-london-asset-management-ltd-2026-08-31/",
+          "published_at": "2026-08-28",
+          "relevance_score": 100,
+          "sentiment": "negative",
+          "impact": "low",
+          "event_type": "institutional_activity"
+        },
+        {
+          "headline": "Bank Of America (BAC) Stock: Why Big Money Is Buying Bank Of America Cuba Solar Power Revolution",
+          "source": "Mshale",
+          "url": "https://mshale.com/3350d13c/87cf06f7FDoRWBU8Vg1CDyA",
+          "published_at": "2026-08-29",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_commentary"
+        },
+        {
+          "headline": "Bank of America Declares Preferred Stock Dividends Payable in August and September 2026",
+          "source": "PR Newswire",
+          "url": "https://www.prnewswire.com/news-releases/bank-of-america-declares-preferred-stock-dividends-payable-in-august-and-september-2026-302828793.html",
+          "published_at": "2026-07-31",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "low",
+          "event_type": "dividend"
+        },
+        {
+          "headline": "BAC 260821 64.00C (BAC260821C64000) Stock Options Chain | Quotes & News",
+          "source": "Moomoo",
+          "url": "https://www.moomoo.com/options/BAC260821C64000-US",
+          "published_at": "2026-08-18",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "options_data"
+        },
+        {
+          "headline": "Bank of America (BAC) Stock Could Stay Reasonable Despite Fresh AI Expansion News",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/bank-america-bac-stock-could-010815466.html",
+          "published_at": "2026-07-31",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_commentary"
+        },
+        {
+          "headline": "How To Buy Bank Of America BAC Stock On Cash App",
+          "source": "Mshale",
+          "url": "https://mshale.com/b7b2b27e/228fcd71Gz4rBQMEYikdIzQ",
+          "published_at": "2026-08-28",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "miscellaneous"
+        },
+        {
+          "headline": "Here\u2019s Why Bank of America Corporation (BAC) is Among the Best Low Cost Stocks",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-bank-america-corporation-bac-181039101.html",
+          "published_at": "2026-06-04",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_rating"
+        },
+        {
+          "headline": "BAC Stock Alert: Bank Of America Hits $52 As Interest Rates Shift!",
+          "source": "Mshale",
+          "url": "https://mshale.com/b5509799/aebd7152IiseEjwrSxY2KDQ",
+          "published_at": "2026-08-29",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "price_action"
+        }
+      ]
+    },
+    {
+      "symbol": "XOM",
+      "news_score": 72.0,
+      "overall_sentiment": "positive",
+      "overall_impact": "medium",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Rising crude oil prices due to Middle East geopolitical tensions",
+        "Venezuela investment headlines",
+        "Iran oil shock and supply disruption concerns",
+        "Strong energy sector performance and dividend growth"
+      ],
+      "risks": [
+        "Geopolitical volatility could reverse quickly",
+        "ExxonMobil underperforming the broader energy sector",
+        "Potential regulatory or political risks from Venezuela and Iran",
+        "Valuation concerns despite discount"
+      ],
+      "events": [
+        {
+          "headline": "ExxonMobil (XOM) Stock May Trade At A Discount Despite Iran Oil Shock",
+          "source": "Simply Wall Street",
+          "url": "https://simplywall.st/stocks/us/energy/nyse-xom/exxonmobil-holdings/news/exxonmobil-xom-stock-may-trade-at-a-discount-despite-iran-oi",
+          "published_at": "16 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "valuation"
+        },
+        {
+          "headline": "2 Energy Dividend Stocks With Growing Payouts, Led by ExxonMobil",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/09/03/2-energy-dividend-stocks-with-growing-payouts-led/",
+          "published_at": "4 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "dividend"
+        },
+        {
+          "headline": "Why Are XOM, CVX, GEV Stocks Rising Overnight?",
+          "source": "Stocktwits",
+          "url": "https://stocktwits.com/news-articles/markets/equity/why-are-xom-cvx-gev-stocks-rising-overnight/cZsoarKRJtl",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "geopolitical"
+        },
+        {
+          "headline": "What's Going on with ExxonMobil Shares on Monday?",
+          "source": "TradingView",
+          "url": "https://www.tradingview.com/news/benzinga:952a24b23094b:0-what-s-going-on-with-exxonmobil-shares-on-monday/",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "geopolitical"
+        },
+        {
+          "headline": "XOM Stock Finds Buyers as Elliott Wave Double Three Pattern Completes",
+          "source": "CryptoRank",
+          "url": "https://cryptorank.io/news/feed/138a5-xom-stock-elliott-wave-double-three-pattern",
+          "published_at": "1 day ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "technical"
+        },
+        {
+          "headline": "Top Wall Street analysts suggest these 3 dividend stocks for consistent income",
+          "source": "CNBC",
+          "url": "https://www.cnbc.com/2026/08/30/top-analysts-suggest-these-dividend-stocks-for-consistent-income.html",
+          "published_at": "4 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst"
+        },
+        {
+          "headline": "ExxonMobil Stock: Is XOM Underperforming the Energy Sector?",
+          "source": "Barchart.com",
+          "url": "https://www.barchart.com/story/news/4338998/exxonmobil-stock-is-xom-underperforming-the-energy-sector",
+          "published_at": "5 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "medium",
+          "event_type": "performance"
+        },
+        {
+          "headline": "Chevron, Exxon and Other Oil Stocks Jump as Two Huge Energy Stories Collide",
+          "source": "24/7 Wall St.",
+          "url": "https://247wallst.com/investing/2026/09/01/chevron-exxon-and-other-oil-stocks-jump-as-two-huge-energy-stories-collide/",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "geopolitical"
+        },
+        {
+          "headline": "NS Partners Ltd Has $23.39 Million Stock Position in ExxonMobil Corporation $XOM",
+          "source": "MarketBeat",
+          "url": "https://www.marketbeat.com/instant-alerts/filing-ns-partners-ltd-has-2339-million-stock-position-in-exxonmobil-corporation-xom-2026-09-01/",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "institutional"
+        }
+      ]
+    },
+    {
+      "symbol": "NFLX",
+      "news_score": 72.5,
+      "overall_sentiment": "positive",
+      "overall_impact": "high",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Advertising business growth",
+        "Gaming expansion with GTA VI",
+        "Stock rebound and undervaluation"
+      ],
+      "risks": [
+        "Chairman Reed Hastings selling shares",
+        "Underperformance vs S&P 500",
+        "Gaming revenue unquantified"
+      ],
+      "events": [
+        {
+          "headline": "Why Netflix Stock Gained 13% in August",
+          "source": "The Motley Fool",
+          "url": "https://www.fool.com/investing/2026/09/03/why-netflix-stock-gained-13-in-august/",
+          "published_at": "2026-09-03",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "stock_price_movement"
+        },
+        {
+          "headline": "Netflix Stock Rebound Fuels Ad Growth Talk: A Sign of More Upside?",
+          "source": "TradingView",
+          "url": "https://www.tradingview.com/news/zacks:230c76d6e094b:0-netflix-stock-rebound-fuels-ad-growth-talk-a-sign-of-more-upside/",
+          "published_at": "2026-09-03",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "business_growth"
+        },
+        {
+          "headline": "NFLX Stock Reverses Course Overnight: Retail Shrugs Off Outgoing Chairman\u2019s Sale As \u2018Routine\u2019",
+          "source": "Stocktwits",
+          "url": "https://stocktwits.com/news-articles/markets/equity/nflx-stock-reverses-course-overnight-retail-shrugs-off-chairman-sale/cZ0SM5YReDs",
+          "published_at": "2026-09-02",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "insider_trading"
+        },
+        {
+          "headline": "Netflix: A Second Monetization Cycle Is Just Getting Started (NASDAQ:NFLX)",
+          "source": "Seeking Alpha",
+          "url": "https://seekingalpha.com/article/4942628-netflix-stock-second-monetization-cycle-just-getting-started",
+          "published_at": "2026-09-03",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_upgrade"
+        },
+        {
+          "headline": "Netflix (NFLX) Stock May Be 16% Undervalued As Its TV Style Pivot Builds",
+          "source": "Simply Wall Street",
+          "url": "https://simplywall.st/stocks/us/media/nasdaq-nflx/netflix/news/netflix-nflx-stock-may-be-16-undervalued-as-its-tv-style-piv",
+          "published_at": "2026-08-31",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "valuation"
+        },
+        {
+          "headline": "Netflix (NASDAQ:NFLX) Stock Price Up 2.4% - Still a Buy?",
+          "source": "MarketBeat",
+          "url": "https://www.marketbeat.com/instant-alerts/price-netflix-nasdaq-nflx-stock-price-up-24-still-a-buy-2026-09-02/",
+          "published_at": "2026-09-02",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "low",
+          "event_type": "stock_price_movement"
+        },
+        {
+          "headline": "Can Gaming Become the Next Revenue Pillar for Netflix Stock?",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/media-advertising/articles/gaming-become-next-revenue-pillar-132400182.html",
+          "published_at": "2026-08-31",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "business_expansion"
+        },
+        {
+          "headline": "Is Netflix Stock Underperforming the S&P 500?",
+          "source": "Barchart.com",
+          "url": "https://www.barchart.com/story/news/4346048/is-netflix-stock-underperforming-the-s-p-500",
+          "published_at": "2026-08-31",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "low",
+          "event_type": "performance_comparison"
+        },
+        {
+          "headline": "Does This News Make Netflix Stock a Buy?",
+          "source": "The Globe and Mail",
+          "url": "https://www.theglobeandmail.com/investing/markets/stocks/NFLX-Q/pressreleases/4384305/does-this-news-make-netflix-stock-a-buy/",
+          "published_at": "2026-09-02",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_opinion"
+        }
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "news_score": 75.5,
+      "overall_sentiment": "positive",
+      "overall_impact": "high",
+      "relevant_news_count": 10,
+      "catalysts": [
+        "Cybercab launch event",
+        "Strong stock momentum and new highs",
+        "European production ramp",
+        "Virtual power plant partnership"
+      ],
+      "risks": [
+        "Event execution risk for Cybercab",
+        "High valuation expectations",
+        "Potential production challenges in Europe"
+      ],
+      "events": [
+        {
+          "headline": "Tesla Stock Surges Ahead of Cybercab Launch: The Bull and Bear Case",
+          "source": "Barron's",
+          "url": "https://www.barrons.com/articles/tesla-stock-price-cybercab-event-robo-taxi-cabf48cc",
+          "published_at": "23 minutes ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "high",
+          "event_type": "product_launch"
+        },
+        {
+          "headline": "QQQ is up 1.2% today, on TSLA stock price movement",
+          "source": "Quiver Quantitative",
+          "url": "https://www.quiverquant.com/news/QQQ+is+up+1.2%25+today%2C+on+TSLA+stock+price+movement",
+          "published_at": "1 hour ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "market_movement"
+        },
+        {
+          "headline": "Why Tesla (TSLA) Stock Is Up Today",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/why-tesla-tsla-stock-today-214840004.html",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "stock_movement"
+        },
+        {
+          "headline": "Wall Street sets Tesla stock price for the next 12 months",
+          "source": "Finbold",
+          "url": "https://finbold.com/wall-street-sets-tesla-stock-price-for-the-next-12-months-13/",
+          "published_at": "3 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "analyst_rating"
+        },
+        {
+          "headline": "Tesla Crosses 50-Day SMA: Buy, Hold or Sell TSLA Stock?",
+          "source": "TradingView",
+          "url": "https://www.tradingview.com/news/zacks:b97f45367094b:0-tesla-crosses-50-day-sma-buy-hold-or-sell-tsla-stock/",
+          "published_at": "2 days ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "technical_analysis"
+        },
+        {
+          "headline": "TSLA Stock Dips \u2014 Tesla Gears Up To Ramp European Production To 7,500 Vehicles Per Week Amid FSD Push",
+          "source": "Stocktwits",
+          "url": "https://stocktwits.com/news-articles/markets/equity/tsla-stock-dips-tesla-gears-up-to-ramp-european-production-to-7500-vehicles-per-week-amid-fsd-push/cZ1GpXzR7Xm",
+          "published_at": "19 hours ago",
+          "relevance_score": 100,
+          "sentiment": "neutral",
+          "impact": "medium",
+          "event_type": "production"
+        },
+        {
+          "headline": "tsla stock sharing",
+          "source": "Moomoo",
+          "url": "https://www.moomoo.com/community/feed/tsla-stock-sharing-117189672239110",
+          "published_at": "3 days ago",
+          "relevance_score": 100,
+          "sentiment": "negative",
+          "impact": "low",
+          "event_type": "retail_sentiment"
+        },
+        {
+          "headline": "TSLA, PCG, GOOGL, RUN, CARR Stocks In Focus: A New Virtual Power Plant To Connect 21,000 Home Energy Devices",
+          "source": "Yahoo Finance",
+          "url": "https://finance.yahoo.com/energy/articles/tsla-pcg-googl-run-carr-124207817.html",
+          "published_at": "5 hours ago",
+          "relevance_score": 100,
+          "sentiment": "positive",
+          "impact": "medium",
+          "event_type": "partnership"
+        }
+      ]
+    }
+  ]
+}

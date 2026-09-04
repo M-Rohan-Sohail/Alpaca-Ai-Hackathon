@@ -1,0 +1,81 @@
+{
+  "symbol": "MSFT",
+  "price": 510.14,
+  "returns": {
+    "return_1d": 0.0268,
+    "return_5d": 0.0101,
+    "return_20d": 0.0206
+  },
+  "trend": {
+    "sma20": 495.72,
+    "sma50": 441.24,
+    "rsi14": 66.18
+  },
+  "volatility": {
+    "daily_std": 0.0283,
+    "atr": 11.83
+  },
+  "volume": {
+    "today": 12145700,
+    "avg20": 23023004
+  },
+  "options": [
+    {
+      "strike": 520.0,
+      "exp": "2026-09-04",
+      "bid": 10.25,
+      "ask": 10.47,
+      "iv": 0.3091,
+      "delta": -0.8805
+    },
+    {
+      "strike": 380.0,
+      "exp": "2026-09-11",
+      "bid": 0.03,
+      "ask": 0.07,
+      "iv": 0.737,
+      "delta": -0.0029
+    },
+    {
+      "strike": 415.0,
+      "exp": "2026-09-11",
+      "bid": 0.01,
+      "ask": 0.06,
+      "iv": 0.5146,
+      "delta": -0.0029
+    },
+    {
+      "strike": 505.0,
+      "exp": "2026-09-11",
+      "bid": 4.23,
+      "ask": 4.58,
+      "iv": 0.2267,
+      "delta": -0.3677
+    },
+    {
+      "strike": 300.0,
+      "exp": "2026-09-25",
+      "bid": 209.08,
+      "ask": 213.98,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Microsoft Corporation (MSFT) Stock Price, News, Quote & ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "MSFT: Microsoft Corporation - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Buy or Sell Microsoft Stock - MSFT Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

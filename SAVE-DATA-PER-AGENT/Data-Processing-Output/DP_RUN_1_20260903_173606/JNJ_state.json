@@ -1,0 +1,81 @@
+{
+  "symbol": "JNJ",
+  "price": 278.205,
+  "returns": {
+    "return_1d": 0.0109,
+    "return_5d": 0.0468,
+    "return_20d": 0.0826
+  },
+  "trend": {
+    "sma20": 267.45,
+    "sma50": 261.16,
+    "rsi14": 65.19
+  },
+  "volatility": {
+    "daily_std": 0.0158,
+    "atr": 5.66
+  },
+  "volume": {
+    "today": 2250078,
+    "avg20": 6247518
+  },
+  "options": [
+    {
+      "strike": 160.0,
+      "exp": "2026-10-09",
+      "bid": 0.0,
+      "ask": 0.72,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 350.0,
+      "exp": "2026-11-20",
+      "bid": 0.2,
+      "ask": 0.8,
+      "iv": 0.2625,
+      "delta": 0.0385
+    },
+    {
+      "strike": 150.0,
+      "exp": "2026-10-02",
+      "bid": 0.0,
+      "ask": 0.76,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 85.0,
+      "exp": "2027-01-15",
+      "bid": 191.24,
+      "ask": 197.69,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 290.0,
+      "exp": "2026-09-18",
+      "bid": 12.38,
+      "ask": 13.76,
+      "iv": 0.2415,
+      "delta": -0.7886
+    }
+  ],
+  "news": [
+    {
+      "headline": "Johnson & Johnson (JNJ) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Johnson & Johnson: JNJ Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "JNJ: Johnson & Johnson - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

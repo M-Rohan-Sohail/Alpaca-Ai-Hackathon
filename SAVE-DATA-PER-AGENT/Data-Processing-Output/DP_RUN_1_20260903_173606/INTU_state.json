@@ -1,0 +1,81 @@
+{
+  "symbol": "INTU",
+  "price": 348.56,
+  "returns": {
+    "return_1d": 0.0164,
+    "return_5d": 0.0016,
+    "return_20d": 0.0828
+  },
+  "trend": {
+    "sma20": 349.36,
+    "sma50": 314.22,
+    "rsi14": 54.64
+  },
+  "volatility": {
+    "daily_std": 0.0319,
+    "atr": 15.35
+  },
+  "volume": {
+    "today": 1637672,
+    "avg20": 3917873
+  },
+  "options": [
+    {
+      "strike": 277.5,
+      "exp": "2026-09-04",
+      "bid": 67.07,
+      "ask": 74.41,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 570.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 4.37,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 352.5,
+      "exp": "2026-09-18",
+      "bid": 10.04,
+      "ask": 11.63,
+      "iv": 0.4387,
+      "delta": 0.4752
+    },
+    {
+      "strike": 380.0,
+      "exp": "2026-09-25",
+      "bid": 33.45,
+      "ask": 38.52,
+      "iv": 0.4611,
+      "delta": -0.7531
+    },
+    {
+      "strike": 285.0,
+      "exp": "2026-09-04",
+      "bid": 61.95,
+      "ask": 67.28,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Intuit Inc. (INTU) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Intuit: INTU Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Intuit Inc (INTU) Stock Price & News - Google Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

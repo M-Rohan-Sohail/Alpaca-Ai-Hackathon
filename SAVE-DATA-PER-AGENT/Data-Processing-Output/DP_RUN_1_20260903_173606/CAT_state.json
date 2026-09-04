@@ -1,0 +1,81 @@
+{
+  "symbol": "CAT",
+  "price": 796.98,
+  "returns": {
+    "return_1d": 0.0059,
+    "return_5d": -0.0245,
+    "return_20d": -0.07
+  },
+  "trend": {
+    "sma20": 824.96,
+    "sma50": 877.49,
+    "rsi14": 40.1
+  },
+  "volatility": {
+    "daily_std": 0.0285,
+    "atr": 28.24
+  },
+  "volume": {
+    "today": 1208414,
+    "avg20": 2399419
+  },
+  "options": [
+    {
+      "strike": 1380.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 4.13,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 870.0,
+      "exp": "2026-09-11",
+      "bid": 71.0,
+      "ask": 77.99,
+      "iv": 0.4401,
+      "delta": -0.9029
+    },
+    {
+      "strike": 1150.0,
+      "exp": "2026-09-25",
+      "bid": 0.0,
+      "ask": 4.28,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 777.5,
+      "exp": "2026-09-11",
+      "bid": 6.14,
+      "ask": 8.63,
+      "iv": 0.3323,
+      "delta": -0.292
+    },
+    {
+      "strike": 832.5,
+      "exp": "2026-09-04",
+      "bid": 29.03,
+      "ask": 38.39,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Caterpillar Inc. (CAT) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "CAT: Caterpillar Inc - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Caterpillar: CAT Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

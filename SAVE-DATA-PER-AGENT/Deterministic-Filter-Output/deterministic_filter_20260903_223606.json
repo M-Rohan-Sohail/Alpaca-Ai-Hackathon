@@ -1,0 +1,236 @@
+{
+  "detailed_scores": {
+    "candidates": [
+      {
+        "rank": 1,
+        "symbol": "CVX",
+        "opportunity_score": 85.7,
+        "scores": {
+          "momentum": 100.0,
+          "trend": 100.0,
+          "volume": 25.4,
+          "volatility": 79.4
+        }
+      },
+      {
+        "rank": 2,
+        "symbol": "WFC",
+        "opportunity_score": 81.9,
+        "scores": {
+          "momentum": 88.5,
+          "trend": 100.0,
+          "volume": 31.0,
+          "volatility": 74.9
+        }
+      },
+      {
+        "rank": 3,
+        "symbol": "JNJ",
+        "opportunity_score": 78.1,
+        "scores": {
+          "momentum": 81.2,
+          "trend": 100.0,
+          "volume": 24.0,
+          "volatility": 74.1
+        }
+      },
+      {
+        "rank": 4,
+        "symbol": "JPM",
+        "opportunity_score": 72.6,
+        "scores": {
+          "momentum": 58.2,
+          "trend": 100.0,
+          "volume": 29.7,
+          "volatility": 85.1
+        }
+      },
+      {
+        "rank": 5,
+        "symbol": "BAC",
+        "opportunity_score": 69.8,
+        "scores": {
+          "momentum": 75.7,
+          "trend": 75.0,
+          "volume": 31.0,
+          "volatility": 82.6
+        }
+      },
+      {
+        "rank": 6,
+        "symbol": "XOM",
+        "opportunity_score": 69.3,
+        "scores": {
+          "momentum": 78.8,
+          "trend": 75.0,
+          "volume": 29.4,
+          "volatility": 74.1
+        }
+      },
+      {
+        "rank": 7,
+        "symbol": "NFLX",
+        "opportunity_score": 69.0,
+        "scores": {
+          "momentum": 60.3,
+          "trend": 100.0,
+          "volume": 27.8,
+          "volatility": 57.8
+        }
+      },
+      {
+        "rank": 8,
+        "symbol": "TSLA",
+        "opportunity_score": 66.7,
+        "scores": {
+          "momentum": 66.6,
+          "trend": 75.0,
+          "volume": 83.9,
+          "volatility": 30.0
+        }
+      }
+    ],
+    "run_timestamp": "20260903_223606"
+  },
+  "overall_ranking": {
+    "candidates": [
+      {
+        "symbol": "CVX",
+        "price": 212.2301,
+        "trend": {
+          "sma20": 202.18,
+          "sma50": 190.44,
+          "rsi14": 72.16
+        },
+        "volatility": {
+          "daily_std": 0.0155,
+          "atr": 3.87
+        },
+        "volume": {
+          "today": 2929455,
+          "avg20": 7694431
+        }
+      },
+      {
+        "symbol": "WFC",
+        "price": 89.24,
+        "trend": {
+          "sma20": 86.74,
+          "sma50": 86.55,
+          "rsi14": 61.65
+        },
+        "volatility": {
+          "daily_std": 0.0149,
+          "atr": 1.79
+        },
+        "volume": {
+          "today": 5578309,
+          "avg20": 11988730
+        }
+      },
+      {
+        "symbol": "JNJ",
+        "price": 278.205,
+        "trend": {
+          "sma20": 267.45,
+          "sma50": 261.16,
+          "rsi14": 65.19
+        },
+        "volatility": {
+          "daily_std": 0.0158,
+          "atr": 5.66
+        },
+        "volume": {
+          "today": 2250078,
+          "avg20": 6247518
+        }
+      },
+      {
+        "symbol": "JPM",
+        "price": 361.78,
+        "trend": {
+          "sma20": 358.27,
+          "sma50": 349.3,
+          "rsi14": 60.1
+        },
+        "volatility": {
+          "daily_std": 0.0128,
+          "atr": 5.77
+        },
+        "volume": {
+          "today": 2361286,
+          "avg20": 5297233
+        }
+      },
+      {
+        "symbol": "BAC",
+        "price": 63.085,
+        "trend": {
+          "sma20": 62.97,
+          "sma50": 61.53,
+          "rsi14": 55.86
+        },
+        "volatility": {
+          "daily_std": 0.0118,
+          "atr": 1.07
+        },
+        "volume": {
+          "today": 12811191,
+          "avg20": 27585551
+        }
+      },
+      {
+        "symbol": "XOM",
+        "price": 163.6,
+        "trend": {
+          "sma20": 161.17,
+          "sma50": 152.55,
+          "rsi14": 59.73
+        },
+        "volatility": {
+          "daily_std": 0.0162,
+          "atr": 3.33
+        },
+        "volume": {
+          "today": 6085380,
+          "avg20": 13810807
+        }
+      },
+      {
+        "symbol": "NFLX",
+        "price": 82.99,
+        "trend": {
+          "sma20": 79.12,
+          "sma50": 75.3,
+          "rsi14": 64.6
+        },
+        "volatility": {
+          "daily_std": 0.0221,
+          "atr": 2.23
+        },
+        "volume": {
+          "today": 11102791,
+          "avg20": 26630138
+        }
+      },
+      {
+        "symbol": "TSLA",
+        "price": 382.16,
+        "trend": {
+          "sma20": 347.45,
+          "sma50": 358.48,
+          "rsi14": 62.25
+        },
+        "volatility": {
+          "daily_std": 0.036,
+          "atr": 14.52
+        },
+        "volume": {
+          "today": 45352880,
+          "avg20": 36042752
+        }
+      }
+    ],
+    "run_timestamp": "20260903_223606"
+  }
+}

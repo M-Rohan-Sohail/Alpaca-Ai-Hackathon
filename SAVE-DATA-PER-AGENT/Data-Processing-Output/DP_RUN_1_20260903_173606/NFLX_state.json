@@ -1,0 +1,81 @@
+{
+  "symbol": "NFLX",
+  "price": 82.99,
+  "returns": {
+    "return_1d": 0.0031,
+    "return_5d": 0.0395,
+    "return_20d": 0.1262
+  },
+  "trend": {
+    "sma20": 79.12,
+    "sma50": 75.3,
+    "rsi14": 64.6
+  },
+  "volatility": {
+    "daily_std": 0.0221,
+    "atr": 2.23
+  },
+  "volume": {
+    "today": 11102791,
+    "avg20": 26630138
+  },
+  "options": [
+    {
+      "strike": 2480.0,
+      "exp": "2026-09-18",
+      "bid": 1.46,
+      "ask": 3.78,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 1140.0,
+      "exp": "2026-09-18",
+      "bid": 136.01,
+      "ask": 141.63,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 92.0,
+      "exp": "2026-09-04",
+      "bid": 0.0,
+      "ask": 0.01,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 59.0,
+      "exp": "2026-09-04",
+      "bid": 23.4,
+      "ask": 24.13,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 62.0,
+      "exp": "2026-10-02",
+      "bid": 0.01,
+      "ask": 0.07,
+      "iv": 0.4647,
+      "delta": -0.0104
+    }
+  ],
+  "news": [
+    {
+      "headline": "Netflix, Inc. (NFLX) Stock Price, News, Quote & History - Yahoo Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Netflix Inc (NFLX) Stock Price & News - Google Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "NFLX Stock Quote Price and Forecast - CNN",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

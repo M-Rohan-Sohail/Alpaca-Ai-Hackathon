@@ -1,0 +1,81 @@
+{
+  "symbol": "ADBE",
+  "price": 285.21,
+  "returns": {
+    "return_1d": 0.0194,
+    "return_5d": -0.0136,
+    "return_20d": 0.0959
+  },
+  "trend": {
+    "sma20": 274.03,
+    "sma50": 247.38,
+    "rsi14": 61.35
+  },
+  "volatility": {
+    "daily_std": 0.0323,
+    "atr": 10.41
+  },
+  "volume": {
+    "today": 1516632,
+    "avg20": 4128422
+  },
+  "options": [
+    {
+      "strike": 220.0,
+      "exp": "2026-09-11",
+      "bid": 0.02,
+      "ask": 0.18,
+      "iv": 0.7604,
+      "delta": -0.009
+    },
+    {
+      "strike": 200.0,
+      "exp": "2026-09-25",
+      "bid": 0.07,
+      "ask": 1.4,
+      "iv": 0.8207,
+      "delta": -0.0306
+    },
+    {
+      "strike": 345.0,
+      "exp": "2026-09-11",
+      "bid": 57.57,
+      "ask": 62.4,
+      "iv": 0.685,
+      "delta": -0.9657
+    },
+    {
+      "strike": 305.0,
+      "exp": "2026-10-16",
+      "bid": 28.63,
+      "ask": 31.94,
+      "iv": 0.488,
+      "delta": -0.6149
+    },
+    {
+      "strike": 290.0,
+      "exp": "2026-09-25",
+      "bid": 12.44,
+      "ask": 13.47,
+      "iv": 0.5328,
+      "delta": 0.4811
+    }
+  ],
+  "news": [
+    {
+      "headline": "Adobe Inc. (ADBE) Stock Price, News, Quote & History - Yahoo Finance",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "ADBE: Adobe Inc. - Stock Price, Quote and News - CNBC",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Adobe: ADBE Stock Price Quote & News - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

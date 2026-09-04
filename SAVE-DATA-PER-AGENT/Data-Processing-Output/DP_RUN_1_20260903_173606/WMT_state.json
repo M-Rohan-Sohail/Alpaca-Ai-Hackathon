@@ -1,0 +1,81 @@
+{
+  "symbol": "WMT",
+  "price": 109.075,
+  "returns": {
+    "return_1d": 0.0281,
+    "return_5d": 0.0628,
+    "return_20d": -0.0267
+  },
+  "trend": {
+    "sma20": 109.2,
+    "sma50": 111.07,
+    "rsi14": 50.37
+  },
+  "volatility": {
+    "daily_std": 0.0181,
+    "atr": 2.55
+  },
+  "volume": {
+    "today": 12423812,
+    "avg20": 27187330
+  },
+  "options": [
+    {
+      "strike": 165.0,
+      "exp": "2026-12-18",
+      "bid": 0.01,
+      "ask": 0.16,
+      "iv": 0.3248,
+      "delta": 0.0134
+    },
+    {
+      "strike": 110.0,
+      "exp": "2026-09-25",
+      "bid": 1.89,
+      "ask": 1.96,
+      "iv": 0.2099,
+      "delta": 0.4622
+    },
+    {
+      "strike": 50.0,
+      "exp": "2026-12-18",
+      "bid": 58.43,
+      "ask": 61.42,
+      "iv": 0.7583,
+      "delta": 0.9838
+    },
+    {
+      "strike": 87.5,
+      "exp": "2026-09-18",
+      "bid": 20.83,
+      "ask": 22.18,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 80.0,
+      "exp": "2026-09-25",
+      "bid": 0.0,
+      "ask": 2.15,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Walmart Inc. (WMT) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "WMT: Walmart Inc - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "WMT Stock Quote Price and Forecast",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

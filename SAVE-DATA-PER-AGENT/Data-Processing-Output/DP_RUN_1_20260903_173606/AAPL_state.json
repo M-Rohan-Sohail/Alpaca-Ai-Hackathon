@@ -1,0 +1,81 @@
+{
+  "symbol": "AAPL",
+  "price": 327.73,
+  "returns": {
+    "return_1d": 0.0085,
+    "return_5d": 0.0418,
+    "return_20d": 0.049
+  },
+  "trend": {
+    "sma20": 312.78,
+    "sma50": 314.25,
+    "rsi14": 62.96
+  },
+  "volatility": {
+    "daily_std": 0.0197,
+    "atr": 7.38
+  },
+  "volume": {
+    "today": 18928208,
+    "avg20": 38690778
+  },
+  "options": [
+    {
+      "strike": 245.0,
+      "exp": "2026-09-14",
+      "bid": 83.23,
+      "ask": 84.78,
+      "iv": 1.0281,
+      "delta": 0.9577
+    },
+    {
+      "strike": 400.0,
+      "exp": "2026-10-02",
+      "bid": 69.9,
+      "ask": 73.31,
+      "iv": 0.3716,
+      "delta": -0.9659
+    },
+    {
+      "strike": 360.0,
+      "exp": "2026-09-14",
+      "bid": 0.14,
+      "ask": 0.22,
+      "iv": 0.2806,
+      "delta": 0.0297
+    },
+    {
+      "strike": 405.0,
+      "exp": "2026-09-18",
+      "bid": 0.01,
+      "ask": 0.02,
+      "iv": 0.3595,
+      "delta": 0.0022
+    },
+    {
+      "strike": 360.0,
+      "exp": "2026-09-25",
+      "bid": 0.62,
+      "ask": 0.7,
+      "iv": 0.2536,
+      "delta": 0.0742
+    }
+  ],
+  "news": [
+    {
+      "headline": "Apple Inc. (AAPL) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "AAPL: Apple Inc. - Stock Price, Quote and News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Buy or Sell Apple Stock - AAPL Stock Price Quote & News",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

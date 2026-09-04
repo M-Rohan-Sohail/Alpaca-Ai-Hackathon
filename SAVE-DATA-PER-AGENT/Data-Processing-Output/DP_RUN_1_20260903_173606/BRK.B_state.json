@@ -1,0 +1,81 @@
+{
+  "symbol": "BRK.B",
+  "price": 507.745,
+  "returns": {
+    "return_1d": 0.005,
+    "return_5d": 0.008,
+    "return_20d": -0.0321
+  },
+  "trend": {
+    "sma20": 506.18,
+    "sma50": 502.77,
+    "rsi14": 54.15
+  },
+  "volatility": {
+    "daily_std": 0.0093,
+    "atr": 6.2
+  },
+  "volume": {
+    "today": 1674074,
+    "avg20": 4150669
+  },
+  "options": [
+    {
+      "strike": 440.0,
+      "exp": "2026-09-25",
+      "bid": 0.18,
+      "ask": 0.34,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 330.0,
+      "exp": "2026-09-25",
+      "bid": 178.59,
+      "ask": 181.01,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 720.0,
+      "exp": "2026-09-18",
+      "bid": 0.0,
+      "ask": 0.07,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 470.0,
+      "exp": "2026-09-18",
+      "bid": 38.68,
+      "ask": 41.07,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 445.0,
+      "exp": "2026-09-18",
+      "bid": 0.14,
+      "ask": 0.18,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Berkshire Hathaway Inc. (BRK-B) Stock Price, News, Quote & History",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Buy or Sell Berkshire Hathaway Inc. Class B Stock - BRK.B ... - Robinhood",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Berkshire Hathaway Inc Class B (BRK.B) Stock Price & News - Google",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}

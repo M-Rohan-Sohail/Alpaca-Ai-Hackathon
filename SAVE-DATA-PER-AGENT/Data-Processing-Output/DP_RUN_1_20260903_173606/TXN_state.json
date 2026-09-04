@@ -1,0 +1,81 @@
+{
+  "symbol": "TXN",
+  "price": 253.66,
+  "returns": {
+    "return_1d": -0.0045,
+    "return_5d": -0.0483,
+    "return_20d": -0.0889
+  },
+  "trend": {
+    "sma20": 267.93,
+    "sma50": 281.09,
+    "rsi14": 36.46
+  },
+  "volatility": {
+    "daily_std": 0.0299,
+    "atr": 8.95
+  },
+  "volume": {
+    "today": 1787408,
+    "avg20": 5432876
+  },
+  "options": [
+    {
+      "strike": 150.0,
+      "exp": "2026-09-18",
+      "bid": 101.47,
+      "ask": 105.87,
+      "iv": null,
+      "delta": null
+    },
+    {
+      "strike": 285.0,
+      "exp": "2026-10-09",
+      "bid": 1.55,
+      "ask": 3.09,
+      "iv": 0.349,
+      "delta": 0.1652
+    },
+    {
+      "strike": 260.0,
+      "exp": "2026-09-18",
+      "bid": 4.46,
+      "ask": 4.84,
+      "iv": 0.3483,
+      "delta": 0.3854
+    },
+    {
+      "strike": 220.0,
+      "exp": "2026-09-18",
+      "bid": 33.84,
+      "ask": 35.06,
+      "iv": 0.4317,
+      "delta": 0.9544
+    },
+    {
+      "strike": 315.0,
+      "exp": "2026-09-11",
+      "bid": 0.0,
+      "ask": 2.17,
+      "iv": null,
+      "delta": null
+    }
+  ],
+  "news": [
+    {
+      "headline": "Texas Instruments Incorporated (TXN) Stock Price, News ...",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Texas Instruments Incorporated Common Stock (TXN)",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    },
+    {
+      "headline": "Texas Instruments Incorporated Stock Price",
+      "sentiment": "neutral",
+      "confidence": 0.5
+    }
+  ]
+}
