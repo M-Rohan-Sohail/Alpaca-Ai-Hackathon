@@ -442,7 +442,7 @@
     "initial_debit": 490.00000000000006,
     "initial_credit": 0.0,
     "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
-    "exit_timestamp": "2026-09-03T17:56:07.466349+00:00",
+    "exit_timestamp": "2026-09-04T13:04:33.160026+00:00",
     "realized_pnl": 0.0
   },
   {
@@ -547,125 +547,5 @@
     "exit_reason": "MANUALLY_CLOSED_OR_EXPIRED",
     "exit_timestamp": "2026-09-03T16:04:52.536827+00:00",
     "realized_pnl": 0.0
-  },
-  {
-    "trade_id": "CVX_20260903_224240",
-    "strategy_id": "CVX_20260903_224240",
-    "symbol": "CVX",
-    "strategy_type": "LongCall",
-    "alpaca_order_id": "d65eb8a1-d756-439d-adef-511aee4cba0c",
-    "status": "OPEN",
-    "quantity": 1,
-    "max_risk": 917.0,
-    "legs": [
-      {
-        "symbol": "CVX261016C00210000",
-        "action": "BUY",
-        "option_type": "CALL",
-        "strike": 210.0,
-        "expiration": "2026-10-16",
-        "price": 9.17
-      }
-    ],
-    "entry_price": 8.75,
-    "entry_timestamp": "2026-09-03 17:42:41.182531+00:00",
-    "initial_debit": 875.0,
-    "initial_credit": 0.0
-  },
-  {
-    "trade_id": "WFC_20260903_224240",
-    "strategy_id": "WFC_20260903_224240",
-    "symbol": "WFC",
-    "strategy_type": "LongCall",
-    "alpaca_order_id": "6b6c9911-8313-4f2e-b697-e89cf37dfe2b",
-    "status": "OPEN",
-    "quantity": 3,
-    "max_risk": 960.0,
-    "legs": [
-      {
-        "symbol": "WFC261016C00090000",
-        "action": "BUY",
-        "option_type": "CALL",
-        "strike": 90.0,
-        "expiration": "2026-10-16",
-        "price": 3.2
-      }
-    ],
-    "entry_price": 3.2,
-    "entry_timestamp": "2026-09-03 17:46:21.293335+00:00",
-    "initial_debit": 320.0,
-    "initial_credit": 0.0
-  },
-  {
-    "trade_id": "BAC_20260903_224240",
-    "strategy_id": "BAC_20260903_224240",
-    "symbol": "BAC",
-    "strategy_type": "LongCall",
-    "alpaca_order_id": "aef14821-7ead-4e8a-872d-e127ee648662",
-    "status": "OPEN",
-    "quantity": 2,
-    "max_risk": 832.0,
-    "legs": [
-      {
-        "symbol": "BAC261016C00060000",
-        "action": "BUY",
-        "option_type": "CALL",
-        "strike": 60.0,
-        "expiration": "2026-10-16",
-        "price": 4.16
-      }
-    ],
-    "entry_price": 4.1,
-    "entry_timestamp": "2026-09-03 17:42:41.720914+00:00",
-    "initial_debit": 409.99999999999994,
-    "initial_credit": 0.0
-  },
-  {
-    "trade_id": "XOM_20260903_224240",
-    "strategy_id": "XOM_20260903_224240",
-    "symbol": "XOM",
-    "strategy_type": "LongCall",
-    "alpaca_order_id": "30c69bd6-c749-4512-a72c-2754fa871e06",
-    "status": "OPEN",
-    "quantity": 1,
-    "max_risk": 588.0,
-    "legs": [
-      {
-        "symbol": "XOM261016C00165000",
-        "action": "BUY",
-        "option_type": "CALL",
-        "strike": 165.0,
-        "expiration": "2026-10-16",
-        "price": 5.88
-      }
-    ],
-    "entry_price": 5.85,
-    "entry_timestamp": "2026-09-03 17:42:41.835719+00:00",
-    "initial_debit": 585.0,
-    "initial_credit": 0.0
-  },
-  {
-    "trade_id": "NFLX_20260903_224240",
-    "strategy_id": "NFLX_20260903_224240",
-    "symbol": "NFLX",
-    "strategy_type": "LongCall",
-    "alpaca_order_id": "a339c25d-acf4-4b9e-a127-469734c3946c",
-    "status": "OPEN",
-    "quantity": 2,
-    "max_risk": 672.0,
-    "legs": [
-      {
-        "symbol": "NFLX261016C00085000",
-        "action": "BUY",
-        "option_type": "CALL",
-        "strike": 85.0,
-        "expiration": "2026-10-16",
-        "price": 3.36
-      }
-    ],
-    "entry_price": 3.3,
-    "entry_timestamp": "2026-09-03 17:42:42.198686+00:00",
-    "initial_debit": 330.0,
-    "initial_credit": 0.0
   }
 ]
